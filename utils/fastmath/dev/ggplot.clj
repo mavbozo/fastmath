@@ -8,6 +8,7 @@
 
 (r/require-r '[ggplot2 :as gg]
              '[paletteer :as pal]
+             '[patchwork :as pw]
              '[base])
 
 (defn ->palette
@@ -128,10 +129,28 @@
 
 (defn line-points
   ([xs ys]
-   (-> (tc/dataset {:x xs :y ys})
-       (r/r+ (gg/ggplot (gg/aes :x :x :y :y))
-             (gg/theme_light)
-             (gg/geom_line :color "blue")))))
+   (r/r+ (gg/ggplot (tc/dataset {:x xs :y ys}) (gg/aes :x :x :y :y))
+         (gg/theme_light)
+         (gg/geom_line :color "blue"))))
+
+
+(defn line-points2
+  ([xs ys title]
+   (r/r+ (gg/ggplot (tc/dataset {:x xs :y ys}) (gg/aes :x :x :y :y))
+         (gg/theme_light)
+         (gg/theme :axis.title (gg/element_blank)
+                   :axis.text (gg/element_blank)
+                   :axis.ticks (gg/element_blank)
+                   ;; :plot.title (gg/element_blank :hjust 5)
+                   )
+         (gg/geom_line :color "blue")
+         (gg/labs :title title :x nil :y nil))))
+
+
+(defn dgraph
+  [pdf-plot cdf-plot icdf-plot]
+  (pw/wrap_plots pdf-plot cdf-plot icdf-plot :ncol 3))
+
 
 (defn lollipop
   ([xs ys]
