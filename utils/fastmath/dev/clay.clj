@@ -44,28 +44,6 @@
                 :row-vectors [~@(for [[s i] rows]
                                   `[(kind/code (pr-str (quote ~s))) (or ~i "-")])]}))
 
-
-(let [dist (r/distribution :anderson-darling {:n 1})
-      rnge :domain
-      f (partial r/pdf dist)
-      [dx dy :as dom] [-3.3 3.3]
-      md (m/make-norm dx dy 5.0 (- size 5))
-      xsys (m/sample f dx dy (* 2 size) true)
-      [frx fry] (stats/extent (map second (filter (comp m/valid-double? second) xsys)))
-      [rx ry] (case rnge
-                :domain dom
-                :zero [(min 0.0 frx)
-                       (max 0.0 fry)]
-                rnge)
-      rx (or rx frx)
-         ry (or ry fry)
-         mr (m/make-norm rx ry (- size 5.0) 5.0)         
-         r0 (mr 0)
-         d0 (md 0)
-         dticks (map md (remove zero? (range (m/qfloor dx) (m/qceil dy))))
-         rticks (map mr (remove zero? (range (m/qfloor rx) (m/qceil ry))))] 
-  {:r0 r0 :d0 d0 :dticks dticks :rticks rticks})
-
 (defn- split-at-invalid-double
   [xs ^double thr]
   (loop [s xs
@@ -75,6 +53,12 @@
       (let [[v inv] (split-with (comp (partial valid? thr) second) s)]
         (recur (drop-while (comp (partial invalid? thr) second) inv)
                (if (seq v) (conj buff v) buff))))))
+
+
+(defn- tick-step
+  [a b]
+  (max 1 (long (m/ceil (m/log10 (m/abs (- a b)))))))
+
 
 (defn fgraph-int
   ([f] (fgraph-int f nil))
@@ -107,6 +91,81 @@
      (gg/line-points2 xs ys title))))
 
 
+(defn sample-int
+  [f ^long dx ^long dy]
+  (map (fn [v] [(+ v 0.5) (f v)]) (range dx (inc dy))))
+
+
+(defn bgraph-int
+  ([f] (bgraph-int f nil))
+  ([f domain] (bgraph-int f domain :domain))
+  ([f domain rnge] (bgraph-int f domain rnge size))
+  ([f domain rnge size] (fgraph-int f domain rnge size {:title "Foo"}))
+  ([f domain rnge size {:keys [title]}]
+   (let [[dx dy :as dom] (or domain [0 10])
+         md (m/make-norm dx dy 5.0 (- size 5))
+         xsys (if (map? f)
+                (seq f)
+                (sample-int f dx dy))
+         [frx fry] (stats/extent (map second (filter (comp m/valid-double? second) xsys)))
+         [rx ry] (case rnge
+                   :domain dom
+                   :zero [(min 0.0 frx)
+                          (max 0.0 fry)]
+                   rnge)
+         rx (or rx frx)
+         ry (or ry fry)
+         mr (m/make-norm rx ry 5.0 (- size 5.0))         
+         r0 (mr 0)
+         d0 (md 0)
+         dticks (map md (remove zero? (range (m/qfloor dx) (m/qceil dy))))
+         rticks (map mr (remove zero? (range (m/qfloor rx) (m/qceil ry))))
+         tt (->> xsys
+                 (map (fn [[x y]]
+                        (when (m/valid-double? y)
+                          (let [xx (md x)]
+                            [[xx r0] [xx (mr y)]]))))
+                 #_(keep identity)
+                 #_(mapcat identity))
+         ;; [xs ys] (reduce (fn [acc [x fx]]
+         ;;                   (-> acc (update 0 conj x) (update 1 conj fx)))
+         ;;                 [[] []]
+         ;;                 tt)
+         ]
+     #_[xs ys]
+     (gg/bgraph-int tt title)
+     #_(gg/line-points2 xs ys title))))
+
+
+;; (def grad (c/gradient [0xfafaff 0x303065]))
+
+(defn graph2d
+  ([f] (graph2d f nil nil))
+  ([f dx dy] (graph2d f dx dy size))
+  ([f dx dy size]
+   (let [[dx1 dx2] (or dx [0.0 1.0])
+         [dy1 dy2] (or dy [0.0 1.0])
+         mx (m/make-norm 5.0 (- size 5.0) dx1 dx2)
+         my (m/make-norm 5.0 (- size 5.0) dy2 dy1)
+         r (range 5 (- size 5))
+         xy (for [x r y r
+                  :let [xx (mx x)
+                        yy (my y)
+                        v (f xx yy)]
+                  :when (m/valid-double? v)]
+              [x y v])
+         [v1 v2] (stats/extent (map last xy))
+         n (m/make-norm v1 v2 0.0 1.0)]
+     xy
+     #_(gg/graph2d xy)
+     #_(c2d/with-canvas [c (c2d/canvas size size :high)]
+       (c2d/set-background c 0xfafaff)
+       (doseq [[x y v] xy]
+         (c2d/set-color c (grad (n v)))
+         (c2d/crect c x y 1 1))
+       (c2d/get-image c)))))
+
+
 (defmacro fgraph
   ([f] `(fgraph-int (fn [x#] (~f x#))))
   ([f domain] `(fgraph-int (fn [x#] (~f x#)) ~domain))
@@ -130,4 +189,15 @@
          icdf-plot (fgraph-int (partial r/icdf distr) icdf :zero 100 {:title "ICDF"})]
      (gg/->image (gg/dgraph pdf-plot cdf-plot icdf-plot)))))
 
+(defn dgraph-cont-debug
+  ([pdf-graph distr] (dgraph-cont pdf-graph distr nil))
+  ([pdf-graph distr {:keys [pdf icdf data]
+                     :or {pdf [0 1] icdf [0 0.999]}}]
+   (let [pdf-plot (pdf-graph (if data data (partial r/pdf distr)) pdf [0 nil] 100 {:title "PDF"})
+         cdf-plot (fgraph-int (partial r/cdf distr) pdf [0 1] 100 {:title "CDF"})
+         icdf-plot (fgraph-int (partial r/icdf distr) icdf :zero 100 {:title "ICDF"})]
+     (gg/->image (gg/dgraph pdf-plot cdf-plot icdf-plot))
+     #_pdf-plot)))
+
 (def dgraph (partial dgraph-cont fgraph-int))
+(def dgraphi (partial dgraph-cont-debug bgraph-int))

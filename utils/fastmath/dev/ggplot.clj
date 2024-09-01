@@ -146,6 +146,41 @@
          (gg/geom_line :color "blue")
          (gg/labs :title title :x nil :y nil))))
 
+(defn bgraph-int
+  "bgraph-int"
+  [points-pair title]
+  (let [gls (map (fn [[p1 p2]]
+                   (gg/geom_line
+                    :data (tc/dataset {:x [(first p1) (first p2)]
+                                       :y [(second p1) (second p2)]}))) points-pair)]
+    (apply r/r+
+           (gg/ggplot :mapping (gg/aes :x :x :y :y))
+           (gg/theme_light)
+           (gg/theme :axis.title (gg/element_blank)
+                     :axis.text (gg/element_blank)
+                     :axis.ticks (gg/element_blank)
+                     ;; :plot.title (gg/element_blank :hjust 5)
+                     )
+           (gg/labs :title title :x nil :y nil)
+           gls)))
+
+
+(defn graph2d
+  "bgraph-int"
+  [points]
+  (let [gls (map (fn [[x y]]
+                   (gg/geom_rect
+                    :mapping (gg/aes :xmax x :ymax y :xmin 1 :ymin 1 :color "black"))) points)]
+    (->image (apply r/r+
+                    (gg/ggplot :mapping (gg/aes :x :x :y :y))
+                    (gg/theme_light)
+                    (gg/theme :axis.title (gg/element_blank)
+                              :axis.text (gg/element_blank)
+                              :axis.ticks (gg/element_blank)
+                              ;; :plot.title (gg/element_blank :hjust 5)
+                              )
+                    (gg/labs :x nil :y nil)
+                    gls))))
 
 (defn dgraph
   [pdf-plot cdf-plot icdf-plot]

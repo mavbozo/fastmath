@@ -1226,8 +1226,8 @@
 
 (kind/table
  [[{:mu 0.5 :sigma 1 :bd 10} {:mu 0.65 :sigma 0.3 :bd 20}]
-  [(u/dgraphi (r/distribution :bb) {:pdf [0 11]})
-   (u/dgraphi (r/distribution :bb {:mu 0.65 :sigma 0.3 :bd 20}) {:pdf [0 22]})]])
+  [(utls/dgraphi (r/distribution :bb) {:pdf [0 11]})
+   (utls/dgraphi (r/distribution :bb {:mu 0.65 :sigma 0.3 :bd 20}) {:pdf [0 22]})]])
 
 ;; #### Bernoulli
 
@@ -1238,11 +1238,10 @@
 ;;    * `:p`, probability, $0.5$ 
 ;; * [wiki](https://en.wikipedia.org/wiki/Bernoulli_distribution)
 
-
 (kind/table
  [[{:p 0.5} {:p 0.25}]
-  [(u/dgraphi (r/distribution :bernoulli) {:pdf [0 2]})
-   (u/dgraphi (r/distribution :bernoulli {:p 0.25}) {:pdf [0 2]})]])
+  [(utls/dgraphi (r/distribution :bernoulli) {:pdf [0 2]})
+   (utls/dgraphi (r/distribution :bernoulli {:p 0.25}) {:pdf [0 2]})]])
 
 ;; #### Binomial
 
@@ -1252,11 +1251,10 @@
 ;;    * `:trials`: $20$
 ;; * [wiki](https://en.wikipedia.org/wiki/Binomial_distribution), [source](https://commons.apache.org/proper/commons-math/javadocs/api-3.6.1/org/apache/commons/math3/distribution/BinomialDistribution.html)
 
-
 (kind/table
  [[{:trials 20 :p 0.5} {:trials 50 :p 0.25}]
-  [(u/dgraphi (r/distribution :binomial) {:pdf [0 20]})
-   (u/dgraphi (r/distribution :binomial {:trials 50 :p 0.25}) {:pdf [0 30]})]])
+  [(utls/dgraphi (r/distribution :binomial) {:pdf [0 20]})
+   (utls/dgraphi (r/distribution :binomial {:trials 50 :p 0.25}) {:pdf [0 30]})]])
 
 ;; #### Fisher's noncentral hypergeometric
 
@@ -1271,8 +1269,8 @@
 
 (kind/table
  [[{:ns 10 :nf 10 :n 5 :omega 1} {:ns 30 :nf 60 :n 20 :omega 0.75}]
-  [(u/dgraphi (r/distribution :fishers-noncentral-hypergeometric) {:pdf [0 6]})
-   (u/dgraphi (r/distribution :fishers-noncentral-hypergeometric
+  [(utls/dgraphi (r/distribution :fishers-noncentral-hypergeometric) {:pdf [0 6]})
+   (utls/dgraphi (r/distribution :fishers-noncentral-hypergeometric
                               {:ns 30 :nf 60 :n 20 :omega 0.75}) {:pdf [0 20]})]])
 
 ;; #### Geometric
@@ -1285,8 +1283,8 @@
 
 (kind/table
  [[{:p 0.5} {:p 0.15}]
-  [(u/dgraphi (r/distribution :geometric) {:pdf [0 10]})
-   (u/dgraphi (r/distribution :geometric {:p 0.15}) {:pdf [0 20]})]])
+  [(utls/dgraphi (r/distribution :geometric) {:pdf [0 10]})
+   (utls/dgraphi (r/distribution :geometric {:p 0.15}) {:pdf [0 20]})]])
 
 ;; #### Hypergeometric
 
@@ -1302,11 +1300,11 @@
  [[{:population-size 100
     :number-of-successes 50
     :sample-size 25}]
-  [(u/dgraphi (r/distribution :hypergeometric) {:pdf [0 26]})]
+  [(utls/dgraphi (r/distribution :hypergeometric) {:pdf [0 26]})]
   [{:population-size 2000
     :number-of-successes 20
     :sample-size 200}]
-  [(u/dgraphi (r/distribution :hypergeometric {:population-size 2000
+  [(utls/dgraphi (r/distribution :hypergeometric {:population-size 2000
                                                :number-of-successes 20
                                                :sample-size 200}) {:pdf [0 20]})]])
 
@@ -1320,8 +1318,8 @@
 
 (kind/table
  [[{:theta 0.5} {:theta 0.99}]
-  [(u/dgraphi (r/distribution :logarithmic) {:pdf [0 10]})
-   (u/dgraphi (r/distribution :logarithmic {:theta 0.9}) {:pdf [0 20]})]])
+  [(utls/dgraphi (r/distribution :logarithmic) {:pdf [0 10]})
+   (utls/dgraphi (r/distribution :logarithmic {:theta 0.9}) {:pdf [0 20]})]])
 
 ;; #### Negative binomial
 
@@ -1334,9 +1332,9 @@
 
 (kind/table
  [[{:r 20 :p 0.5} {:r 100 :p 0.95} {:r 21.2345 :p 0.7}]
-  [(u/dgraphi (r/distribution :negative-binomial) {:pdf [0 40]})
-   (u/dgraphi (r/distribution :negative-binomial {:r 100 :p 0.95}) {:pdf [0 20]})
-   (u/dgraphi (r/distribution :negative-binomial {:r 21.2345 :p 0.7}) {:pdf [0 30]})]])
+  [(utls/dgraphi (r/distribution :negative-binomial) {:pdf [0 40]})
+   (utls/dgraphi (r/distribution :negative-binomial {:r 100 :p 0.95}) {:pdf [0 20]})
+   (utls/dgraphi (r/distribution :negative-binomial {:r 21.2345 :p 0.7}) {:pdf [0 30]})]])
 
 ;; #### Pascal
 
@@ -1351,8 +1349,8 @@
 
 (kind/table
  [[{:r 20 :p 0.5} {:r 100 :p 0.95}]
-  [(u/dgraphi (r/distribution :pascal {:r 20 :p 0.5}) {:pdf [0 40]})
-   (u/dgraphi (r/distribution :pascal {:r 100 :p 0.95}) {:pdf [0 20]})]])
+  [(utls/dgraphi (r/distribution :pascal {:r 20 :p 0.5}) {:pdf [0 40]})
+   (utls/dgraphi (r/distribution :pascal {:r 100 :p 0.95}) {:pdf [0 20]})]])
 
 ;; #### Poisson
 
@@ -1364,8 +1362,8 @@
 
 (kind/table
  [[{:p 0.5} {:p 4}]
-  [(u/dgraphi (r/distribution :poisson) {:pdf [0 5]})
-   (u/dgraphi (r/distribution :poisson {:p 4}) {:pdf [0 11]})]])
+  [(utls/dgraphi (r/distribution :poisson) {:pdf [0 5]})
+   (utls/dgraphi (r/distribution :poisson {:p 4}) {:pdf [0 11]})]])
 
 ;; #### Uniform
 
@@ -1378,8 +1376,8 @@
 
 (kind/table
  [[{:lower 0 :upper 20} {:lower -5 :upper 5}]
-  [(u/dgraphi (r/distribution :uniform-int {:upper 20}) {:pdf [-1 22]})
-   (u/dgraphi (r/distribution :uniform-int {:lower -5 :upper 5}) {:pdf [-6 7]})]])
+  [(utls/dgraphi (r/distribution :uniform-int {:upper 20}) {:pdf [-1 22]})
+   (utls/dgraphi (r/distribution :uniform-int {:lower -5 :upper 5}) {:pdf [-6 7]})]])
 
 ;; #### Zero Adjusted Beta Binomial (zabb)
 
@@ -1394,8 +1392,8 @@
 
 (kind/table
  [[{:mu 0.5 :sigma 0.1 :bd 10 :nu 0.1} {:nu 0.1 :mu 0.65 :sigma 0.3 :bd 20}]
-  [(u/dgraphi (r/distribution :zabb {:bd 10}) {:pdf [0 12]})
-   (u/dgraphi (r/distribution :zabb {:nu 0.1 :mu 0.65 :sigma 0.3 :bd 20}) {:pdf [0 22]})]])
+  [(utls/dgraphi (r/distribution :zabb {:bd 10}) {:pdf [0 12]})
+   (utls/dgraphi (r/distribution :zabb {:nu 0.1 :mu 0.65 :sigma 0.3 :bd 20}) {:pdf [0 22]})]])
 
 ;; #### Zero Adjusted Binomial (zabi)
 
@@ -1409,8 +1407,8 @@
 
 (kind/table
  [[{:mu 0.5 :sigma 0.1 :bd 10} {:mu 0.65 :sigma 0.3 :bd 20}]
-  [(u/dgraphi (r/distribution :zabi {:bd 10}) {:pdf [0 11]})
-   (u/dgraphi (r/distribution :zabi {:mu 0.65 :sigma 0.3 :bd 20}) {:pdf [0 21]})]])
+  [(utls/dgraphi (r/distribution :zabi {:bd 10}) {:pdf [0 11]})
+   (utls/dgraphi (r/distribution :zabi {:mu 0.65 :sigma 0.3 :bd 20}) {:pdf [0 21]})]])
 
 ;; #### Zero Adjusted Negative Binomial (zanbi)
 
@@ -1424,8 +1422,8 @@
 
 (kind/table
  [[{:mu 1 :sigma 1 :nu 0.3} {:nu 0.1 :mu 2 :sigma 0.5}]
-  [(u/dgraphi (r/distribution :zanbi) {:pdf [0 9]})
-   (u/dgraphi (r/distribution :zanbi {:nu 0.1 :mu 2 :sigma 0.5}) {:pdf [0 13]})]])
+  [(utls/dgraphi (r/distribution :zanbi) {:pdf [0 9]})
+   (utls/dgraphi (r/distribution :zanbi {:nu 0.1 :mu 2 :sigma 0.5}) {:pdf [0 13]})]])
 
 ;; #### Zero Inflated Beta Binomial (zibb)
 
@@ -1440,8 +1438,8 @@
 
 (kind/table
  [[{:mu 0.5 :sigma 0.5 :bd 10 :nu 0.1} {:nu 0.1 :mu 0.65 :sigma 1 :bd 20}]
-  [(u/dgraphi (r/distribution :zibb {:bd 10}) {:pdf [0 15]})
-   (u/dgraphi (r/distribution :zibb {:nu 0.1 :mu 0.65 :sigma 1 :bd 20}) {:pdf [0 21]})]])
+  [(utls/dgraphi (r/distribution :zibb {:bd 10}) {:pdf [0 15]})
+   (utls/dgraphi (r/distribution :zibb {:nu 0.1 :mu 0.65 :sigma 1 :bd 20}) {:pdf [0 21]})]])
 
 ;; #### Zero Inflated Binomial (zibi)
 
@@ -1455,8 +1453,8 @@
 
 (kind/table
  [[{:mu 0.5 :sigma 0.1 :bd 10} {:mu 0.65 :sigma 0.3 :bd 20}]
-  [(u/dgraphi (r/distribution :zibi {:bd 10}) {:pdf [0 11]})
-   (u/dgraphi (r/distribution :zibi {:mu 0.65 :sigma 0.3 :bd 20}) {:pdf [0 21]})]])
+  [(utls/dgraphi (r/distribution :zibi {:bd 10}) {:pdf [0 11]})
+   (utls/dgraphi (r/distribution :zibi {:mu 0.65 :sigma 0.3 :bd 20}) {:pdf [0 21]})]])
 
 ;; #### Zero Inflated Negative Binomial (zinbi)
 
@@ -1470,8 +1468,8 @@
 
 (kind/table
  [[{:mu 1 :sigma 1 :nu 0.3} {:nu 0.1 :mu 2 :sigma 0.5}]
-  [(u/dgraphi (r/distribution :zinbi) {:pdf [0 9]})
-   (u/dgraphi (r/distribution :zinbi {:nu 0.1 :mu 2 :sigma 0.5}) {:pdf [0 13]})]])
+  [(utls/dgraphi (r/distribution :zinbi) {:pdf [0 9]})
+   (utls/dgraphi (r/distribution :zinbi {:nu 0.1 :mu 2 :sigma 0.5}) {:pdf [0 13]})]])
 
 ;; #### Zero Inflated Poisson (zip)
 
@@ -1484,8 +1482,8 @@
 
 (kind/table
  [[{:mu 5 :sigma 0.1} {:mu 2 :sigma 0.5}]
-  [(u/dgraphi (r/distribution :zip) {:pdf [0 14]})
-   (u/dgraphi (r/distribution :zip {:mu 2 :sigma 0.5}) {:pdf [0 7]})]])
+  [(utls/dgraphi (r/distribution :zip) {:pdf [0 14]})
+   (utls/dgraphi (r/distribution :zip {:mu 2 :sigma 0.5}) {:pdf [0 7]})]])
 
 
 ;; #### Zero Inflated Poisson, type 2 (zip2)
@@ -1499,8 +1497,8 @@
 
 (kind/table
  [[{:mu 5 :sigma 0.1} {:mu 2 :sigma 0.5}]
-  [(u/dgraphi (r/distribution :zip2) {:pdf [0 14]})
-   (u/dgraphi (r/distribution :zip2 {:mu 2 :sigma 0.5}) {:pdf [0 9]})]])
+  [(utls/dgraphi (r/distribution :zip2) {:pdf [0 14]})
+   (utls/dgraphi (r/distribution :zip2 {:mu 2 :sigma 0.5}) {:pdf [0 9]})]])
 
 ;; #### Zipf
 
@@ -1513,8 +1511,59 @@
 
 (kind/table
  [[{:number-of-elements 100 :exponent 3} {:number-of-elements 20 :exponent 0.5}]
-  [(u/dgraphi (r/distribution :zipf) {:pdf [0 8]})
-   (u/dgraphi (r/distribution :zipf {:number-of-elements 20 :exponent 0.5}) {:pdf [0 21]})]])
+  [(utls/dgraphi (r/distribution :zipf) {:pdf [0 8]})
+   (utls/dgraphi (r/distribution :zipf {:number-of-elements 20 :exponent 0.5}) {:pdf [0 21]})]])
+
+
+
+;; ### Multivariate
+
+(kind/table
+ {:column-names ["name" "parameters" "continuous?"]
+  :row-vectors (concat (map #(conj % true) (build-distribution-list true true))
+                       (map #(conj % false) (build-distribution-list true false)))})
+
+;; #### Dirichlet
+
+;; * Name: `:dirichlet`
+;; * Default parameters
+;;    * `:alpha`, concentration, vector: `[1 1]`
+;; * [wiki](https://en.wikipedia.org/wiki/Dirichlet_distribution)
+
+;; Please note, `PDF` doesn't validate input.
+
+(defn dirichlet-1d [alpha]
+  (let [d (r/distribution :dirichlet {:alpha alpha})]
+    (utls/fgraph1 (fn [^double x]
+                    (let [v [x (- 1.0 x)]]
+                      (r/pdf d v))) [0.0 1.0] nil 150)))
+
+(defn dirichlet-2d [alpha]
+  (let [d (r/distribution :dirichlet {:alpha alpha})]
+    (utls/graph2d (fn [^double x ^double y]
+                    (let [lv (- 1.0 x y)
+                          v [x y lv]]
+                      (if (neg? lv)
+                        ##NaN
+                        (r/pdf d v)))) nil nil 150)))
+
+;; Projections of the 2d and 3d Dirichlet distributions.
+
+;; * 2d case - all vectors $[x,1-x]$
+;; * 3d case - all (supported) vectors $[x,y,1-x-y]$
+
+(comment
+#_ comment-start
+(dirichlet-1d [0.6 0.6])
+
+(dirichlet-2d [3 1 3])
+#_ comment-end) 
+
+;; (kind/table
+;;  [[{:alpha [0.6 0.6]} {:alpha [3 3]} {:alpha [0.5 2]}]
+;;   [(dirichlet-1d [0.6 0.6]) (dirichlet-1d [3 3]) (dirichlet-1d [0.5 2])]
+;;   [{:alpha [3 1 3]} {:alpha [3 3 3]} {:alpha [1 3 1]}]
+;;   [(dirichlet-2d [3 1 3]) (dirichlet-2d [3 3 3]) (dirichlet-2d [1 3 1])]])
 
 ;; ## Reference
 
