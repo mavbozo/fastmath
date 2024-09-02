@@ -64,7 +64,7 @@
   ([f] (fgraph-int f nil))
   ([f domain] (fgraph-int f domain :domain))
   ([f domain rnge] (fgraph-int f domain rnge size))
-  ([f domain rnge size] (fgraph-int f domain rnge size {:title "Foo"}))
+  ([f domain rnge size] (fgraph-int f domain rnge size {:title ""}))
   ([f domain rnge size {:keys [title]}]
    (let [[dx dy :as dom] (or domain [-3.3 3.3])
          md (m/make-norm dx dy 5.0 (- size 5))
@@ -146,7 +146,7 @@
    (let [[dx1 dx2] (or dx [0.0 1.0])
          [dy1 dy2] (or dy [0.0 1.0])
          mx (m/make-norm 5.0 (- size 5.0) dx1 dx2)
-         my (m/make-norm 5.0 (- size 5.0) dy2 dy1)
+         my (m/make-norm (- size 5.0) 5.0  dy2 dy1)
          r (range 5 (- size 5))
          xy (for [x r y r
                   :let [xx (mx x)
@@ -156,14 +156,29 @@
               [x y v])
          [v1 v2] (stats/extent (map last xy))
          n (m/make-norm v1 v2 0.0 1.0)]
-     xy
-     #_(gg/graph2d xy)
+     ;; xy
+     (gg/graph2d xy)
      #_(c2d/with-canvas [c (c2d/canvas size size :high)]
        (c2d/set-background c 0xfafaff)
        (doseq [[x y v] xy]
          (c2d/set-color c (grad (n v)))
          (c2d/crect c x y 1 1))
-       (c2d/get-image c)))))
+         (c2d/get-image c)))))
+
+
+(defn scatter
+  ([xy] (scatter xy nil nil))
+  ([xy dx dy] (scatter xy dx dy size))
+  ([xy dx dy size]
+   (let [[dx1 dx2] (or dx [0.0 1.0])
+         [dy1 dy2] (or dy [0.0 1.0])
+         mx (m/make-norm dx1 dx2 5.0 (- size 5.0))
+         my (m/make-norm dy2 dy1 5.0 (- size 5.0))
+         d0 (mx 0.0)
+         r0 (my 0.0)
+         xs (map first xy)
+         ys (map second xy)]
+     (gg/->image (gg/scatter xs ys)))))
 
 
 (defmacro fgraph

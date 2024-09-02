@@ -168,19 +168,20 @@
 (defn graph2d
   "bgraph-int"
   [points]
-  (let [gls (map (fn [[x y]]
-                   (gg/geom_rect
-                    :mapping (gg/aes :xmax x :ymax y :xmin 1 :ymin 1 :color "black"))) points)]
-    (->image (apply r/r+
-                    (gg/ggplot :mapping (gg/aes :x :x :y :y))
-                    (gg/theme_light)
-                    (gg/theme :axis.title (gg/element_blank)
-                              :axis.text (gg/element_blank)
-                              :axis.ticks (gg/element_blank)
-                              ;; :plot.title (gg/element_blank :hjust 5)
-                              )
-                    (gg/labs :x nil :y nil)
-                    gls))))
+  (let [data (tc/dataset {:x (map first points)
+                          :y (map second points)
+                          :v (map #(nth % 2) points)})]
+    (->image (r/r+ (gg/ggplot :data data)
+                   (gg/theme_light)
+                   (gg/theme :axis.title (gg/element_blank)
+                             :axis.text (gg/element_blank)
+                             :axis.ticks (gg/element_blank)
+                             :legend.position "none"
+                             ;; :plot.title (gg/element_blank :hjust 5)
+                             )
+                   (gg/geom_tile :mapping (gg/aes :x :x :y :y :fill :v))
+                   (gg/scale_fill_gradient :low "#fafaff" :high "#303065")
+                   (gg/labs :x nil :y nil :v nil)))))
 
 (defn dgraph
   [pdf-plot cdf-plot icdf-plot]
