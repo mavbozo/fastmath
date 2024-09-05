@@ -4,6 +4,7 @@
             [clojisr.v1.applications.plotting :as rplot]
             [tablecloth.api :as tc]
             [fastmath.core :as m]
+            [fastmath.random :as fr]
             [fastmath.stats :as stats]))
 
 (r/require-r '[ggplot2 :as gg]
@@ -99,7 +100,8 @@
 (defn function2d->data
   ([f] (function2d->data f nil))
   ([f {:keys [x y steps varg?]
-       :or {steps 200 varg? true}}]
+       :or {steps 200 varg? true}
+       :as opts}]
    (let [xs (slice x steps)
          ys (slice y steps)
          f (if varg? f (fn [[x y]] (f x y)))]
@@ -129,71 +131,20 @@
 
 (defn line-points
   ([xs ys]
-   (r/r+ (gg/ggplot (tc/dataset {:x xs :y ys}) (gg/aes :x :x :y :y))
-         (gg/theme_light)
-         (gg/geom_line :color "blue"))))
-
-
-(defn line-points2
-  ([xs ys title]
-   (r/r+ (gg/ggplot (tc/dataset {:x xs :y ys}) (gg/aes :x :x :y :y))
-         (gg/theme_light)
-         (gg/theme :axis.title (gg/element_blank)
-                   :axis.text (gg/element_blank)
-                   :axis.ticks (gg/element_blank)
-                   ;; :plot.title (gg/element_blank :hjust 5)
-                   )
-         (gg/geom_line :color "blue")
-         (gg/labs :title title :x nil :y nil))))
-
-(defn bgraph-int
-  "bgraph-int"
-  [points-pair title]
-  (let [gls (map (fn [[p1 p2]]
-                   (gg/geom_line
-                    :data (tc/dataset {:x [(first p1) (first p2)]
-                                       :y [(second p1) (second p2)]}))) points-pair)]
-    (apply r/r+
-           (gg/ggplot :mapping (gg/aes :x :x :y :y))
-           (gg/theme_light)
-           (gg/theme :axis.title (gg/element_blank)
-                     :axis.text (gg/element_blank)
-                     :axis.ticks (gg/element_blank)
-                     ;; :plot.title (gg/element_blank :hjust 5)
-                     )
-           (gg/labs :title title :x nil :y nil)
-           gls)))
-
-
-(defn graph2d
-  "bgraph-int"
-  [points]
-  (let [data (tc/dataset {:x (map first points)
-                          :y (map second points)
-                          :v (map #(nth % 2) points)})]
-    (->image (r/r+ (gg/ggplot :data data)
-                   (gg/theme_light)
-                   (gg/theme :axis.title (gg/element_blank)
-                             :axis.text (gg/element_blank)
-                             :axis.ticks (gg/element_blank)
-                             :legend.position "none"
-                             ;; :plot.title (gg/element_blank :hjust 5)
-                             )
-                   (gg/geom_tile :mapping (gg/aes :x :x :y :y :fill :v))
-                   (gg/scale_fill_gradient :low "#fafaff" :high "#303065")
-                   (gg/labs :x nil :y nil :v nil)))))
-
-(defn dgraph
-  [pdf-plot cdf-plot icdf-plot]
-  (pw/wrap_plots pdf-plot cdf-plot icdf-plot :ncol 3))
-
-
-(defn lollipop
-  ([xs ys]
    (-> (tc/dataset {:x xs :y ys})
        (r/r+ (gg/ggplot (gg/aes :x :x :y :y))
              (gg/theme_light)
-             (gg/geom_segment :mapping (gg/aes :x :x :xend :x :y 0 :yend :y) :color "blue")))))
+             (gg/geom_line :color "blue")))))
+
+(defn lollipop
+  ([xs ys]
+   (lollipop xs ys nil))
+  ([xs ys {:keys [title]
+           :or {title ""} :as opts}]
+   (-> (r/r+ (gg/ggplot :data (tc/dataset {:x xs :y ys}) :mapping (gg/aes :x :x :y :y))
+             (gg/theme_light)
+             (gg/geom_segment :mapping (gg/aes :x :x :xend :x :y 0 :yend :y) :color "blue"))
+       (add-common {:title title}))))
 
 
 (defn functions
@@ -219,9 +170,9 @@
        :or {palette :pals/ocean.ice}
        :as opts}]
    (let [data (function2d->data f opts)]
-     (-> (r/r+ (gg/ggplot (gg/aes :x :x :y :y :fill :z))
+     (-> (r/r+ (gg/ggplot :mapping (gg/aes :x :x :y :y :fill :z))
                (gg/theme_light)
-               (gg/geom_raster data :interpolate true)
+               (gg/geom_raster :data (tc/dataset data) :interpolate true)
                (pal/scale_fill_paletteer_c :name legend-name (->palette palette)))
          (add-common opts)))))
 
@@ -231,9 +182,9 @@
        :or {color color-main alpha 0.4 fill color-light}
        :as opts}]
    (let [data (function-ci->data f opts)]
-     (-> (r/r+ (gg/ggplot (gg/aes :x :x :y :y :ymin :ymin :ymax :ymax))
+     (-> (r/r+ (gg/ggplot :mapping (gg/aes :x :x :y :y :ymin :ymin :ymax :ymax))
                (gg/theme_light)
-               (gg/geom_ribbon data :alpha alpha :fill fill)
+               (gg/geom_ribbon :data (tc/dataset data) :alpha alpha :fill fill)
                (gg/geom_line data :color color))
          (add-common opts)))))
 
@@ -293,3 +244,100 @@
       (title (r.base/expression (symbol "ABC~x^2~frac(1,2)~sqrt(2,3)")))
       (->file))
 
+
+(def size 200)
+
+
+(defn fgraph-int
+  ([f domain rnge size]
+   (fgraph-int f domain rnge size {:title ""}))
+  ([f domain rnge size {:keys [title]}]
+   (function f {:x domain
+                :title title
+                :steps size
+                :xlab nil
+                :ylab nil})))
+
+
+(defn sample-int
+  [f ^long dx ^long dy]
+  (map (fn [v] [(+ v 0.5) (f v)]) (range dx (inc dy))))
+
+
+(defn bgraph-int
+  ([f] (bgraph-int f nil))
+  ([f domain] (bgraph-int f domain :domain))
+  ([f domain rnge] (bgraph-int f domain rnge size))
+  ([f domain rnge size] (bgraph-int f domain rnge size {:title ""}))
+  ([f domain rnge size opts]
+   (let [[dx dy] domain
+         xsys (if (map? f)
+                (seq f)
+                (sample-int f dx dy))
+         xs (map first xsys)
+         ys (map second xsys)]
+     (lollipop xs ys opts))))
+
+
+(defn dgraph-cont
+  ([pdf-graph distr] (dgraph-cont pdf-graph distr nil))
+  ([pdf-graph distr {:keys [pdf icdf data]
+                     :or {pdf [0 1] icdf [0 0.999]}}]
+   (let [pdf-plot (pdf-graph (if data data (partial fr/pdf distr)) pdf [0 nil] 100 {:title "PDF"})
+         cdf-plot (fgraph-int (partial fr/cdf distr) pdf [0 1] 100 {:title "CDF"})
+         icdf-plot (fgraph-int (partial fr/icdf distr) icdf :zero 100 {:title "ICDF"})]
+     (->image (pw/wrap_plots pdf-plot cdf-plot icdf-plot :ncol 3)))))
+
+
+(defmacro fgraph
+  ([f] `(->image (fgraph-int (fn [x#] (~f x#)))))
+  ([f domain] `(->image (fgraph-int (fn [x#] (~f x#)) ~domain)))
+  ([f domain rnge] `(->image (fgraph-int (fn [x#] (~f x#)) ~domain ~rnge)))
+  ([f domain rnge size] `(->image (fgraph-int (fn [x#] (~f x#)) ~domain ~rnge ~size nil)))
+  ([f domain rnge size opts] `(->image (fgraph-int (fn [x#] (~f x#)) ~domain ~rnge ~size ~opts))))
+
+
+(defn dgraph
+  "given a distribution `distr` create an image containing PDF, CDF, and ICDF plots of that distribution.
+use `fgraph-int` to plot pdf"
+  ([distr]
+   (dgraph distr nil))
+  ([distr {:keys [pdf icdf data]
+           :or {pdf [0 1] icdf [0 0.999]}
+           :as opts}]
+   (dgraph-cont fgraph-int distr opts)))
+
+
+(defn dgraphi
+  "given a distribution `distr` create an image containing PDF, CDF, and ICDF plots of that distribution.
+use `bgraph-int` to plot pdf."
+  ([distr]
+   (dgraph distr nil))
+  ([distr {:keys [pdf icdf data]
+           :or {pdf [0 1] icdf [0 0.999]}
+           :as opts}]
+   (dgraph-cont bgraph-int distr opts)))
+
+
+(defn graph2d
+  ([f] (graph2d f nil nil))
+  ([f dx dy] (graph2d f dx dy size))
+  ([f dx dy size] (graph2d f dx dy size nil))
+  ([f dx dy size {:keys [varg?]}]
+   (let [[dx1 dx2] (or dx [0.0 1.0])
+         [dy1 dy2] (or dy [0.0 1.0])]
+     (->image (function2d f {:x [dx1 dx2] :y [dy1 dy2]
+                             :steps size
+                             :varg? varg?})))))
+
+
+(defn graph-scatter
+  ([xy] (graph-scatter xy nil nil))
+  ([xy dx dy]
+   (let [[dx1 dx2] (or dx [0.0 1.0])
+         [dy1 dy2] (or dy [0.0 1.0])
+         mx (m/make-norm dx1 dx2)
+         my (m/make-norm dy1 dy2)
+         xs (map #(mx (first %) dx1 dx2) xy)
+         ys (map #(my (second %) dy1 dy2) xy)]
+     (->image (scatter xs ys)))))
