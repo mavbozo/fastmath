@@ -45,7 +45,7 @@ Set initial seed
 
 ::: {.printedClojure}
 ```clojure
-#object[org.apache.commons.math3.random.JDKRandomGenerator 0xadf2d70 "org.apache.commons.math3.random.JDKRandomGenerator@adf2d70"]
+#object[org.apache.commons.math3.random.JDKRandomGenerator 0x486889c "org.apache.commons.math3.random.JDKRandomGenerator@486889c"]
 
 ```
 :::
@@ -142,9 +142,9 @@ To create PRNG, call `rng` with algorithm name (as a keyword) and optional seed 
 
 ::: {.sourceClojure}
 ```clojure
-(r/rng :isaac) ;; => #object[org.apache.commons.math3.random.ISAACRandom 0x491523fb "org.apache.commons.math3.random.ISAACRandom@491523fb"]
-(r/rng :isaac 5336) ;; => #object[org.apache.commons.math3.random.ISAACRandom 0x704ebfb2 "org.apache.commons.math3.random.ISAACRandom@704ebfb2"]
-(r/synced-rng (r/rng :isaac)) ;; => #object[org.apache.commons.math3.random.SynchronizedRandomGenerator 0x4bcfcad6 "org.apache.commons.math3.random.SynchronizedRandomGenerator@4bcfcad6"]
+(r/rng :isaac) ;; => #object[org.apache.commons.math3.random.ISAACRandom 0x20cc047c "org.apache.commons.math3.random.ISAACRandom@20cc047c"]
+(r/rng :isaac 5336) ;; => #object[org.apache.commons.math3.random.ISAACRandom 0x47b4d9bb "org.apache.commons.math3.random.ISAACRandom@47b4d9bb"]
+(r/synced-rng (r/rng :isaac)) ;; => #object[org.apache.commons.math3.random.SynchronizedRandomGenerator 0x6cc7a8cf "org.apache.commons.math3.random.SynchronizedRandomGenerator@6cc7a8cf"]
 ```
 :::
 
@@ -188,22 +188,22 @@ All examples will use Mersenne Twister PRNG with random seed
 
 ::: {.sourceClojure}
 ```clojure
-(r/irandom my-prng) ;; => -1968192102
-(r/irandom my-prng 5) ;; => 4
-(r/irandom my-prng 10 20) ;; => 17
-(r/lrandom my-prng) ;; => -8090773374226465888
-(r/lrandom my-prng 5) ;; => 0
-(r/lrandom my-prng 10 20) ;; => 10
-(r/frandom my-prng) ;; => 0.5436746
-(r/frandom my-prng 2.5) ;; => 0.6800908
-(r/frandom my-prng 10.1 10.11) ;; => 10.1059675
-(r/drandom my-prng) ;; => 0.9807479425479404
-(r/drandom my-prng 2.5) ;; => 0.968875087607497
-(r/drandom my-prng 10.1 10.11) ;; => 10.105781507949187
-(r/grandom my-prng) ;; => 0.3377300045314429
-(r/grandom my-prng 20.0) ;; => -6.896941334995449
-(r/grandom my-prng 10.0 20.0) ;; => -17.941818585611806
-(r/brandom my-prng) ;; => true
+(r/irandom my-prng) ;; => 749880657
+(r/irandom my-prng 5) ;; => 1
+(r/irandom my-prng 10 20) ;; => 16
+(r/lrandom my-prng) ;; => 4168460114696887521
+(r/lrandom my-prng 5) ;; => 3
+(r/lrandom my-prng 10 20) ;; => 19
+(r/frandom my-prng) ;; => 0.20633173
+(r/frandom my-prng 2.5) ;; => 0.17484665
+(r/frandom my-prng 10.1 10.11) ;; => 10.109573
+(r/drandom my-prng) ;; => 0.8378862118810935
+(r/drandom my-prng 2.5) ;; => 0.6278466158852086
+(r/drandom my-prng 10.1 10.11) ;; => 10.109620107590043
+(r/grandom my-prng) ;; => 0.14990515791384174
+(r/grandom my-prng 20.0) ;; => -19.204553107277977
+(r/grandom my-prng 10.0 20.0) ;; => 32.61845192927268
+(r/brandom my-prng) ;; => false
 (r/brandom my-prng 0.01) ;; => false
 (r/brandom my-prng 0.99) ;; => true
 ```
@@ -220,12 +220,12 @@ All examples will use Mersenne Twister PRNG with random seed
 
 ::: {.sourceClojure}
 ```clojure
-(take 2 (r/->seq my-prng)) ;; => (0.9280063168660513 0.1180788317453858)
-(r/->seq my-prng 2) ;; => (0.5335826367829704 0.43147468995450766)
-(r/->seq my-prng 5 :antithetic) ;; => (0.7158161796135893 0.28418382038641066 0.5331011016437408 0.4668988983562592 0.858039382251542)
-(r/->seq my-prng 5 :uniform) ;; => (0.046826632968572056 0.08798986879129654 0.6224407770786605 0.7915559174476005 0.7918113911782562)
-(r/->seq my-prng 5 :systematic) ;; => (0.09437446399429583 0.29437446399429584 0.4943744639942958 0.6943744639942958 0.8943744639942959)
-(r/->seq my-prng 5 :stratified) ;; => (0.10391260869420034 0.2078853745029099 0.4227563993710651 0.7151288473083135 0.8788722640245707)
+(take 2 (r/->seq my-prng)) ;; => (0.6814642533279247 0.8061668830292861)
+(r/->seq my-prng 2) ;; => (0.5539910494761073 0.8770152554927628)
+(r/->seq my-prng 5 :antithetic) ;; => (0.5210227775296778 0.47897722247032215 0.47780310797147996 0.52219689202852 0.4732919711485142)
+(r/->seq my-prng 5 :uniform) ;; => (0.10683996310025397 0.2118536163456408 0.5796011735542954 0.7574133417937569 0.9795305217248493)
+(r/->seq my-prng 5 :systematic) ;; => (0.13198299486453166 0.33198299486453164 0.5319829948645317 0.7319829948645317 0.9319829948645317)
+(r/->seq my-prng 5 :stratified) ;; => (0.04316733403928361 0.3816942049899091 0.4050494051118008 0.7173919040209813 0.8284595050238466)
 ```
 :::
 
@@ -282,7 +282,7 @@ Let's now reseed both PRNGs
 
 ::: {.printedClojure}
 ```clojure
-#object[org.apache.commons.math3.random.ISAACRandom 0x6ad809fa "org.apache.commons.math3.random.ISAACRandom@6ad809fa"]
+#object[org.apache.commons.math3.random.ISAACRandom 0x38948f2 "org.apache.commons.math3.random.ISAACRandom@38948f2"]
 
 ```
 :::
@@ -299,7 +299,7 @@ Let's now reseed both PRNGs
 
 ::: {.printedClojure}
 ```clojure
-#object[org.apache.commons.math3.random.ISAACRandom 0x4b58aafd "org.apache.commons.math3.random.ISAACRandom@4b58aafd"]
+#object[org.apache.commons.math3.random.ISAACRandom 0x5689affd "org.apache.commons.math3.random.ISAACRandom@5689affd"]
 
 ```
 :::
@@ -356,11 +356,11 @@ There is defined one global variable `default-rng` which is synchonized `:jvm` P
 (r/brand 0.01) ;; => false
 (r/brand 0.99) ;; => true
 (take 3 (r/->seq)) ;; => (0.8820950564851541 0.8432355490117891 0.7757833765798361)
-r/default-rng ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0xadf2d70 "org.apache.commons.math3.random.JDKRandomGenerator@adf2d70"]
-(r/set-seed) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x2f93a010 "org.apache.commons.math3.random.JDKRandomGenerator@2f93a010"]
-(r/set-seed 9988) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x30769f02 "org.apache.commons.math3.random.JDKRandomGenerator@30769f02"]
-(r/set-seed!) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0xadf2d70 "org.apache.commons.math3.random.JDKRandomGenerator@adf2d70"]
-(r/set-seed! 9988) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0xadf2d70 "org.apache.commons.math3.random.JDKRandomGenerator@adf2d70"]
+r/default-rng ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x486889c "org.apache.commons.math3.random.JDKRandomGenerator@486889c"]
+(r/set-seed) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x5e8d1324 "org.apache.commons.math3.random.JDKRandomGenerator@5e8d1324"]
+(r/set-seed 9988) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0xa3f7fe1 "org.apache.commons.math3.random.JDKRandomGenerator@a3f7fe1"]
+(r/set-seed!) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x486889c "org.apache.commons.math3.random.JDKRandomGenerator@486889c"]
+(r/set-seed! 9988) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x486889c "org.apache.commons.math3.random.JDKRandomGenerator@486889c"]
 ```
 :::
 
@@ -468,8 +468,8 @@ Collection of probability distributions.
 
 ::: {.sourceClojure}
 ```clojure
-(r/distribution :cauchy) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x45c8afa0 "org.apache.commons.math3.distribution.CauchyDistribution@45c8afa0"]
-(r/distribution :cauchy {:median 2.0, :scale 2.0}) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x1e0f7f6c "org.apache.commons.math3.distribution.CauchyDistribution@1e0f7f6c"]
+(r/distribution :cauchy) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x523c5dfe "org.apache.commons.math3.distribution.CauchyDistribution@523c5dfe"]
+(r/distribution :cauchy {:median 2.0, :scale 2.0}) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x4cfbfe48 "org.apache.commons.math3.distribution.CauchyDistribution@4cfbfe48"]
 ```
 :::
 
@@ -514,11 +514,11 @@ Let's define Beta, Dirichlet and Bernoulli distributions as examples of univaria
 
 ::: {.sourceClojure}
 ```clojure
-(r/drandom log-logistic) ;; => 10.118961075904668
-(r/frandom log-logistic) ;; => 3.0367615
-(r/lrandom log-logistic) ;; => 2
-(r/irandom log-logistic) ;; => 4
-(r/sample log-logistic) ;; => 4.300307522533115
+(r/drandom log-logistic) ;; => 3.7018389866325827
+(r/frandom log-logistic) ;; => 2.8306856
+(r/lrandom log-logistic) ;; => 6
+(r/irandom log-logistic) ;; => 60
+(r/sample log-logistic) ;; => 8.512875378855352
 (r/distribution? log-logistic) ;; => true
 (r/distribution? 2.3) ;; => false
 (r/pdf log-logistic 1) ;; => 0.008695578691184421
@@ -561,17 +561,17 @@ Let's define Beta, Dirichlet and Bernoulli distributions as examples of univaria
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample dirichlet) ;; => [0.05882158359717604 0.47598774412293465 0.46519067227988936]
-(reduce + (r/sample dirichlet)) ;; => 1.0000000000000002
+(r/sample dirichlet) ;; => [0.0032038377707191245 0.605717680138081 0.39107848209119994]
+(reduce + (r/sample dirichlet)) ;; => 1.0
 (r/distribution? dirichlet) ;; => true
 (r/pdf dirichlet [0.5 0.1 0.4]) ;; => 0.9600000000000001
 (r/lpdf dirichlet [0.5 0.1 0.4]) ;; => -0.040821994520255034
 (r/observe1 dirichlet [0.5 0.1 0.4]) ;; => -0.040821994520255034
 (r/dimensions dirichlet) ;; => 3
 (r/continuous? dirichlet) ;; => true
-(r/log-likelihood dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 12.012667198847337
-(r/observe dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 7.963926983961142
-(r/likelihood dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 451990.4298369402
+(r/log-likelihood dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 13.89223949678056
+(r/observe dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 15.02847118690109
+(r/likelihood dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 1348508.2797572948
 (r/means dirichlet) ;; => (0.16666666666666666 0.3333333333333333 0.5)
 (r/covariance dirichlet) ;; => [[0.019841269841269844 -0.007936507936507936 -0.011904761904761904] [-0.007936507936507936 0.03174603174603175 -0.023809523809523808] [-0.011904761904761904 -0.023809523809523808 0.03571428571428571]]
 (r/distribution-id dirichlet) ;; => :dirichlet
@@ -601,11 +601,11 @@ Let's define Beta, Dirichlet and Bernoulli distributions as examples of univaria
 
 ::: {.sourceClojure}
 ```clojure
-(r/drandom poisson) ;; => 13.0
-(r/frandom poisson) ;; => 11.0
-(r/lrandom poisson) ;; => 16
+(r/drandom poisson) ;; => 10.0
+(r/frandom poisson) ;; => 9.0
+(r/lrandom poisson) ;; => 8
 (r/irandom poisson) ;; => 9
-(r/sample poisson) ;; => 8
+(r/sample poisson) ;; => 6
 (r/distribution? poisson) ;; => true
 (r/pdf poisson 5) ;; => 0.03783327480207072
 (r/lpdf poisson 5) ;; => -3.274566277811817
@@ -714,8 +714,8 @@ Let's compare cdf and icdf to integrated pdf of beta distribution
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample weibull) ;; => 0.5251317922446394
-(r/->seq weibull 3) ;; => (0.9742635881904984 0.31605895240805715 1.0635808202259611)
+(r/sample weibull) ;; => 1.0114861938487278
+(r/->seq weibull 3) ;; => (1.0022815331849562 0.9370854653996438 1.1684465270682418)
 (r/->seq weibull 5 :antithetic) ;; => (0.8789298248121516 0.7871567720020644 0.3359031152662685 1.4959111180822753 0.5761405777290171)
 (r/->seq weibull 5 :uniform) ;; => (0.27819628819981307 0.5105865483391676 0.6372189139644687 1.1425580683435526 1.7502730290537003)
 (r/->seq weibull 5 :systematic) ;; => (0.42415794076771685 0.6734882729621214 0.911929539913042 1.2027888245275842 1.8282741464907257)
@@ -746,7 +746,7 @@ All distributions accept `:rng` optional parameter which is used internally for 
 ```clojure
 (vec (r/->seq cauchy-mersenne-2288 3)) ;; => [-0.1079136480774541 -5.558982159984645 -3.127061922456471]
 (vec (r/->seq cauchy-mersenne-2288 3)) ;; => [8.13804818209913 1.6141542337020716 -0.6694661861436221]
-(r/set-seed! cauchy-mersenne-2288 2288) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x79218b19 "org.apache.commons.math3.distribution.CauchyDistribution@79218b19"]
+(r/set-seed! cauchy-mersenne-2288 2288) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x3a036be2 "org.apache.commons.math3.distribution.CauchyDistribution@3a036be2"]
 (vec (r/->seq cauchy-mersenne-2288 3)) ;; => [-0.1079136480774541 -5.558982159984645 -3.127061922456471]
 ```
 :::
@@ -771,7 +771,7 @@ All distributions accept `:rng` optional parameter which is used internally for 
 
 ::: {.sourceClojure}
 ```clojure
-(r/->seq r/default-normal 3) ;; => (1.5067798697979589 -0.8400082518479379 0.34353942643193125)
+(r/->seq r/default-normal 3) ;; => (2.0877914800655217 0.05703362896783526 -0.7336163378858906)
 (r/pdf r/default-normal 0.0) ;; => 0.3989422804014327
 (r/cdf r/default-normal 0.0) ;; => 0.5
 (r/icdf r/default-normal 0.5) ;; => 0.0
@@ -2377,8 +2377,8 @@ Projections of the 2d and 3d Dirichlet distributions.
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample dirichlet3) ;; => [0.1778581170431112 0.05593523374660998 0.7662066492102789]
-(r/sample dirichlet3) ;; => [0.4490437122216987 0.14277093320724749 0.4081853545710539]
+(r/sample dirichlet3) ;; => [0.25176347768699486 0.22766107134889405 0.5205754509641112]
+(r/sample dirichlet3) ;; => [0.5330136569993918 0.13935191486586274 0.3276344281347454]
 (r/pdf dirichlet3 [0.2 0.3 0.5]) ;; => 1.8000000000000003
 (r/pdf dirichlet3 [0.3 0.5 0.2]) ;; => 0.648
 (r/pdf dirichlet3 [0.5 0.2 0.3]) ;; => 4.05
@@ -2433,8 +2433,8 @@ Projections of the 2d and 3d Dirichlet distributions.
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample multinomial) ;; => [10 25 34 33 48]
-(r/sample multinomial) ;; => [9 21 26 43 51]
+(r/sample multinomial) ;; => [11 23 28 44 44]
+(r/sample multinomial) ;; => [12 17 29 37 55]
 (r/pdf multinomial [10 10 10 10 110]) ;; => 3.9088379874482466E-28
 (r/pdf multinomial [10 20 30 40 50]) ;; => 8.791729390927823E-5
 (r/pdf multinomial [110 10 10 10 10]) ;; => 4.955040820983416E-98
@@ -2518,8 +2518,8 @@ Please note: `set-seed!` doesn't affect distributions which are part of the mixt
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample mixture-of-three) ;; => 3.16196693692548
-(r/sample mixture-of-three) ;; => 0.4412495813401783
+(r/sample mixture-of-three) ;; => 1.102393590198155
+(r/sample mixture-of-three) ;; => 0.8890040151295291
 (r/pdf mixture-of-three 0) ;; => 0.08333333333333333
 (r/pdf mixture-of-three 1) ;; => 0.45620084174033965
 (r/pdf mixture-of-three 2) ;; => 0.14666525453903217
@@ -2595,8 +2595,8 @@ Please note: derived `mean` or `variance` is not calculated. Also, `set-seed!` d
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample truncated-normal) ;; => -1.0665553054116161
-(r/sample truncated-normal) ;; => -1.198990601705406
+(r/sample truncated-normal) ;; => -0.8640624998901583
+(r/sample truncated-normal) ;; => -0.2814694963857404
 (r/pdf truncated-normal 2.0000001) ;; => 0.0
 (r/pdf truncated-normal 2.0) ;; => 0.0565646741125192
 (r/cdf truncated-normal 2.0) ;; => 1.0
@@ -2658,8 +2658,8 @@ Continous distribution build from data is based on KDE (Kernel Density Estimatio
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample kde-distr) ;; => 0.9476890790326209
-(r/sample kde-distr) ;; => 4.763951000047397
+(r/sample kde-distr) ;; => 2.3217100350143935
+(r/sample kde-distr) ;; => 3.2761562666387416
 (r/pdf kde-distr 0.0) ;; => 0.2895732291670891
 (r/cdf kde-distr 0.0) ;; => 0.31552593767229803
 (map (partial r/icdf kde-distr) [1.0E-4 0.5 0.9999]) ;; => (-4.036565369328684 0.49883262884502827 5.012273231015241)
@@ -2681,22 +2681,90 @@ Distributions for various kernels:
 * `:steps`: `100`
 * `:bandwidth`: auto
 
-`fastmath.kernel/kernels-list` contains three types of kernels: RBF, KDE and what we can call "vector kernels" which includes Marcer, positive definite, and similar.
+`fastmath.kernel/kernel-list` contains three types of kernels: RBF, KDE and what we can call "vector kernels" which includes Marcer, positive definite, and similar.
 
-KDE kernels
+::: {.clay-table}
 
-
-::: {.sourceClojure}
-```clojure
-[:cauchy :cosine :epanechnikov :gaussian :laplace :logistic :quartic :sigmoid :silverman :triangular :tricube :triweight :uniform :wigner]
-```
-:::
-
-
-
-::: {.printedClojure}
-```clojure
-[:cauchy
+```{=html}
+<table class="table table-hover table-responsive"><thead><tr><th>Type</th><th>Kernels</th></tr></thead><tbody><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:vector</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">(:anova
+ :b-spline
+ :bessel
+ :bessel2
+ :cauchy
+ :chi-square
+ :chi-square2
+ :circular
+ :dirichlet
+ :exponential
+ :gaussian
+ :generalized-histogram
+ :generalized-t-student
+ :geometric
+ :hellinger
+ :histogram
+ :hyperbolic-secant
+ :hyperbolic-tangent
+ :inverse-multiquadratic
+ :laplacian
+ :linear
+ :log
+ :matern
+ :matern-12
+ :matern-32
+ :matern-52
+ :multiquadratic
+ :pearson
+ :periodic
+ :polynomial
+ :power
+ :rational-quadratic
+ :spherical
+ :spline
+ :triangular
+ :wave)
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:rbf</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">(:gaussian
+ :gaussians-laguerre
+ :gaussians-laguerre-11
+ :gaussians-laguerre-12
+ :gaussians-laguerre-21
+ :gaussians-laguerre-22
+ :generalized-multiquadratic
+ :gneiting
+ :inverse-multiquadratic
+ :linear
+ :matern
+ :matern-c0
+ :matern-c2
+ :matern-c4
+ :multiquadratic
+ :poisson
+ :poisson-2
+ :poisson-3
+ :poisson-4
+ :radial-powers
+ :radial-powers-3
+ :shifted-surface-splines
+ :thin-plate
+ :thin-plate-splines
+ :truncated-power
+ :truncated-power-1
+ :truncated-power-2
+ :truncated-power-3
+ :truncated-power-half
+ :truncated-power-third
+ :wendland
+ :whittaker
+ :wu
+ :wu-10
+ :wu-11
+ :wu-20
+ :wu-21
+ :wu-22
+ :wu-30
+ :wu-31
+ :wu-32
+ :wu-33)
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:kde</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">(:cauchy
  :cosine
  :epanechnikov
  :gaussian
@@ -2709,17 +2777,20 @@ KDE kernels
  :tricube
  :triweight
  :uniform
- :wigner]
-
+ :wigner)
+</code></pre></div></td></tr></tbody></table>
 ```
+
 :::
 
+
+KDE kernels
 
 
 ::: {.sourceClojure}
 ```clojure
 ^:kind/hidden
-(def kde-kernels [:cauchy :cosine :epanechnikov :gaussian :laplace :logistic :quartic :sigmoid :silverman :triangular :tricube :triweight :uniform :wigner])
+(def kde-kernels (:kde k/kernel-list))
 ```
 :::
 
@@ -2766,8 +2837,8 @@ Empirical distribution calculates PDF, CDF and iCDF from a histogram.
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample empirical-distr) ;; => -0.7897601859046492
-(r/sample empirical-distr) ;; => 2.6568333435090774
+(r/sample empirical-distr) ;; => 0.6697722991704338
+(r/sample empirical-distr) ;; => -1.2902499479591785
 (r/pdf empirical-distr 0.0) ;; => 0.3367652060230363
 (r/cdf empirical-distr 0.0) ;; => 0.3060844150814384
 (map (partial r/icdf empirical-distr) [1.0E-4 0.5 0.9999]) ;; => (-3.8445695885397138 0.49402601627672765 4.820277450226245)
@@ -2836,8 +2907,8 @@ Please note:
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample real-distr) ;; => 0.2
-(r/sample real-distr) ;; => 0.1
+(r/sample real-distr) ;; => 0.4
+(r/sample real-distr) ;; => 0.3
 (r/pdf real-distr 0.1) ;; => 0.375
 (r/pdf real-distr 0.15) ;; => 0.0
 (r/cdf real-distr 0.2) ;; => 0.75
@@ -2887,7 +2958,7 @@ Please note:
 ::: {.sourceClojure}
 ```clojure
 (r/sample int-distr) ;; => 20
-(r/sample int-distr) ;; => 10
+(r/sample int-distr) ;; => 40
 (r/pdf int-distr 10) ;; => 0.375
 (r/pdf int-distr 15) ;; => 0.0
 (r/cdf int-distr 20) ;; => 0.75
@@ -2928,11 +2999,11 @@ Order for CDF/iCDF is created by calling `(distinct data)`. If sorted data is ne
 ::: {.sourceClojure}
 ```clojure
 (r/sample cat-distr) ;; => nil
-(r/sample cat-distr) ;; => nil
+(r/sample cat-distr) ;; => "s"
 (r/pdf cat-distr nil) ;; => 0.25000000000000006
 (r/pdf cat-distr "ss") ;; => 0.0
-(r/cdf cat-distr :b) ;; => 0.4900000000000001
-(map (partial r/icdf cat-distr) [1.0E-4 0.5 0.9999]) ;; => ("s" :a nil)
+(r/cdf cat-distr :b) ;; => 1.0000000000000002
+(map (partial r/icdf cat-distr) [1.0E-4 0.5 0.9999]) ;; => (nil "s" :b)
 ```
 :::
 
@@ -3116,7 +3187,7 @@ Unit sphere or unit ball sequences can generate any dimension.
 
 ::: {.sourceClojure}
 ```clojure
-(first (r/sequence-generator :sphere 4)) ;; => #vec4 [-0.3499486920869851, 0.8561300218034723, 0.02062870265855246, -0.37967322173155604]
+(first (r/sequence-generator :sphere 4)) ;; => #vec4 [0.5721472289809604, 0.6458346016564552, 0.32029455950035257, -0.3910966770852592]
 (first (r/sequence-generator :ball 3)) ;; => #vec3 [0.6106439662537149, -0.19719273807051046, -0.5338472481721354]
 ```
 :::
@@ -3137,46 +3208,46 @@ Unit sphere or unit ball sequences can generate any dimension.
 
 ::: {.printedClojure}
 ```clojure
-([0.09434356454051347
-  0.08180318610093515
-  0.1927378901703611
-  -0.002418251487415024
-  0.15698785362222567
-  0.23668147456911257
-  -0.14141727551842212
-  0.6374758859191696
-  -0.08069459946183549
-  -0.1687308701957663
-  -0.198877911392748
-  0.2411525163985486
-  0.19712255976381532
-  0.1691482945026722
-  -0.3986564446382269
-  -0.24338598553674007
-  -0.1004200146684524
-  0.07514444764035134
-  0.03658835502234655
-  0.06946742445210817]
- [0.1421705275195846
-  -0.12570576307916495
-  -0.19268515674363815
-  -0.03319107240171808
-  -0.18124800230662735
-  -0.3468702906932616
-  0.5189017446091984
-  0.2300372283389581
-  0.037497727391084604
-  -0.3428760507746316
-  -0.22961775661829656
-  0.04742041929784599
-  -0.0829642222396437
-  -0.08386540622010087
-  -0.1181695220585443
-  -0.3469452327018085
-  0.012124519703765884
-  -0.25252706082611853
-  -0.21209532773462927
-  0.13897653726813397])
+([0.46122262575705
+  0.33504487514221437
+  -0.04115834634692293
+  -0.10746016121585367
+  -0.1613628120286278
+  -0.16327261482609373
+  -0.048124312555000937
+  -0.4168117850217311
+  0.3320134361922655
+  0.05829076361317733
+  -0.21613719216250268
+  -0.12958906572766357
+  0.11003222269388839
+  -0.11556262167276417
+  -0.19131937210249134
+  0.286660111717099
+  0.09646997624706125
+  0.21270310542909057
+  -0.12054701027850794
+  -0.20633487542803555]
+ [-0.3272376019660657
+  -0.3789063664230623
+  -0.28404239004959664
+  0.29668107518869313
+  0.5046788197184415
+  -0.12204137707871862
+  0.024835354032850313
+  0.05673569617429352
+  -0.07109175645967032
+  -0.05391479885880135
+  0.06803636043703827
+  0.03743243264395835
+  -0.25442901585950073
+  -0.16009017347453378
+  0.14836461932939132
+  -0.23654301379132536
+  0.14632664549835744
+  0.15523755644110201
+  0.07553759345075278
+  -0.2714415195584333])
 
 ```
 :::
@@ -3482,15 +3553,15 @@ There are three ready to use preconfigured noises:
 
 ::: {.sourceClojure}
 ```clojure
-(r/vnoise 0.2) ;; => 0.37079207282418936
-(r/vnoise 0.2 0.3) ;; => 0.30529801402182594
-(r/vnoise 0.2 0.3 0.4) ;; => 0.33355796166701235
-(r/noise 0.2) ;; => 0.4006618412698413
-(r/noise 0.2 0.3) ;; => 0.4679421963377778
-(r/noise 0.2 0.3 0.4) ;; => 0.5202557018444361
-(r/simplex 0.2) ;; => 0.4522534280533333
-(r/simplex 0.2 0.3) ;; => 0.4362032054627238
-(r/simplex 0.2 0.3 0.4) ;; => 0.6797248936296297
+(r/vnoise 0.2) ;; => 0.4541156027546184
+(r/vnoise 0.2 0.3) ;; => 0.4463309539411112
+(r/vnoise 0.2 0.3 0.4) ;; => 0.4703624166069886
+(r/noise 0.2) ;; => 0.47790476190476194
+(r/noise 0.2 0.3) ;; => 0.52815025152
+(r/noise 0.2 0.3 0.4) ;; => 0.5817763147608519
+(r/simplex 0.2) ;; => 0.3599031804342857
+(r/simplex 0.2 0.3) ;; => 0.4923554956595277
+(r/simplex 0.2 0.3 0.4) ;; => 0.49820142984126986
 ```
 :::
 
@@ -3552,14 +3623,14 @@ Optional parameter is a map with values user wants to fix.
 
 ::: {.printedClojure}
 ```clojure
-{:interpolation :quintic,
+{:interpolation :hermite,
  :warp-scale 0.0,
  :seed 665844940,
  :normalize? true,
- :noise-type :simplex,
+ :noise-type :gradient,
  :lacunarity 1.90872786462909,
  :gain 0.24908653479282347,
- :generator :single,
+ :generator :billow,
  :warp-depth 1,
  :octaves 6}
 
@@ -3578,14 +3649,14 @@ Optional parameter is a map with values user wants to fix.
 
 ::: {.printedClojure}
 ```clojure
-{:interpolation :none,
+{:interpolation :linear,
  :warp-scale 4.0,
  :seed 1,
  :normalize? true,
- :noise-type :simplex,
+ :noise-type :gradient,
  :lacunarity 1.8874943472437105,
  :gain 0.508204375355278,
- :generator :fbm,
+ :generator :single,
  :warp-depth 1,
  :octaves 3}
 
@@ -3615,9 +3686,9 @@ Optional parameter is a map with values user wants to fix.
 
 ::: {.sourceClojure}
 ```clojure
-(some-random-noise 0.2) ;; => 0.7855371587242627
-(some-random-noise 0.2 0.3) ;; => 1.0857278170998461
-(some-random-noise 0.2 0.3 0.4) ;; => 1.299466649940326
+(some-random-noise 0.2) ;; => 0.650333154475532
+(some-random-noise 0.2 0.3) ;; => 0.8520838267329627
+(some-random-noise 0.2 0.3 0.4) ;; => 0.6474310491712779
 ```
 :::
 
@@ -3789,7 +3860,7 @@ Returns lazy sequence of random samples (can be limited to optional `n` values).
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L2376">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L2376">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -3808,7 +3879,7 @@ Return random vector from a ball
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L432">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L432">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -3821,13 +3892,13 @@ Return random vector from a ball
 #### billow-noise
 
 + `(billow-noise)`
-+ `(billow-noise cfg__65035__auto__)`
++ `(billow-noise cfg__15693__auto__)`
 
 Create billow-noise function with optional configuration.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L628">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L628">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -3845,7 +3916,7 @@ Returns true or false with equal probability. You can set `p` probability for `t
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L317">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L317">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -3864,7 +3935,7 @@ Random boolean with provided RNG
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L216">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L216">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -3882,7 +3953,7 @@ Complementary cumulative probability.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L761">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L761">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -3901,7 +3972,7 @@ Cumulative probability.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L756">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L756">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -3919,7 +3990,7 @@ Does distribution support continuous domain?
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L793">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L793">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -3937,7 +4008,7 @@ Distribution covariance matrix (for multivariate distributions)
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L831">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L831">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -3953,7 +4024,7 @@ Default normal distribution (u=0.0, sigma=1.0).
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L2074">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L2074">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -3969,7 +4040,7 @@ Default RNG - JDK
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L315">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L315">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -3987,7 +4058,7 @@ Distribution dimensionality
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L785">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L785">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4011,7 +4082,7 @@ Discrete noise. Parameters:
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L725">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L725">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4032,7 +4103,7 @@ All distributions accept `rng` under `:rng` key (default: [default-rng](#LOS-def
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L737">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L737">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4050,7 +4121,7 @@ Distribution identifier as keyword.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L843">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L843">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4071,7 +4142,7 @@ Distribution highest supported value.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L847">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L847">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4089,7 +4160,7 @@ Checks if `distr` is a distribution object.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L750">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L750">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4105,7 +4176,7 @@ List of distributions.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L2311">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L2311">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4128,7 +4199,7 @@ Random double number with default RNG.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L331">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L331">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4148,7 +4219,7 @@ Random double number with provided RNG
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L192">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L192">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4161,13 +4232,13 @@ Random double number with provided RNG
 #### fbm-noise
 
 + `(fbm-noise)`
-+ `(fbm-noise cfg__65035__auto__)`
++ `(fbm-noise cfg__15693__auto__)`
 
 Create fbm-noise function with optional configuration.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L627">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L627">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4186,7 +4257,7 @@ Returns 1 with given probability, 0 otherwise
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L378">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L378">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4205,7 +4276,7 @@ Returns 1 with given probability, 0 otherwise, for given rng
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L410">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L410">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4224,7 +4295,7 @@ Returns true with given probability, false otherwise
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L385">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L385">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4243,7 +4314,7 @@ Returns true with given probability, false otherwise, for given rng
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L417">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L417">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4266,7 +4337,7 @@ Random double number with default RNG.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L322">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L322">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4286,7 +4357,7 @@ Random double number with provided RNG
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L186">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L186">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4309,7 +4380,7 @@ Random gaussian double number with default RNG.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L340">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L340">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4329,7 +4400,7 @@ Random gaussian double number with provided RNG
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L198">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L198">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4347,7 +4418,7 @@ Inverse cumulative probability
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L773">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L773">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4377,7 +4448,7 @@ Integrate PDF function, returns CDF and iCDF
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L861">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L861">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4400,7 +4471,7 @@ Random integer number with default RNG.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L349">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L349">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4420,7 +4491,7 @@ Random integer number with provided RNG
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L204">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L204">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4445,7 +4516,7 @@ Create jittered sequence generator.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L528">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L528">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4463,7 +4534,7 @@ Likelihood of samples
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L814">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L814">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4481,7 +4552,7 @@ Log likelihood of samples
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L802">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L802">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4499,7 +4570,7 @@ Distribution lowest supported value
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L835">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L835">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4517,7 +4588,7 @@ Log density
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L769">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L769">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4540,7 +4611,7 @@ Random long number with default RNG.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L358">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L358">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4560,7 +4631,7 @@ Random long number with provided RNG
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L210">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L210">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4578,7 +4649,7 @@ Distribution mean
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L819">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L819">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4596,7 +4667,7 @@ Distribution means (for multivariate distributions)
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L823">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L823">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4618,7 +4689,7 @@ Improved Perlin Noise.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L599">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L599">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4634,7 +4705,7 @@ List of possible noise generators as a map of names and functions.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L686">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L686">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4650,7 +4721,7 @@ List of possible noise interpolations as a map of names and values.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L556">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L556">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4666,7 +4737,7 @@ List of possible noise types as a map of names and values.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L562">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L562">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4684,7 +4755,7 @@ Log likelihood of samples. Alias for [log-likelihood](#LOS-log-likelihood).
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L809">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L809">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4702,7 +4773,7 @@ Log of probability/density of the value. Alias for [lpdf](#LOS-lpdf).
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L797">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L797">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4720,7 +4791,7 @@ Density
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L765">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L765">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4738,7 +4809,7 @@ Probability (PMF)
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L777">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L777">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4759,7 +4830,7 @@ Create random noise configuration.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L693">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L693">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4780,7 +4851,7 @@ Create random noise function from all possible options.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L710">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L710">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4801,7 +4872,7 @@ Return value with given probability (default 0.5)
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L367">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L367">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4822,7 +4893,7 @@ Return value with given probability (default 0.5), for given rng
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L399">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L399">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4835,13 +4906,13 @@ Return value with given probability (default 0.5), for given rng
 #### ridgedmulti-noise
 
 + `(ridgedmulti-noise)`
-+ `(ridgedmulti-noise cfg__65035__auto__)`
++ `(ridgedmulti-noise cfg__15693__auto__)`
 
 Create ridgedmulti-noise function with optional configuration.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L629">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L629">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4857,7 +4928,7 @@ Create RNG for given name (as keyword) and optional seed. Return object enhanced
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L141">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L141">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4873,7 +4944,7 @@ List of all possible RNGs.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L182">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L182">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4892,7 +4963,7 @@ Roll a dice with given sides
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L390">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L390">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4911,7 +4982,7 @@ Roll a dice with given sides and given rng
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L422">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L422">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4929,7 +5000,7 @@ Random sample
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L781">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L781">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4961,7 +5032,7 @@ See also [jittered-sequence-generator](#LOS-jittered-sequence-generator).
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L500">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L500">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4977,7 +5048,7 @@ List of random sequence generator. See [sequence-generator](#LOS-sequence-genera
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L551">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L551">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -4997,7 +5068,7 @@ Create and return new RNG
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L2316">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L2316">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -5017,7 +5088,7 @@ Sets seed.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L2325">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L2325">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -5037,7 +5108,7 @@ Simplex noise. 6 octaves.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L607">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L607">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -5050,13 +5121,13 @@ Simplex noise. 6 octaves.
 #### single-noise
 
 + `(single-noise)`
-+ `(single-noise cfg__65035__auto__)`
++ `(single-noise cfg__15693__auto__)`
 
 Create single-noise function with optional configuration.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L626">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L626">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -5074,7 +5145,7 @@ Returns Java or proxy object from backend library (if available)
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L789">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L789">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -5093,7 +5164,7 @@ Create synchronized RNG for given name and optional seed. Wraps [rng](#LOS-rng) 
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L176">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L176">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -5111,7 +5182,7 @@ Distribution highest supported value
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L839">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L839">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -5129,7 +5200,7 @@ Distribution variance
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L827">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L827">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -5151,7 +5222,7 @@ Value Noise.
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L591">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L591">source</a></small><hr style="margin: 0" /></div>
 ```
 
 
@@ -5180,7 +5251,7 @@ Create warp noise (see [Inigo Quilez article](http://www.iquilezles.org/www/arti
 
 
 ```{=html}
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L664">source</a></small><hr style="margin: 0" /></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L664">source</a></small><hr style="margin: 0" /></div>
 ```
 
 

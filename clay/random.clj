@@ -2,6 +2,7 @@
 (ns random
   (:require [fastmath.core :as m]
             [fastmath.random :as r]
+            [fastmath.kernel :as k]
             [scicloj.kindly.v4.kind :as kind]
             [fastmath.dev.ggplot :as gg]
             [fastmath.dev.clay :as utls]
@@ -1667,14 +1668,19 @@
 ;; * `:steps`: `100`
 ;; * `:bandwidth`: auto
 
-;; `fastmath.kernel/kernels-list` contains three types of kernels: RBF, KDE and what we can call "vector kernels" which includes Marcer, positive definite, and similar.
+;; `fastmath.kernel/kernel-list` contains three types of kernels: RBF, KDE and what we can call "vector kernels" which includes Marcer, positive definite, and similar.
+
+(kind/table
+ {:column-names ["Type" "Kernels"]
+  :row-vectors (->> k/kernel-list
+                    (map (fn [[k v]]
+                           [(kind/code (str k)) v]))
+                    (into []))})
 
 ;; KDE kernels
 
-[:cauchy :cosine :epanechnikov :gaussian :laplace :logistic :quartic :sigmoid :silverman :triangular :tricube :triweight :uniform :wigner]
-
 ^:kind/hidden
-(def kde-kernels [:cauchy :cosine :epanechnikov :gaussian :laplace :logistic :quartic :sigmoid :silverman :triangular :tricube :triweight :uniform :wigner])
+(def kde-kernels (:kde k/kernel-list))
 
 (kind/table
  (for [k kde-kernels]

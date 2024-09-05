@@ -382,7 +382,7 @@ window.Quarto = {
 <div class="sourceCode" id="cb1"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(r/set-seed! <span class="dv">31337</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb2"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>#object[org.apache.commons.math3.random.JDKRandomGenerator <span class="bn">0xadf2d70</span> <span class="st">"org.apache.commons.math3.random.JDKRandomGenerator@adf2d70"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>#object[org.apache.commons.math3.random.JDKRandomGenerator <span class="bn">0x486889c</span> <span class="st">"org.apache.commons.math3.random.JDKRandomGenerator@486889c"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="common-functions" class="level2">
 <h2 class="anchored" data-anchor-id="common-functions">Common functions</h2>
@@ -634,9 +634,9 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb21"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(r/rng <span class="at">:isaac</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.ISAACRandom 0x491523fb "org.apache.commons.math3.random.ISAACRandom@491523fb"]</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>(r/rng <span class="at">:isaac</span> <span class="dv">5336</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.ISAACRandom 0x704ebfb2 "org.apache.commons.math3.random.ISAACRandom@704ebfb2"]</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>(r/synced-rng (r/rng <span class="at">:isaac</span>)) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.SynchronizedRandomGenerator 0x4bcfcad6 "org.apache.commons.math3.random.SynchronizedRandomGenerator@4bcfcad6"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(r/rng <span class="at">:isaac</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.ISAACRandom 0x20cc047c "org.apache.commons.math3.random.ISAACRandom@20cc047c"]</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>(r/rng <span class="at">:isaac</span> <span class="dv">5336</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.ISAACRandom 0x47b4d9bb "org.apache.commons.math3.random.ISAACRandom@47b4d9bb"]</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>(r/synced-rng (r/rng <span class="at">:isaac</span>)) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.SynchronizedRandomGenerator 0x6cc7a8cf "org.apache.commons.math3.random.SynchronizedRandomGenerator@6cc7a8cf"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -701,22 +701,22 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb25"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(r/irandom my-prng) <span class="co">;; =&gt; -1968192102</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>(r/irandom my-prng <span class="dv">5</span>) <span class="co">;; =&gt; 4</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>(r/irandom my-prng <span class="dv">10</span> <span class="dv">20</span>) <span class="co">;; =&gt; 17</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>(r/lrandom my-prng) <span class="co">;; =&gt; -8090773374226465888</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>(r/lrandom my-prng <span class="dv">5</span>) <span class="co">;; =&gt; 0</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>(r/lrandom my-prng <span class="dv">10</span> <span class="dv">20</span>) <span class="co">;; =&gt; 10</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>(r/frandom my-prng) <span class="co">;; =&gt; 0.5436746</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>(r/frandom my-prng <span class="fl">2.5</span>) <span class="co">;; =&gt; 0.6800908</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>(r/frandom my-prng <span class="fl">10.1</span> <span class="fl">10.11</span>) <span class="co">;; =&gt; 10.1059675</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>(r/drandom my-prng) <span class="co">;; =&gt; 0.9807479425479404</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>(r/drandom my-prng <span class="fl">2.5</span>) <span class="co">;; =&gt; 0.968875087607497</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>(r/drandom my-prng <span class="fl">10.1</span> <span class="fl">10.11</span>) <span class="co">;; =&gt; 10.105781507949187</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>(r/grandom my-prng) <span class="co">;; =&gt; 0.3377300045314429</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>(r/grandom my-prng <span class="fl">20.0</span>) <span class="co">;; =&gt; -6.896941334995449</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>(r/grandom my-prng <span class="fl">10.0</span> <span class="fl">20.0</span>) <span class="co">;; =&gt; -17.941818585611806</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>(r/brandom my-prng) <span class="co">;; =&gt; true</span></span>
+<div class="sourceCode" id="cb25"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(r/irandom my-prng) <span class="co">;; =&gt; 749880657</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>(r/irandom my-prng <span class="dv">5</span>) <span class="co">;; =&gt; 1</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>(r/irandom my-prng <span class="dv">10</span> <span class="dv">20</span>) <span class="co">;; =&gt; 16</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>(r/lrandom my-prng) <span class="co">;; =&gt; 4168460114696887521</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>(r/lrandom my-prng <span class="dv">5</span>) <span class="co">;; =&gt; 3</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>(r/lrandom my-prng <span class="dv">10</span> <span class="dv">20</span>) <span class="co">;; =&gt; 19</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>(r/frandom my-prng) <span class="co">;; =&gt; 0.20633173</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>(r/frandom my-prng <span class="fl">2.5</span>) <span class="co">;; =&gt; 0.17484665</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>(r/frandom my-prng <span class="fl">10.1</span> <span class="fl">10.11</span>) <span class="co">;; =&gt; 10.109573</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>(r/drandom my-prng) <span class="co">;; =&gt; 0.8378862118810935</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>(r/drandom my-prng <span class="fl">2.5</span>) <span class="co">;; =&gt; 0.6278466158852086</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>(r/drandom my-prng <span class="fl">10.1</span> <span class="fl">10.11</span>) <span class="co">;; =&gt; 10.109620107590043</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>(r/grandom my-prng) <span class="co">;; =&gt; 0.14990515791384174</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>(r/grandom my-prng <span class="fl">20.0</span>) <span class="co">;; =&gt; -19.204553107277977</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>(r/grandom my-prng <span class="fl">10.0</span> <span class="fl">20.0</span>) <span class="co">;; =&gt; 32.61845192927268</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>(r/brandom my-prng) <span class="co">;; =&gt; false</span></span>
 <span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>(r/brandom my-prng <span class="fl">0.01</span>) <span class="co">;; =&gt; false</span></span>
 <span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>(r/brandom my-prng <span class="fl">0.99</span>) <span class="co">;; =&gt; true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -736,12 +736,12 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb26"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">take</span> <span class="dv">2</span> (r/-&gt;seq my-prng)) <span class="co">;; =&gt; (0.9280063168660513 0.1180788317453858)</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq my-prng <span class="dv">2</span>) <span class="co">;; =&gt; (0.5335826367829704 0.43147468995450766)</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq my-prng <span class="dv">5</span> <span class="at">:antithetic</span>) <span class="co">;; =&gt; (0.7158161796135893 0.28418382038641066 0.5331011016437408 0.4668988983562592 0.858039382251542)</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq my-prng <span class="dv">5</span> <span class="at">:uniform</span>) <span class="co">;; =&gt; (0.046826632968572056 0.08798986879129654 0.6224407770786605 0.7915559174476005 0.7918113911782562)</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq my-prng <span class="dv">5</span> <span class="at">:systematic</span>) <span class="co">;; =&gt; (0.09437446399429583 0.29437446399429584 0.4943744639942958 0.6943744639942958 0.8943744639942959)</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq my-prng <span class="dv">5</span> <span class="at">:stratified</span>) <span class="co">;; =&gt; (0.10391260869420034 0.2078853745029099 0.4227563993710651 0.7151288473083135 0.8788722640245707)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">take</span> <span class="dv">2</span> (r/-&gt;seq my-prng)) <span class="co">;; =&gt; (0.6814642533279247 0.8061668830292861)</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq my-prng <span class="dv">2</span>) <span class="co">;; =&gt; (0.5539910494761073 0.8770152554927628)</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq my-prng <span class="dv">5</span> <span class="at">:antithetic</span>) <span class="co">;; =&gt; (0.5210227775296778 0.47897722247032215 0.47780310797147996 0.52219689202852 0.4732919711485142)</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq my-prng <span class="dv">5</span> <span class="at">:uniform</span>) <span class="co">;; =&gt; (0.10683996310025397 0.2118536163456408 0.5796011735542954 0.7574133417937569 0.9795305217248493)</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq my-prng <span class="dv">5</span> <span class="at">:systematic</span>) <span class="co">;; =&gt; (0.13198299486453166 0.33198299486453164 0.5319829948645317 0.7319829948645317 0.9319829948645317)</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq my-prng <span class="dv">5</span> <span class="at">:stratified</span>) <span class="co">;; =&gt; (0.04316733403928361 0.3816942049899091 0.4050494051118008 0.7173919040209813 0.8284595050238466)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -779,13 +779,13 @@ Examples
 <div class="sourceCode" id="cb30"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(r/set-seed! isaac-prng <span class="dv">9988</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb31"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>#object[org.apache.commons.math3.random.ISAACRandom <span class="bn">0x6ad809fa</span> <span class="st">"org.apache.commons.math3.random.ISAACRandom@6ad809fa"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>#object[org.apache.commons.math3.random.ISAACRandom <span class="bn">0x38948f2</span> <span class="st">"org.apache.commons.math3.random.ISAACRandom@38948f2"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceClojure">
 <div class="sourceCode" id="cb32"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(r/set-seed! isaac-prng2 <span class="dv">9988</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb33"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>#object[org.apache.commons.math3.random.ISAACRandom <span class="bn">0x4b58aafd</span> <span class="st">"org.apache.commons.math3.random.ISAACRandom@4b58aafd"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>#object[org.apache.commons.math3.random.ISAACRandom <span class="bn">0x5689affd</span> <span class="st">"org.apache.commons.math3.random.ISAACRandom@5689affd"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Examples">
 <div class="callout-header d-flex align-content-center">
@@ -909,11 +909,11 @@ Examples
 <span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>(r/brand <span class="fl">0.01</span>) <span class="co">;; =&gt; false</span></span>
 <span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>(r/brand <span class="fl">0.99</span>) <span class="co">;; =&gt; true</span></span>
 <span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>(<span class="kw">take</span> <span class="dv">3</span> (r/-&gt;seq)) <span class="co">;; =&gt; (0.8820950564851541 0.8432355490117891 0.7757833765798361)</span></span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>r/default-rng <span class="co">;; =&gt; #object[org.apache.commons.math3.random.JDKRandomGenerator 0xadf2d70 "org.apache.commons.math3.random.JDKRandomGenerator@adf2d70"]</span></span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>(r/set-seed) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.JDKRandomGenerator 0x2f93a010 "org.apache.commons.math3.random.JDKRandomGenerator@2f93a010"]</span></span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>(r/set-seed <span class="dv">9988</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.JDKRandomGenerator 0x30769f02 "org.apache.commons.math3.random.JDKRandomGenerator@30769f02"]</span></span>
-<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>(r/set-seed!) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.JDKRandomGenerator 0xadf2d70 "org.apache.commons.math3.random.JDKRandomGenerator@adf2d70"]</span></span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>(r/set-seed! <span class="dv">9988</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.JDKRandomGenerator 0xadf2d70 "org.apache.commons.math3.random.JDKRandomGenerator@adf2d70"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>r/default-rng <span class="co">;; =&gt; #object[org.apache.commons.math3.random.JDKRandomGenerator 0x486889c "org.apache.commons.math3.random.JDKRandomGenerator@486889c"]</span></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>(r/set-seed) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.JDKRandomGenerator 0x5e8d1324 "org.apache.commons.math3.random.JDKRandomGenerator@5e8d1324"]</span></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>(r/set-seed <span class="dv">9988</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.JDKRandomGenerator 0xa3f7fe1 "org.apache.commons.math3.random.JDKRandomGenerator@a3f7fe1"]</span></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>(r/set-seed!) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.JDKRandomGenerator 0x486889c "org.apache.commons.math3.random.JDKRandomGenerator@486889c"]</span></span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>(r/set-seed! <span class="dv">9988</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.random.JDKRandomGenerator 0x486889c "org.apache.commons.math3.random.JDKRandomGenerator@486889c"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1104,8 +1104,8 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb57"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>(r/distribution <span class="at">:cauchy</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.distribution.CauchyDistribution 0x45c8afa0 "org.apache.commons.math3.distribution.CauchyDistribution@45c8afa0"]</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>(r/distribution <span class="at">:cauchy</span> {<span class="at">:median</span> <span class="fl">2.0</span>, <span class="at">:scale</span> <span class="fl">2.0</span>}) <span class="co">;; =&gt; #object[org.apache.commons.math3.distribution.CauchyDistribution 0x1e0f7f6c "org.apache.commons.math3.distribution.CauchyDistribution@1e0f7f6c"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>(r/distribution <span class="at">:cauchy</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.distribution.CauchyDistribution 0x523c5dfe "org.apache.commons.math3.distribution.CauchyDistribution@523c5dfe"]</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>(r/distribution <span class="at">:cauchy</span> {<span class="at">:median</span> <span class="fl">2.0</span>, <span class="at">:scale</span> <span class="fl">2.0</span>}) <span class="co">;; =&gt; #object[org.apache.commons.math3.distribution.CauchyDistribution 0x4cfbfe48 "org.apache.commons.math3.distribution.CauchyDistribution@4cfbfe48"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1286,11 +1286,11 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb81"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>(r/drandom log-logistic) <span class="co">;; =&gt; 10.118961075904668</span></span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>(r/frandom log-logistic) <span class="co">;; =&gt; 3.0367615</span></span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>(r/lrandom log-logistic) <span class="co">;; =&gt; 2</span></span>
-<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>(r/irandom log-logistic) <span class="co">;; =&gt; 4</span></span>
-<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>(r/sample log-logistic) <span class="co">;; =&gt; 4.300307522533115</span></span>
+<div class="sourceCode" id="cb81"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>(r/drandom log-logistic) <span class="co">;; =&gt; 3.7018389866325827</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>(r/frandom log-logistic) <span class="co">;; =&gt; 2.8306856</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>(r/lrandom log-logistic) <span class="co">;; =&gt; 6</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>(r/irandom log-logistic) <span class="co">;; =&gt; 60</span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>(r/sample log-logistic) <span class="co">;; =&gt; 8.512875378855352</span></span>
 <span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>(r/distribution? log-logistic) <span class="co">;; =&gt; true</span></span>
 <span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>(r/distribution? <span class="fl">2.3</span>) <span class="co">;; =&gt; false</span></span>
 <span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a>(r/pdf log-logistic <span class="dv">1</span>) <span class="co">;; =&gt; 0.008695578691184421</span></span>
@@ -1331,17 +1331,17 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb83"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>(r/sample dirichlet) <span class="co">;; =&gt; [0.05882158359717604 0.47598774412293465 0.46519067227988936]</span></span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">reduce</span> <span class="kw">+</span> (r/sample dirichlet)) <span class="co">;; =&gt; 1.0000000000000002</span></span>
+<div class="sourceCode" id="cb83"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>(r/sample dirichlet) <span class="co">;; =&gt; [0.0032038377707191245 0.605717680138081 0.39107848209119994]</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">reduce</span> <span class="kw">+</span> (r/sample dirichlet)) <span class="co">;; =&gt; 1.0</span></span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>(r/distribution? dirichlet) <span class="co">;; =&gt; true</span></span>
 <span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>(r/pdf dirichlet [<span class="fl">0.5</span> <span class="fl">0.1</span> <span class="fl">0.4</span>]) <span class="co">;; =&gt; 0.9600000000000001</span></span>
 <span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>(r/lpdf dirichlet [<span class="fl">0.5</span> <span class="fl">0.1</span> <span class="fl">0.4</span>]) <span class="co">;; =&gt; -0.040821994520255034</span></span>
 <span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>(r/observe1 dirichlet [<span class="fl">0.5</span> <span class="fl">0.1</span> <span class="fl">0.4</span>]) <span class="co">;; =&gt; -0.040821994520255034</span></span>
 <span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>(r/dimensions dirichlet) <span class="co">;; =&gt; 3</span></span>
 <span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>(r/continuous? dirichlet) <span class="co">;; =&gt; true</span></span>
-<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a>(r/log-likelihood dirichlet (<span class="kw">repeatedly</span> <span class="dv">10</span> (fn* [] (r/sample dirichlet)))) <span class="co">;; =&gt; 12.012667198847337</span></span>
-<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a>(r/observe dirichlet (<span class="kw">repeatedly</span> <span class="dv">10</span> (fn* [] (r/sample dirichlet)))) <span class="co">;; =&gt; 7.963926983961142</span></span>
-<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a>(r/likelihood dirichlet (<span class="kw">repeatedly</span> <span class="dv">10</span> (fn* [] (r/sample dirichlet)))) <span class="co">;; =&gt; 451990.4298369402</span></span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a>(r/log-likelihood dirichlet (<span class="kw">repeatedly</span> <span class="dv">10</span> (fn* [] (r/sample dirichlet)))) <span class="co">;; =&gt; 13.89223949678056</span></span>
+<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a>(r/observe dirichlet (<span class="kw">repeatedly</span> <span class="dv">10</span> (fn* [] (r/sample dirichlet)))) <span class="co">;; =&gt; 15.02847118690109</span></span>
+<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a>(r/likelihood dirichlet (<span class="kw">repeatedly</span> <span class="dv">10</span> (fn* [] (r/sample dirichlet)))) <span class="co">;; =&gt; 1348508.2797572948</span></span>
 <span id="cb83-12"><a href="#cb83-12" aria-hidden="true" tabindex="-1"></a>(r/means dirichlet) <span class="co">;; =&gt; (0.16666666666666666 0.3333333333333333 0.5)</span></span>
 <span id="cb83-13"><a href="#cb83-13" aria-hidden="true" tabindex="-1"></a>(r/covariance dirichlet) <span class="co">;; =&gt; [[0.019841269841269844 -0.007936507936507936 -0.011904761904761904] [-0.007936507936507936 0.03174603174603175 -0.023809523809523808] [-0.011904761904761904 -0.023809523809523808 0.03571428571428571]]</span></span>
 <span id="cb83-14"><a href="#cb83-14" aria-hidden="true" tabindex="-1"></a>(r/distribution-id dirichlet) <span class="co">;; =&gt; :dirichlet</span></span>
@@ -1370,11 +1370,11 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb85"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>(r/drandom poisson) <span class="co">;; =&gt; 13.0</span></span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>(r/frandom poisson) <span class="co">;; =&gt; 11.0</span></span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>(r/lrandom poisson) <span class="co">;; =&gt; 16</span></span>
+<div class="sourceCode" id="cb85"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>(r/drandom poisson) <span class="co">;; =&gt; 10.0</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>(r/frandom poisson) <span class="co">;; =&gt; 9.0</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>(r/lrandom poisson) <span class="co">;; =&gt; 8</span></span>
 <span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>(r/irandom poisson) <span class="co">;; =&gt; 9</span></span>
-<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>(r/sample poisson) <span class="co">;; =&gt; 8</span></span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>(r/sample poisson) <span class="co">;; =&gt; 6</span></span>
 <span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>(r/distribution? poisson) <span class="co">;; =&gt; true</span></span>
 <span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a>(r/pdf poisson <span class="dv">5</span>) <span class="co">;; =&gt; 0.03783327480207072</span></span>
 <span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a>(r/lpdf poisson <span class="dv">5</span>) <span class="co">;; =&gt; -3.274566277811817</span></span>
@@ -1508,8 +1508,8 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb98"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>(r/sample weibull) <span class="co">;; =&gt; 0.5251317922446394</span></span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq weibull <span class="dv">3</span>) <span class="co">;; =&gt; (0.9742635881904984 0.31605895240805715 1.0635808202259611)</span></span>
+<div class="sourceCode" id="cb98"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>(r/sample weibull) <span class="co">;; =&gt; 1.0114861938487278</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq weibull <span class="dv">3</span>) <span class="co">;; =&gt; (1.0022815331849562 0.9370854653996438 1.1684465270682418)</span></span>
 <span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq weibull <span class="dv">5</span> <span class="at">:antithetic</span>) <span class="co">;; =&gt; (0.8789298248121516 0.7871567720020644 0.3359031152662685 1.4959111180822753 0.5761405777290171)</span></span>
 <span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq weibull <span class="dv">5</span> <span class="at">:uniform</span>) <span class="co">;; =&gt; (0.27819628819981307 0.5105865483391676 0.6372189139644687 1.1425580683435526 1.7502730290537003)</span></span>
 <span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq weibull <span class="dv">5</span> <span class="at">:systematic</span>) <span class="co">;; =&gt; (0.42415794076771685 0.6734882729621214 0.911929539913042 1.2027888245275842 1.8282741464907257)</span></span>
@@ -1537,7 +1537,7 @@ Examples
 <div class="sourceClojure">
 <div class="sourceCode" id="cb100"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">vec</span> (r/-&gt;seq cauchy-mersenne<span class="dv">-2288</span> <span class="dv">3</span>)) <span class="co">;; =&gt; [-0.1079136480774541 -5.558982159984645 -3.127061922456471]</span></span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">vec</span> (r/-&gt;seq cauchy-mersenne<span class="dv">-2288</span> <span class="dv">3</span>)) <span class="co">;; =&gt; [8.13804818209913 1.6141542337020716 -0.6694661861436221]</span></span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>(r/set-seed! cauchy-mersenne<span class="dv">-2288</span> <span class="dv">2288</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.distribution.CauchyDistribution 0x79218b19 "org.apache.commons.math3.distribution.CauchyDistribution@79218b19"]</span></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>(r/set-seed! cauchy-mersenne<span class="dv">-2288</span> <span class="dv">2288</span>) <span class="co">;; =&gt; #object[org.apache.commons.math3.distribution.CauchyDistribution 0x3a036be2 "org.apache.commons.math3.distribution.CauchyDistribution@3a036be2"]</span></span>
 <span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">vec</span> (r/-&gt;seq cauchy-mersenne<span class="dv">-2288</span> <span class="dv">3</span>)) <span class="co">;; =&gt; [-0.1079136480774541 -5.558982159984645 -3.127061922456471]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -1580,7 +1580,7 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb102"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq r/default-normal <span class="dv">3</span>) <span class="co">;; =&gt; (1.5067798697979589 -0.8400082518479379 0.34353942643193125)</span></span>
+<div class="sourceCode" id="cb102"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>(r/-&gt;seq r/default-normal <span class="dv">3</span>) <span class="co">;; =&gt; (2.0877914800655217 0.05703362896783526 -0.7336163378858906)</span></span>
 <span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>(r/pdf r/default-normal <span class="fl">0.0</span>) <span class="co">;; =&gt; 0.3989422804014327</span></span>
 <span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>(r/cdf r/default-normal <span class="fl">0.0</span>) <span class="co">;; =&gt; 0.5</span></span>
 <span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>(r/icdf r/default-normal <span class="fl">0.5</span>) <span class="co">;; =&gt; 0.0</span></span>
@@ -4701,8 +4701,8 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb324"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb324-1"><a href="#cb324-1" aria-hidden="true" tabindex="-1"></a>(r/sample dirichlet3) <span class="co">;; =&gt; [0.1778581170431112 0.05593523374660998 0.7662066492102789]</span></span>
-<span id="cb324-2"><a href="#cb324-2" aria-hidden="true" tabindex="-1"></a>(r/sample dirichlet3) <span class="co">;; =&gt; [0.4490437122216987 0.14277093320724749 0.4081853545710539]</span></span>
+<div class="sourceCode" id="cb324"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb324-1"><a href="#cb324-1" aria-hidden="true" tabindex="-1"></a>(r/sample dirichlet3) <span class="co">;; =&gt; [0.25176347768699486 0.22766107134889405 0.5205754509641112]</span></span>
+<span id="cb324-2"><a href="#cb324-2" aria-hidden="true" tabindex="-1"></a>(r/sample dirichlet3) <span class="co">;; =&gt; [0.5330136569993918 0.13935191486586274 0.3276344281347454]</span></span>
 <span id="cb324-3"><a href="#cb324-3" aria-hidden="true" tabindex="-1"></a>(r/pdf dirichlet3 [<span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.5</span>]) <span class="co">;; =&gt; 1.8000000000000003</span></span>
 <span id="cb324-4"><a href="#cb324-4" aria-hidden="true" tabindex="-1"></a>(r/pdf dirichlet3 [<span class="fl">0.3</span> <span class="fl">0.5</span> <span class="fl">0.2</span>]) <span class="co">;; =&gt; 0.648</span></span>
 <span id="cb324-5"><a href="#cb324-5" aria-hidden="true" tabindex="-1"></a>(r/pdf dirichlet3 [<span class="fl">0.5</span> <span class="fl">0.2</span> <span class="fl">0.3</span>]) <span class="co">;; =&gt; 4.05</span></span>
@@ -4784,8 +4784,8 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb329"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb329-1"><a href="#cb329-1" aria-hidden="true" tabindex="-1"></a>(r/sample multinomial) <span class="co">;; =&gt; [10 25 34 33 48]</span></span>
-<span id="cb329-2"><a href="#cb329-2" aria-hidden="true" tabindex="-1"></a>(r/sample multinomial) <span class="co">;; =&gt; [9 21 26 43 51]</span></span>
+<div class="sourceCode" id="cb329"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb329-1"><a href="#cb329-1" aria-hidden="true" tabindex="-1"></a>(r/sample multinomial) <span class="co">;; =&gt; [11 23 28 44 44]</span></span>
+<span id="cb329-2"><a href="#cb329-2" aria-hidden="true" tabindex="-1"></a>(r/sample multinomial) <span class="co">;; =&gt; [12 17 29 37 55]</span></span>
 <span id="cb329-3"><a href="#cb329-3" aria-hidden="true" tabindex="-1"></a>(r/pdf multinomial [<span class="dv">10</span> <span class="dv">10</span> <span class="dv">10</span> <span class="dv">10</span> <span class="dv">110</span>]) <span class="co">;; =&gt; 3.9088379874482466E-28</span></span>
 <span id="cb329-4"><a href="#cb329-4" aria-hidden="true" tabindex="-1"></a>(r/pdf multinomial [<span class="dv">10</span> <span class="dv">20</span> <span class="dv">30</span> <span class="dv">40</span> <span class="dv">50</span>]) <span class="co">;; =&gt; 8.791729390927823E-5</span></span>
 <span id="cb329-5"><a href="#cb329-5" aria-hidden="true" tabindex="-1"></a>(r/pdf multinomial [<span class="dv">110</span> <span class="dv">10</span> <span class="dv">10</span> <span class="dv">10</span> <span class="dv">10</span>]) <span class="co">;; =&gt; 4.955040820983416E-98</span></span>
@@ -4859,8 +4859,8 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb334"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb334-1"><a href="#cb334-1" aria-hidden="true" tabindex="-1"></a>(r/sample mixture-of-three) <span class="co">;; =&gt; 3.16196693692548</span></span>
-<span id="cb334-2"><a href="#cb334-2" aria-hidden="true" tabindex="-1"></a>(r/sample mixture-of-three) <span class="co">;; =&gt; 0.4412495813401783</span></span>
+<div class="sourceCode" id="cb334"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb334-1"><a href="#cb334-1" aria-hidden="true" tabindex="-1"></a>(r/sample mixture-of-three) <span class="co">;; =&gt; 1.102393590198155</span></span>
+<span id="cb334-2"><a href="#cb334-2" aria-hidden="true" tabindex="-1"></a>(r/sample mixture-of-three) <span class="co">;; =&gt; 0.8890040151295291</span></span>
 <span id="cb334-3"><a href="#cb334-3" aria-hidden="true" tabindex="-1"></a>(r/pdf mixture-of-three <span class="dv">0</span>) <span class="co">;; =&gt; 0.08333333333333333</span></span>
 <span id="cb334-4"><a href="#cb334-4" aria-hidden="true" tabindex="-1"></a>(r/pdf mixture-of-three <span class="dv">1</span>) <span class="co">;; =&gt; 0.45620084174033965</span></span>
 <span id="cb334-5"><a href="#cb334-5" aria-hidden="true" tabindex="-1"></a>(r/pdf mixture-of-three <span class="dv">2</span>) <span class="co">;; =&gt; 0.14666525453903217</span></span>
@@ -4951,8 +4951,8 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb338"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb338-1"><a href="#cb338-1" aria-hidden="true" tabindex="-1"></a>(r/sample truncated-normal) <span class="co">;; =&gt; -1.0665553054116161</span></span>
-<span id="cb338-2"><a href="#cb338-2" aria-hidden="true" tabindex="-1"></a>(r/sample truncated-normal) <span class="co">;; =&gt; -1.198990601705406</span></span>
+<div class="sourceCode" id="cb338"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb338-1"><a href="#cb338-1" aria-hidden="true" tabindex="-1"></a>(r/sample truncated-normal) <span class="co">;; =&gt; -0.8640624998901583</span></span>
+<span id="cb338-2"><a href="#cb338-2" aria-hidden="true" tabindex="-1"></a>(r/sample truncated-normal) <span class="co">;; =&gt; -0.2814694963857404</span></span>
 <span id="cb338-3"><a href="#cb338-3" aria-hidden="true" tabindex="-1"></a>(r/pdf truncated-normal <span class="fl">2.0000001</span>) <span class="co">;; =&gt; 0.0</span></span>
 <span id="cb338-4"><a href="#cb338-4" aria-hidden="true" tabindex="-1"></a>(r/pdf truncated-normal <span class="fl">2.0</span>) <span class="co">;; =&gt; 0.0565646741125192</span></span>
 <span id="cb338-5"><a href="#cb338-5" aria-hidden="true" tabindex="-1"></a>(r/cdf truncated-normal <span class="fl">2.0</span>) <span class="co">;; =&gt; 1.0</span></span>
@@ -5022,8 +5022,8 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb341"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb341-1"><a href="#cb341-1" aria-hidden="true" tabindex="-1"></a>(r/sample kde-distr) <span class="co">;; =&gt; 0.9476890790326209</span></span>
-<span id="cb341-2"><a href="#cb341-2" aria-hidden="true" tabindex="-1"></a>(r/sample kde-distr) <span class="co">;; =&gt; 4.763951000047397</span></span>
+<div class="sourceCode" id="cb341"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb341-1"><a href="#cb341-1" aria-hidden="true" tabindex="-1"></a>(r/sample kde-distr) <span class="co">;; =&gt; 2.3217100350143935</span></span>
+<span id="cb341-2"><a href="#cb341-2" aria-hidden="true" tabindex="-1"></a>(r/sample kde-distr) <span class="co">;; =&gt; 3.2761562666387416</span></span>
 <span id="cb341-3"><a href="#cb341-3" aria-hidden="true" tabindex="-1"></a>(r/pdf kde-distr <span class="fl">0.0</span>) <span class="co">;; =&gt; 0.2895732291670891</span></span>
 <span id="cb341-4"><a href="#cb341-4" aria-hidden="true" tabindex="-1"></a>(r/cdf kde-distr <span class="fl">0.0</span>) <span class="co">;; =&gt; 0.31552593767229803</span></span>
 <span id="cb341-5"><a href="#cb341-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">map</span> (<span class="kw">partial</span> r/icdf kde-distr) [<span class="fl">1.0E-4</span> <span class="fl">0.5</span> <span class="fl">0.9999</span>]) <span class="co">;; =&gt; (-4.036565369328684 0.49883262884502827 5.012273231015241)</span></span>
@@ -5037,30 +5037,142 @@ Examples
 <section id="kernels" class="level5">
 <h5 class="anchored" data-anchor-id="kernels">Kernels</h5>
 <p>Distributions for various kernels: * <code>:data</code>: <code>[-2 -2 -2 -1 0 1 2 -1 0 1 2 0 1 2 1 2 2]</code> * <code>:steps</code>: <code>100</code> * <code>:bandwidth</code>: auto</p>
-<p><code>fastmath.kernel/kernels-list</code> contains three types of kernels: RBF, KDE and what we can call “vector kernels” which includes Marcer, positive definite, and similar.</p>
+<p><code>fastmath.kernel/kernel-list</code> contains three types of kernels: RBF, KDE and what we can call “vector kernels” which includes Marcer, positive definite, and similar.</p>
+<div class="clay-table">
+<div class="table-responsive">
+<table class="table table-hover caption-top" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Type</th>
+<th data-quarto-table-cell-role="th">Kernels</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><div>
+<pre class="sourceCode language-clojure source-clojure bg-light code-with-copy"><code>:vector</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre>
+</div></td>
+<td><div>
+<pre class="sourceCode language-clojure printed-clojure code-with-copy"><code>(:anova
+ :b-spline
+ :bessel
+ :bessel2
+ :cauchy
+ :chi-square
+ :chi-square2
+ :circular
+ :dirichlet
+ :exponential
+ :gaussian
+ :generalized-histogram
+ :generalized-t-student
+ :geometric
+ :hellinger
+ :histogram
+ :hyperbolic-secant
+ :hyperbolic-tangent
+ :inverse-multiquadratic
+ :laplacian
+ :linear
+ :log
+ :matern
+ :matern-12
+ :matern-32
+ :matern-52
+ :multiquadratic
+ :pearson
+ :periodic
+ :polynomial
+ :power
+ :rational-quadratic
+ :spherical
+ :spline
+ :triangular
+ :wave)</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre>
+</div></td>
+</tr>
+<tr class="even">
+<td><div>
+<pre class="sourceCode language-clojure source-clojure bg-light code-with-copy"><code>:rbf</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre>
+</div></td>
+<td><div>
+<pre class="sourceCode language-clojure printed-clojure code-with-copy"><code>(:gaussian
+ :gaussians-laguerre
+ :gaussians-laguerre-11
+ :gaussians-laguerre-12
+ :gaussians-laguerre-21
+ :gaussians-laguerre-22
+ :generalized-multiquadratic
+ :gneiting
+ :inverse-multiquadratic
+ :linear
+ :matern
+ :matern-c0
+ :matern-c2
+ :matern-c4
+ :multiquadratic
+ :poisson
+ :poisson-2
+ :poisson-3
+ :poisson-4
+ :radial-powers
+ :radial-powers-3
+ :shifted-surface-splines
+ :thin-plate
+ :thin-plate-splines
+ :truncated-power
+ :truncated-power-1
+ :truncated-power-2
+ :truncated-power-3
+ :truncated-power-half
+ :truncated-power-third
+ :wendland
+ :whittaker
+ :wu
+ :wu-10
+ :wu-11
+ :wu-20
+ :wu-21
+ :wu-22
+ :wu-30
+ :wu-31
+ :wu-32
+ :wu-33)</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre>
+</div></td>
+</tr>
+<tr class="odd">
+<td><div>
+<pre class="sourceCode language-clojure source-clojure bg-light code-with-copy"><code>:kde</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre>
+</div></td>
+<td><div>
+<pre class="sourceCode language-clojure printed-clojure code-with-copy"><code>(:cauchy
+ :cosine
+ :epanechnikov
+ :gaussian
+ :laplace
+ :logistic
+ :quartic
+ :sigmoid
+ :silverman
+ :triangular
+ :tricube
+ :triweight
+ :uniform
+ :wigner)</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre>
+</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>KDE kernels</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb342"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb342-1"><a href="#cb342-1" aria-hidden="true" tabindex="-1"></a>[<span class="at">:cauchy</span> <span class="at">:cosine</span> <span class="at">:epanechnikov</span> <span class="at">:gaussian</span> <span class="at">:laplace</span> <span class="at">:logistic</span> <span class="at">:quartic</span> <span class="at">:sigmoid</span> <span class="at">:silverman</span> <span class="at">:triangular</span> <span class="at">:tricube</span> <span class="at">:triweight</span> <span class="at">:uniform</span> <span class="at">:wigner</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="printedClojure">
-<div class="sourceCode" id="cb343"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb343-1"><a href="#cb343-1" aria-hidden="true" tabindex="-1"></a>[<span class="at">:cauchy</span></span>
-<span id="cb343-2"><a href="#cb343-2" aria-hidden="true" tabindex="-1"></a> <span class="at">:cosine</span></span>
-<span id="cb343-3"><a href="#cb343-3" aria-hidden="true" tabindex="-1"></a> <span class="at">:epanechnikov</span></span>
-<span id="cb343-4"><a href="#cb343-4" aria-hidden="true" tabindex="-1"></a> <span class="at">:gaussian</span></span>
-<span id="cb343-5"><a href="#cb343-5" aria-hidden="true" tabindex="-1"></a> <span class="at">:laplace</span></span>
-<span id="cb343-6"><a href="#cb343-6" aria-hidden="true" tabindex="-1"></a> <span class="at">:logistic</span></span>
-<span id="cb343-7"><a href="#cb343-7" aria-hidden="true" tabindex="-1"></a> <span class="at">:quartic</span></span>
-<span id="cb343-8"><a href="#cb343-8" aria-hidden="true" tabindex="-1"></a> <span class="at">:sigmoid</span></span>
-<span id="cb343-9"><a href="#cb343-9" aria-hidden="true" tabindex="-1"></a> <span class="at">:silverman</span></span>
-<span id="cb343-10"><a href="#cb343-10" aria-hidden="true" tabindex="-1"></a> <span class="at">:triangular</span></span>
-<span id="cb343-11"><a href="#cb343-11" aria-hidden="true" tabindex="-1"></a> <span class="at">:tricube</span></span>
-<span id="cb343-12"><a href="#cb343-12" aria-hidden="true" tabindex="-1"></a> <span class="at">:triweight</span></span>
-<span id="cb343-13"><a href="#cb343-13" aria-hidden="true" tabindex="-1"></a> <span class="at">:uniform</span></span>
-<span id="cb343-14"><a href="#cb343-14" aria-hidden="true" tabindex="-1"></a> <span class="at">:wigner</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="sourceClojure">
-<div class="sourceCode" id="cb344"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb344-1"><a href="#cb344-1" aria-hidden="true" tabindex="-1"></a>^<span class="at">:kind/hidden</span></span>
-<span id="cb344-2"><a href="#cb344-2" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> kde-kernels </span>[<span class="at">:cauchy</span> <span class="at">:cosine</span> <span class="at">:epanechnikov</span> <span class="at">:gaussian</span> <span class="at">:laplace</span> <span class="at">:logistic</span> <span class="at">:quartic</span> <span class="at">:sigmoid</span> <span class="at">:silverman</span> <span class="at">:triangular</span> <span class="at">:tricube</span> <span class="at">:triweight</span> <span class="at">:uniform</span> <span class="at">:wigner</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb348-1"><a href="#cb348-1" aria-hidden="true" tabindex="-1"></a>^<span class="at">:kind/hidden</span></span>
+<span id="cb348-2"><a href="#cb348-2" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> kde-kernels </span>(<span class="at">:kde</span> k/kernel-list))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="clay-table">
 <div class="table-responsive">
@@ -5173,7 +5285,7 @@ Examples
 <li><a href="https://en.wikipedia.org/wiki/Empirical_distribution_function">wiki</a>, <a href="https://commons.apache.org/proper/commons-math/javadocs/api-3.6.1/org/apache/commons/math3/random/EmpiricalDistribution.html">source</a></li>
 </ul>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb359"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb359-1"><a href="#cb359-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> empirical-distr </span>(r/distribution <span class="at">:empirical</span> {<span class="at">:data</span> random-data}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb363-1"><a href="#cb363-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> empirical-distr </span>(r/distribution <span class="at">:empirical</span> {<span class="at">:data</span> random-data}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="clay-table">
 <div class="table-responsive">
@@ -5202,15 +5314,15 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb360"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb360-1"><a href="#cb360-1" aria-hidden="true" tabindex="-1"></a>(r/sample empirical-distr) <span class="co">;; =&gt; -0.7897601859046492</span></span>
-<span id="cb360-2"><a href="#cb360-2" aria-hidden="true" tabindex="-1"></a>(r/sample empirical-distr) <span class="co">;; =&gt; 2.6568333435090774</span></span>
-<span id="cb360-3"><a href="#cb360-3" aria-hidden="true" tabindex="-1"></a>(r/pdf empirical-distr <span class="fl">0.0</span>) <span class="co">;; =&gt; 0.3367652060230363</span></span>
-<span id="cb360-4"><a href="#cb360-4" aria-hidden="true" tabindex="-1"></a>(r/cdf empirical-distr <span class="fl">0.0</span>) <span class="co">;; =&gt; 0.3060844150814384</span></span>
-<span id="cb360-5"><a href="#cb360-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">map</span> (<span class="kw">partial</span> r/icdf empirical-distr) [<span class="fl">1.0E-4</span> <span class="fl">0.5</span> <span class="fl">0.9999</span>]) <span class="co">;; =&gt; (-3.8445695885397138 0.49402601627672765 4.820277450226245)</span></span>
-<span id="cb360-6"><a href="#cb360-6" aria-hidden="true" tabindex="-1"></a>(r/lower-bound empirical-distr) <span class="co">;; =&gt; -3.8445695885397138</span></span>
-<span id="cb360-7"><a href="#cb360-7" aria-hidden="true" tabindex="-1"></a>(r/upper-bound empirical-distr) <span class="co">;; =&gt; 4.820277450226245</span></span>
-<span id="cb360-8"><a href="#cb360-8" aria-hidden="true" tabindex="-1"></a>(r/mean empirical-distr) <span class="co">;; =&gt; 0.5262235226230891</span></span>
-<span id="cb360-9"><a href="#cb360-9" aria-hidden="true" tabindex="-1"></a>(r/variance empirical-distr) <span class="co">;; =&gt; 1.8233876483481297</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb364-1"><a href="#cb364-1" aria-hidden="true" tabindex="-1"></a>(r/sample empirical-distr) <span class="co">;; =&gt; 0.6697722991704338</span></span>
+<span id="cb364-2"><a href="#cb364-2" aria-hidden="true" tabindex="-1"></a>(r/sample empirical-distr) <span class="co">;; =&gt; -1.2902499479591785</span></span>
+<span id="cb364-3"><a href="#cb364-3" aria-hidden="true" tabindex="-1"></a>(r/pdf empirical-distr <span class="fl">0.0</span>) <span class="co">;; =&gt; 0.3367652060230363</span></span>
+<span id="cb364-4"><a href="#cb364-4" aria-hidden="true" tabindex="-1"></a>(r/cdf empirical-distr <span class="fl">0.0</span>) <span class="co">;; =&gt; 0.3060844150814384</span></span>
+<span id="cb364-5"><a href="#cb364-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">map</span> (<span class="kw">partial</span> r/icdf empirical-distr) [<span class="fl">1.0E-4</span> <span class="fl">0.5</span> <span class="fl">0.9999</span>]) <span class="co">;; =&gt; (-3.8445695885397138 0.49402601627672765 4.820277450226245)</span></span>
+<span id="cb364-6"><a href="#cb364-6" aria-hidden="true" tabindex="-1"></a>(r/lower-bound empirical-distr) <span class="co">;; =&gt; -3.8445695885397138</span></span>
+<span id="cb364-7"><a href="#cb364-7" aria-hidden="true" tabindex="-1"></a>(r/upper-bound empirical-distr) <span class="co">;; =&gt; 4.820277450226245</span></span>
+<span id="cb364-8"><a href="#cb364-8" aria-hidden="true" tabindex="-1"></a>(r/mean empirical-distr) <span class="co">;; =&gt; 0.5262235226230891</span></span>
+<span id="cb364-9"><a href="#cb364-9" aria-hidden="true" tabindex="-1"></a>(r/variance empirical-distr) <span class="co">;; =&gt; 1.8233876483481297</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -5235,7 +5347,7 @@ Examples
 <section id="doubles" class="level5">
 <h5 class="anchored" data-anchor-id="doubles">Doubles</h5>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb361"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb361-1"><a href="#cb361-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> data-doubles </span>(<span class="kw">repeatedly</span> <span class="dv">100</span> #(m/sq (m/approx (r/drand <span class="fl">2.0</span>) <span class="dv">1</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb365-1"><a href="#cb365-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> data-doubles </span>(<span class="kw">repeatedly</span> <span class="dv">100</span> #(m/sq (m/approx (r/drand <span class="fl">2.0</span>) <span class="dv">1</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="clay-table">
 <div class="table-responsive">
@@ -5262,8 +5374,8 @@ Examples
 </div>
 </div>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb364"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb364-1"><a href="#cb364-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> real-distr </span>(r/distribution <span class="at">:real-discrete-distribution</span> {<span class="at">:data</span> [<span class="fl">0.1</span> <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span> <span class="fl">0.3</span> <span class="fl">0.2</span> <span class="fl">0.1</span>]</span>
-<span id="cb364-2"><a href="#cb364-2" aria-hidden="true" tabindex="-1"></a>                                                             <span class="at">:probabilities</span> [<span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">5</span> <span class="dv">4</span>]}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb368-1"><a href="#cb368-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> real-distr </span>(r/distribution <span class="at">:real-discrete-distribution</span> {<span class="at">:data</span> [<span class="fl">0.1</span> <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span> <span class="fl">0.3</span> <span class="fl">0.2</span> <span class="fl">0.1</span>]</span>
+<span id="cb368-2"><a href="#cb368-2" aria-hidden="true" tabindex="-1"></a>                                                             <span class="at">:probabilities</span> [<span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">5</span> <span class="dv">4</span>]}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Examples">
 <div class="callout-header d-flex align-content-center">
@@ -5276,16 +5388,16 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb365"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb365-1"><a href="#cb365-1" aria-hidden="true" tabindex="-1"></a>(r/sample real-distr) <span class="co">;; =&gt; 0.2</span></span>
-<span id="cb365-2"><a href="#cb365-2" aria-hidden="true" tabindex="-1"></a>(r/sample real-distr) <span class="co">;; =&gt; 0.1</span></span>
-<span id="cb365-3"><a href="#cb365-3" aria-hidden="true" tabindex="-1"></a>(r/pdf real-distr <span class="fl">0.1</span>) <span class="co">;; =&gt; 0.375</span></span>
-<span id="cb365-4"><a href="#cb365-4" aria-hidden="true" tabindex="-1"></a>(r/pdf real-distr <span class="fl">0.15</span>) <span class="co">;; =&gt; 0.0</span></span>
-<span id="cb365-5"><a href="#cb365-5" aria-hidden="true" tabindex="-1"></a>(r/cdf real-distr <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.75</span></span>
-<span id="cb365-6"><a href="#cb365-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">map</span> (<span class="kw">partial</span> r/icdf real-distr) [<span class="fl">1.0E-4</span> <span class="fl">0.5</span> <span class="fl">0.9999</span>]) <span class="co">;; =&gt; (0.1 0.2 0.4)</span></span>
-<span id="cb365-7"><a href="#cb365-7" aria-hidden="true" tabindex="-1"></a>(r/lower-bound real-distr) <span class="co">;; =&gt; 0.1</span></span>
-<span id="cb365-8"><a href="#cb365-8" aria-hidden="true" tabindex="-1"></a>(r/upper-bound real-distr) <span class="co">;; =&gt; 0.4</span></span>
-<span id="cb365-9"><a href="#cb365-9" aria-hidden="true" tabindex="-1"></a>(r/mean real-distr) <span class="co">;; =&gt; 0.19583333333333333</span></span>
-<span id="cb365-10"><a href="#cb365-10" aria-hidden="true" tabindex="-1"></a>(r/variance real-distr) <span class="co">;; =&gt; 0.008732638888888894</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb369-1"><a href="#cb369-1" aria-hidden="true" tabindex="-1"></a>(r/sample real-distr) <span class="co">;; =&gt; 0.4</span></span>
+<span id="cb369-2"><a href="#cb369-2" aria-hidden="true" tabindex="-1"></a>(r/sample real-distr) <span class="co">;; =&gt; 0.3</span></span>
+<span id="cb369-3"><a href="#cb369-3" aria-hidden="true" tabindex="-1"></a>(r/pdf real-distr <span class="fl">0.1</span>) <span class="co">;; =&gt; 0.375</span></span>
+<span id="cb369-4"><a href="#cb369-4" aria-hidden="true" tabindex="-1"></a>(r/pdf real-distr <span class="fl">0.15</span>) <span class="co">;; =&gt; 0.0</span></span>
+<span id="cb369-5"><a href="#cb369-5" aria-hidden="true" tabindex="-1"></a>(r/cdf real-distr <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.75</span></span>
+<span id="cb369-6"><a href="#cb369-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">map</span> (<span class="kw">partial</span> r/icdf real-distr) [<span class="fl">1.0E-4</span> <span class="fl">0.5</span> <span class="fl">0.9999</span>]) <span class="co">;; =&gt; (0.1 0.2 0.4)</span></span>
+<span id="cb369-7"><a href="#cb369-7" aria-hidden="true" tabindex="-1"></a>(r/lower-bound real-distr) <span class="co">;; =&gt; 0.1</span></span>
+<span id="cb369-8"><a href="#cb369-8" aria-hidden="true" tabindex="-1"></a>(r/upper-bound real-distr) <span class="co">;; =&gt; 0.4</span></span>
+<span id="cb369-9"><a href="#cb369-9" aria-hidden="true" tabindex="-1"></a>(r/mean real-distr) <span class="co">;; =&gt; 0.19583333333333333</span></span>
+<span id="cb369-10"><a href="#cb369-10" aria-hidden="true" tabindex="-1"></a>(r/variance real-distr) <span class="co">;; =&gt; 0.008732638888888894</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -5293,7 +5405,7 @@ Examples
 <section id="integers-longs" class="level5">
 <h5 class="anchored" data-anchor-id="integers-longs">Integers / Longs</h5>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb366"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb366-1"><a href="#cb366-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> data-ints </span>(<span class="kw">repeatedly</span> <span class="dv">500</span> #(<span class="kw">int</span> (m/sqrt (r/drand <span class="fl">100.0</span>)))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb370-1"><a href="#cb370-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> data-ints </span>(<span class="kw">repeatedly</span> <span class="dv">500</span> #(<span class="kw">int</span> (m/sqrt (r/drand <span class="fl">100.0</span>)))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="clay-table">
 <div class="table-responsive">
@@ -5320,8 +5432,8 @@ Examples
 </div>
 </div>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb369"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb369-1"><a href="#cb369-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> int-distr </span>(r/distribution <span class="at">:integer-discrete-distribution</span> {<span class="at">:data</span> [<span class="dv">10</span> <span class="dv">20</span> <span class="dv">30</span> <span class="dv">40</span> <span class="dv">30</span> <span class="dv">20</span> <span class="dv">10</span>]</span>
-<span id="cb369-2"><a href="#cb369-2" aria-hidden="true" tabindex="-1"></a>                                                               <span class="at">:probabilities</span> [<span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">5</span> <span class="dv">4</span>]}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb373-1"><a href="#cb373-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> int-distr </span>(r/distribution <span class="at">:integer-discrete-distribution</span> {<span class="at">:data</span> [<span class="dv">10</span> <span class="dv">20</span> <span class="dv">30</span> <span class="dv">40</span> <span class="dv">30</span> <span class="dv">20</span> <span class="dv">10</span>]</span>
+<span id="cb373-2"><a href="#cb373-2" aria-hidden="true" tabindex="-1"></a>                                                               <span class="at">:probabilities</span> [<span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">5</span> <span class="dv">4</span>]}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Examples">
 <div class="callout-header d-flex align-content-center">
@@ -5334,16 +5446,16 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb370"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb370-1"><a href="#cb370-1" aria-hidden="true" tabindex="-1"></a>(r/sample int-distr) <span class="co">;; =&gt; 20</span></span>
-<span id="cb370-2"><a href="#cb370-2" aria-hidden="true" tabindex="-1"></a>(r/sample int-distr) <span class="co">;; =&gt; 10</span></span>
-<span id="cb370-3"><a href="#cb370-3" aria-hidden="true" tabindex="-1"></a>(r/pdf int-distr <span class="dv">10</span>) <span class="co">;; =&gt; 0.375</span></span>
-<span id="cb370-4"><a href="#cb370-4" aria-hidden="true" tabindex="-1"></a>(r/pdf int-distr <span class="dv">15</span>) <span class="co">;; =&gt; 0.0</span></span>
-<span id="cb370-5"><a href="#cb370-5" aria-hidden="true" tabindex="-1"></a>(r/cdf int-distr <span class="dv">20</span>) <span class="co">;; =&gt; 0.75</span></span>
-<span id="cb370-6"><a href="#cb370-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">map</span> (<span class="kw">partial</span> r/icdf int-distr) [<span class="fl">1.0E-4</span> <span class="fl">0.5</span> <span class="fl">0.9999</span>]) <span class="co">;; =&gt; (10 20 40)</span></span>
-<span id="cb370-7"><a href="#cb370-7" aria-hidden="true" tabindex="-1"></a>(r/lower-bound int-distr) <span class="co">;; =&gt; 10.0</span></span>
-<span id="cb370-8"><a href="#cb370-8" aria-hidden="true" tabindex="-1"></a>(r/upper-bound int-distr) <span class="co">;; =&gt; 40.0</span></span>
-<span id="cb370-9"><a href="#cb370-9" aria-hidden="true" tabindex="-1"></a>(r/mean int-distr) <span class="co">;; =&gt; 19.583333333333332</span></span>
-<span id="cb370-10"><a href="#cb370-10" aria-hidden="true" tabindex="-1"></a>(r/variance int-distr) <span class="co">;; =&gt; 87.32638888888891</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb374-1"><a href="#cb374-1" aria-hidden="true" tabindex="-1"></a>(r/sample int-distr) <span class="co">;; =&gt; 20</span></span>
+<span id="cb374-2"><a href="#cb374-2" aria-hidden="true" tabindex="-1"></a>(r/sample int-distr) <span class="co">;; =&gt; 40</span></span>
+<span id="cb374-3"><a href="#cb374-3" aria-hidden="true" tabindex="-1"></a>(r/pdf int-distr <span class="dv">10</span>) <span class="co">;; =&gt; 0.375</span></span>
+<span id="cb374-4"><a href="#cb374-4" aria-hidden="true" tabindex="-1"></a>(r/pdf int-distr <span class="dv">15</span>) <span class="co">;; =&gt; 0.0</span></span>
+<span id="cb374-5"><a href="#cb374-5" aria-hidden="true" tabindex="-1"></a>(r/cdf int-distr <span class="dv">20</span>) <span class="co">;; =&gt; 0.75</span></span>
+<span id="cb374-6"><a href="#cb374-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">map</span> (<span class="kw">partial</span> r/icdf int-distr) [<span class="fl">1.0E-4</span> <span class="fl">0.5</span> <span class="fl">0.9999</span>]) <span class="co">;; =&gt; (10 20 40)</span></span>
+<span id="cb374-7"><a href="#cb374-7" aria-hidden="true" tabindex="-1"></a>(r/lower-bound int-distr) <span class="co">;; =&gt; 10.0</span></span>
+<span id="cb374-8"><a href="#cb374-8" aria-hidden="true" tabindex="-1"></a>(r/upper-bound int-distr) <span class="co">;; =&gt; 40.0</span></span>
+<span id="cb374-9"><a href="#cb374-9" aria-hidden="true" tabindex="-1"></a>(r/mean int-distr) <span class="co">;; =&gt; 19.583333333333332</span></span>
+<span id="cb374-10"><a href="#cb374-10" aria-hidden="true" tabindex="-1"></a>(r/variance int-distr) <span class="co">;; =&gt; 87.32638888888891</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -5362,7 +5474,7 @@ Examples
 </ul>
 <p>Order for CDF/iCDF is created by calling <code>(distinct data)</code>. If sorted data is needed, external sort is necessary. <code>lower-bound</code> and <code>upper-bound</code> are not defined though.</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb371"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb371-1"><a href="#cb371-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> cat-distr </span>(r/distribution <span class="at">:categorical-distribution</span> {<span class="at">:data</span> (<span class="kw">repeatedly</span> <span class="dv">100</span> #(<span class="kw">rand-nth</span> [<span class="at">:a</span> <span class="at">:b</span> <span class="va">nil</span> <span class="st">"s"</span>]))}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb375-1"><a href="#cb375-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> cat-distr </span>(r/distribution <span class="at">:categorical-distribution</span> {<span class="at">:data</span> (<span class="kw">repeatedly</span> <span class="dv">100</span> #(<span class="kw">rand-nth</span> [<span class="at">:a</span> <span class="at">:b</span> <span class="va">nil</span> <span class="st">"s"</span>]))}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Examples">
 <div class="callout-header d-flex align-content-center">
@@ -5375,12 +5487,12 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb372"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb372-1"><a href="#cb372-1" aria-hidden="true" tabindex="-1"></a>(r/sample cat-distr) <span class="co">;; =&gt; nil</span></span>
-<span id="cb372-2"><a href="#cb372-2" aria-hidden="true" tabindex="-1"></a>(r/sample cat-distr) <span class="co">;; =&gt; nil</span></span>
-<span id="cb372-3"><a href="#cb372-3" aria-hidden="true" tabindex="-1"></a>(r/pdf cat-distr <span class="va">nil</span>) <span class="co">;; =&gt; 0.25000000000000006</span></span>
-<span id="cb372-4"><a href="#cb372-4" aria-hidden="true" tabindex="-1"></a>(r/pdf cat-distr <span class="st">"ss"</span>) <span class="co">;; =&gt; 0.0</span></span>
-<span id="cb372-5"><a href="#cb372-5" aria-hidden="true" tabindex="-1"></a>(r/cdf cat-distr <span class="at">:b</span>) <span class="co">;; =&gt; 0.4900000000000001</span></span>
-<span id="cb372-6"><a href="#cb372-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">map</span> (<span class="kw">partial</span> r/icdf cat-distr) [<span class="fl">1.0E-4</span> <span class="fl">0.5</span> <span class="fl">0.9999</span>]) <span class="co">;; =&gt; ("s" :a nil)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb376-1"><a href="#cb376-1" aria-hidden="true" tabindex="-1"></a>(r/sample cat-distr) <span class="co">;; =&gt; nil</span></span>
+<span id="cb376-2"><a href="#cb376-2" aria-hidden="true" tabindex="-1"></a>(r/sample cat-distr) <span class="co">;; =&gt; "s"</span></span>
+<span id="cb376-3"><a href="#cb376-3" aria-hidden="true" tabindex="-1"></a>(r/pdf cat-distr <span class="va">nil</span>) <span class="co">;; =&gt; 0.25000000000000006</span></span>
+<span id="cb376-4"><a href="#cb376-4" aria-hidden="true" tabindex="-1"></a>(r/pdf cat-distr <span class="st">"ss"</span>) <span class="co">;; =&gt; 0.0</span></span>
+<span id="cb376-5"><a href="#cb376-5" aria-hidden="true" tabindex="-1"></a>(r/cdf cat-distr <span class="at">:b</span>) <span class="co">;; =&gt; 1.0000000000000002</span></span>
+<span id="cb376-6"><a href="#cb376-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">map</span> (<span class="kw">partial</span> r/icdf cat-distr) [<span class="fl">1.0E-4</span> <span class="fl">0.5</span> <span class="fl">0.9999</span>]) <span class="co">;; =&gt; (nil "s" :b)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -5472,76 +5584,76 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb375"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb375-1"><a href="#cb375-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:sobol</span> <span class="dv">4</span>)) <span class="co">;; =&gt; #vec4 [0.0, 0.0, 0.0, 0.0]</span></span>
-<span id="cb375-2"><a href="#cb375-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/jittered-sequence-generator <span class="at">:sobol</span> <span class="dv">4</span>)) <span class="co">;; =&gt; #vec4 [0.02900236218752402, 0.03321895859029258, 0.03343024406202439, 0.01735820373097604]</span></span>
-<span id="cb375-3"><a href="#cb375-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:halton</span> <span class="dv">3</span>)) <span class="co">;; =&gt; #vec3 [0.0, 0.0, 0.0]</span></span>
-<span id="cb375-4"><a href="#cb375-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/jittered-sequence-generator <span class="at">:halton</span> <span class="dv">3</span>)) <span class="co">;; =&gt; #vec3 [0.00988332128494876, 0.163602670427742, 0.09647432740056015]</span></span>
-<span id="cb375-5"><a href="#cb375-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:r2</span> <span class="dv">2</span>)) <span class="co">;; =&gt; #vec2 [0.2548776662466927, 0.06984029099805333]</span></span>
-<span id="cb375-6"><a href="#cb375-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/jittered-sequence-generator <span class="at">:r2</span> <span class="dv">2</span>)) <span class="co">;; =&gt; #vec2 [0.29704197409033695, 0.07653356059721561]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb379-1"><a href="#cb379-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:sobol</span> <span class="dv">4</span>)) <span class="co">;; =&gt; #vec4 [0.0, 0.0, 0.0, 0.0]</span></span>
+<span id="cb379-2"><a href="#cb379-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/jittered-sequence-generator <span class="at">:sobol</span> <span class="dv">4</span>)) <span class="co">;; =&gt; #vec4 [0.02900236218752402, 0.03321895859029258, 0.03343024406202439, 0.01735820373097604]</span></span>
+<span id="cb379-3"><a href="#cb379-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:halton</span> <span class="dv">3</span>)) <span class="co">;; =&gt; #vec3 [0.0, 0.0, 0.0]</span></span>
+<span id="cb379-4"><a href="#cb379-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/jittered-sequence-generator <span class="at">:halton</span> <span class="dv">3</span>)) <span class="co">;; =&gt; #vec3 [0.00988332128494876, 0.163602670427742, 0.09647432740056015]</span></span>
+<span id="cb379-5"><a href="#cb379-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:r2</span> <span class="dv">2</span>)) <span class="co">;; =&gt; #vec2 [0.2548776662466927, 0.06984029099805333]</span></span>
+<span id="cb379-6"><a href="#cb379-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/jittered-sequence-generator <span class="at">:r2</span> <span class="dv">2</span>)) <span class="co">;; =&gt; #vec2 [0.29704197409033695, 0.07653356059721561]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p>15 dimensional sequence</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb376"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb376-1"><a href="#cb376-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">take</span> <span class="dv">2</span> (r/sequence-generator <span class="at">:r2</span> <span class="dv">15</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb380-1"><a href="#cb380-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">take</span> <span class="dv">2</span> (r/sequence-generator <span class="at">:r2</span> <span class="dv">15</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb377"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb377-1"><a href="#cb377-1" aria-hidden="true" tabindex="-1"></a>([<span class="fl">0.45625055763798894</span></span>
-<span id="cb377-2"><a href="#cb377-2" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.4144151289829652</span></span>
-<span id="cb377-3"><a href="#cb377-3" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.37440997700257395</span></span>
-<span id="cb377-4"><a href="#cb377-4" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.33615502811293263</span></span>
-<span id="cb377-5"><a href="#cb377-5" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.2995737119048001</span></span>
-<span id="cb377-6"><a href="#cb377-6" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.26459280788164197</span></span>
-<span id="cb377-7"><a href="#cb377-7" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.231142298902816</span></span>
-<span id="cb377-8"><a href="#cb377-8" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.19915523103853916</span></span>
-<span id="cb377-9"><a href="#cb377-9" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.16856757955612012</span></span>
-<span id="cb377-10"><a href="#cb377-10" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.13931812076922045</span></span>
-<span id="cb377-11"><a href="#cb377-11" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.11134830949363828</span></span>
-<span id="cb377-12"><a href="#cb377-12" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.08460216186433356</span></span>
-<span id="cb377-13"><a href="#cb377-13" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.05902614327914302</span></span>
-<span id="cb377-14"><a href="#cb377-14" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.03456906124489478</span></span>
-<span id="cb377-15"><a href="#cb377-15" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.01118196291144713</span>]</span>
-<span id="cb377-16"><a href="#cb377-16" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.4125011152759779</span></span>
-<span id="cb377-17"><a href="#cb377-17" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.32883025796593035</span></span>
-<span id="cb377-18"><a href="#cb377-18" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.2488199540051479</span></span>
-<span id="cb377-19"><a href="#cb377-19" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.17231005622586526</span></span>
-<span id="cb377-20"><a href="#cb377-20" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.09914742380960018</span></span>
-<span id="cb377-21"><a href="#cb377-21" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.029185615763283934</span></span>
-<span id="cb377-22"><a href="#cb377-22" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.962284597805632</span></span>
-<span id="cb377-23"><a href="#cb377-23" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.8983104620770783</span></span>
-<span id="cb377-24"><a href="#cb377-24" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.8371351591122402</span></span>
-<span id="cb377-25"><a href="#cb377-25" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.7786362415384409</span></span>
-<span id="cb377-26"><a href="#cb377-26" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.7226966189872766</span></span>
-<span id="cb377-27"><a href="#cb377-27" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.6692043237286671</span></span>
-<span id="cb377-28"><a href="#cb377-28" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.6180522865582859</span></span>
-<span id="cb377-29"><a href="#cb377-29" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.5691381224897896</span></span>
-<span id="cb377-30"><a href="#cb377-30" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.5223639258228941</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb381-1"><a href="#cb381-1" aria-hidden="true" tabindex="-1"></a>([<span class="fl">0.45625055763798894</span></span>
+<span id="cb381-2"><a href="#cb381-2" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.4144151289829652</span></span>
+<span id="cb381-3"><a href="#cb381-3" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.37440997700257395</span></span>
+<span id="cb381-4"><a href="#cb381-4" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.33615502811293263</span></span>
+<span id="cb381-5"><a href="#cb381-5" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.2995737119048001</span></span>
+<span id="cb381-6"><a href="#cb381-6" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.26459280788164197</span></span>
+<span id="cb381-7"><a href="#cb381-7" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.231142298902816</span></span>
+<span id="cb381-8"><a href="#cb381-8" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.19915523103853916</span></span>
+<span id="cb381-9"><a href="#cb381-9" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.16856757955612012</span></span>
+<span id="cb381-10"><a href="#cb381-10" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.13931812076922045</span></span>
+<span id="cb381-11"><a href="#cb381-11" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.11134830949363828</span></span>
+<span id="cb381-12"><a href="#cb381-12" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.08460216186433356</span></span>
+<span id="cb381-13"><a href="#cb381-13" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.05902614327914302</span></span>
+<span id="cb381-14"><a href="#cb381-14" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.03456906124489478</span></span>
+<span id="cb381-15"><a href="#cb381-15" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.01118196291144713</span>]</span>
+<span id="cb381-16"><a href="#cb381-16" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.4125011152759779</span></span>
+<span id="cb381-17"><a href="#cb381-17" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.32883025796593035</span></span>
+<span id="cb381-18"><a href="#cb381-18" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.2488199540051479</span></span>
+<span id="cb381-19"><a href="#cb381-19" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.17231005622586526</span></span>
+<span id="cb381-20"><a href="#cb381-20" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.09914742380960018</span></span>
+<span id="cb381-21"><a href="#cb381-21" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.029185615763283934</span></span>
+<span id="cb381-22"><a href="#cb381-22" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.962284597805632</span></span>
+<span id="cb381-23"><a href="#cb381-23" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.8983104620770783</span></span>
+<span id="cb381-24"><a href="#cb381-24" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.8371351591122402</span></span>
+<span id="cb381-25"><a href="#cb381-25" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.7786362415384409</span></span>
+<span id="cb381-26"><a href="#cb381-26" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.7226966189872766</span></span>
+<span id="cb381-27"><a href="#cb381-27" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.6692043237286671</span></span>
+<span id="cb381-28"><a href="#cb381-28" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.6180522865582859</span></span>
+<span id="cb381-29"><a href="#cb381-29" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.5691381224897896</span></span>
+<span id="cb381-30"><a href="#cb381-30" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.5223639258228941</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>One dimensional sequence is just a sequence of numbers</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb378"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb378-1"><a href="#cb378-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">take</span> <span class="dv">20</span> (r/sequence-generator <span class="at">:sobol</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb382-1"><a href="#cb382-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">take</span> <span class="dv">20</span> (r/sequence-generator <span class="at">:sobol</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb379"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb379-1"><a href="#cb379-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.0</span></span>
-<span id="cb379-2"><a href="#cb379-2" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.5</span></span>
-<span id="cb379-3"><a href="#cb379-3" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.75</span></span>
-<span id="cb379-4"><a href="#cb379-4" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.25</span></span>
-<span id="cb379-5"><a href="#cb379-5" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.375</span></span>
-<span id="cb379-6"><a href="#cb379-6" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.875</span></span>
-<span id="cb379-7"><a href="#cb379-7" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.625</span></span>
-<span id="cb379-8"><a href="#cb379-8" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.125</span></span>
-<span id="cb379-9"><a href="#cb379-9" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.1875</span></span>
-<span id="cb379-10"><a href="#cb379-10" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.6875</span></span>
-<span id="cb379-11"><a href="#cb379-11" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.9375</span></span>
-<span id="cb379-12"><a href="#cb379-12" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.4375</span></span>
-<span id="cb379-13"><a href="#cb379-13" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.3125</span></span>
-<span id="cb379-14"><a href="#cb379-14" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.8125</span></span>
-<span id="cb379-15"><a href="#cb379-15" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.5625</span></span>
-<span id="cb379-16"><a href="#cb379-16" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.0625</span></span>
-<span id="cb379-17"><a href="#cb379-17" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.09375</span></span>
-<span id="cb379-18"><a href="#cb379-18" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.59375</span></span>
-<span id="cb379-19"><a href="#cb379-19" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.84375</span></span>
-<span id="cb379-20"><a href="#cb379-20" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.34375</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb383-1"><a href="#cb383-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.0</span></span>
+<span id="cb383-2"><a href="#cb383-2" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.5</span></span>
+<span id="cb383-3"><a href="#cb383-3" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.75</span></span>
+<span id="cb383-4"><a href="#cb383-4" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.25</span></span>
+<span id="cb383-5"><a href="#cb383-5" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.375</span></span>
+<span id="cb383-6"><a href="#cb383-6" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.875</span></span>
+<span id="cb383-7"><a href="#cb383-7" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.625</span></span>
+<span id="cb383-8"><a href="#cb383-8" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.125</span></span>
+<span id="cb383-9"><a href="#cb383-9" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.1875</span></span>
+<span id="cb383-10"><a href="#cb383-10" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.6875</span></span>
+<span id="cb383-11"><a href="#cb383-11" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.9375</span></span>
+<span id="cb383-12"><a href="#cb383-12" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.4375</span></span>
+<span id="cb383-13"><a href="#cb383-13" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.3125</span></span>
+<span id="cb383-14"><a href="#cb383-14" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.8125</span></span>
+<span id="cb383-15"><a href="#cb383-15" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.5625</span></span>
+<span id="cb383-16"><a href="#cb383-16" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.0625</span></span>
+<span id="cb383-17"><a href="#cb383-17" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.09375</span></span>
+<span id="cb383-18"><a href="#cb383-18" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.59375</span></span>
+<span id="cb383-19"><a href="#cb383-19" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.84375</span></span>
+<span id="cb383-20"><a href="#cb383-20" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.34375</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="sphere-and-ball" class="level3">
@@ -5579,56 +5691,56 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb380"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb380-1"><a href="#cb380-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:sphere</span> <span class="dv">4</span>)) <span class="co">;; =&gt; #vec4 [-0.3499486920869851, 0.8561300218034723, 0.02062870265855246, -0.37967322173155604]</span></span>
-<span id="cb380-2"><a href="#cb380-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:ball</span> <span class="dv">3</span>)) <span class="co">;; =&gt; #vec3 [0.6106439662537149, -0.19719273807051046, -0.5338472481721354]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb384-1"><a href="#cb384-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:sphere</span> <span class="dv">4</span>)) <span class="co">;; =&gt; #vec4 [0.5721472289809604, 0.6458346016564552, 0.32029455950035257, -0.3910966770852592]</span></span>
+<span id="cb384-2"><a href="#cb384-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:ball</span> <span class="dv">3</span>)) <span class="co">;; =&gt; #vec3 [0.6106439662537149, -0.19719273807051046, -0.5338472481721354]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p>20 dimensional sequence</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb381"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb381-1"><a href="#cb381-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">take</span> <span class="dv">2</span> (r/sequence-generator <span class="at">:sphere</span> <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb385-1"><a href="#cb385-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">take</span> <span class="dv">2</span> (r/sequence-generator <span class="at">:sphere</span> <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb382"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb382-1"><a href="#cb382-1" aria-hidden="true" tabindex="-1"></a>([<span class="fl">0.09434356454051347</span></span>
-<span id="cb382-2"><a href="#cb382-2" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.08180318610093515</span></span>
-<span id="cb382-3"><a href="#cb382-3" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.1927378901703611</span></span>
-<span id="cb382-4"><a href="#cb382-4" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.002418251487415024</span></span>
-<span id="cb382-5"><a href="#cb382-5" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.15698785362222567</span></span>
-<span id="cb382-6"><a href="#cb382-6" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.23668147456911257</span></span>
-<span id="cb382-7"><a href="#cb382-7" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.14141727551842212</span></span>
-<span id="cb382-8"><a href="#cb382-8" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.6374758859191696</span></span>
-<span id="cb382-9"><a href="#cb382-9" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.08069459946183549</span></span>
-<span id="cb382-10"><a href="#cb382-10" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.1687308701957663</span></span>
-<span id="cb382-11"><a href="#cb382-11" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.198877911392748</span></span>
-<span id="cb382-12"><a href="#cb382-12" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.2411525163985486</span></span>
-<span id="cb382-13"><a href="#cb382-13" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.19712255976381532</span></span>
-<span id="cb382-14"><a href="#cb382-14" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.1691482945026722</span></span>
-<span id="cb382-15"><a href="#cb382-15" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.3986564446382269</span></span>
-<span id="cb382-16"><a href="#cb382-16" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.24338598553674007</span></span>
-<span id="cb382-17"><a href="#cb382-17" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.1004200146684524</span></span>
-<span id="cb382-18"><a href="#cb382-18" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.07514444764035134</span></span>
-<span id="cb382-19"><a href="#cb382-19" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.03658835502234655</span></span>
-<span id="cb382-20"><a href="#cb382-20" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.06946742445210817</span>]</span>
-<span id="cb382-21"><a href="#cb382-21" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.1421705275195846</span></span>
-<span id="cb382-22"><a href="#cb382-22" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.12570576307916495</span></span>
-<span id="cb382-23"><a href="#cb382-23" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.19268515674363815</span></span>
-<span id="cb382-24"><a href="#cb382-24" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.03319107240171808</span></span>
-<span id="cb382-25"><a href="#cb382-25" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.18124800230662735</span></span>
-<span id="cb382-26"><a href="#cb382-26" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.3468702906932616</span></span>
-<span id="cb382-27"><a href="#cb382-27" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.5189017446091984</span></span>
-<span id="cb382-28"><a href="#cb382-28" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.2300372283389581</span></span>
-<span id="cb382-29"><a href="#cb382-29" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.037497727391084604</span></span>
-<span id="cb382-30"><a href="#cb382-30" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.3428760507746316</span></span>
-<span id="cb382-31"><a href="#cb382-31" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.22961775661829656</span></span>
-<span id="cb382-32"><a href="#cb382-32" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.04742041929784599</span></span>
-<span id="cb382-33"><a href="#cb382-33" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.0829642222396437</span></span>
-<span id="cb382-34"><a href="#cb382-34" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.08386540622010087</span></span>
-<span id="cb382-35"><a href="#cb382-35" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.1181695220585443</span></span>
-<span id="cb382-36"><a href="#cb382-36" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.3469452327018085</span></span>
-<span id="cb382-37"><a href="#cb382-37" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.012124519703765884</span></span>
-<span id="cb382-38"><a href="#cb382-38" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.25252706082611853</span></span>
-<span id="cb382-39"><a href="#cb382-39" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.21209532773462927</span></span>
-<span id="cb382-40"><a href="#cb382-40" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.13897653726813397</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb386-1"><a href="#cb386-1" aria-hidden="true" tabindex="-1"></a>([<span class="fl">0.46122262575705</span></span>
+<span id="cb386-2"><a href="#cb386-2" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.33504487514221437</span></span>
+<span id="cb386-3"><a href="#cb386-3" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.04115834634692293</span></span>
+<span id="cb386-4"><a href="#cb386-4" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.10746016121585367</span></span>
+<span id="cb386-5"><a href="#cb386-5" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.1613628120286278</span></span>
+<span id="cb386-6"><a href="#cb386-6" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.16327261482609373</span></span>
+<span id="cb386-7"><a href="#cb386-7" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.048124312555000937</span></span>
+<span id="cb386-8"><a href="#cb386-8" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.4168117850217311</span></span>
+<span id="cb386-9"><a href="#cb386-9" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.3320134361922655</span></span>
+<span id="cb386-10"><a href="#cb386-10" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.05829076361317733</span></span>
+<span id="cb386-11"><a href="#cb386-11" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.21613719216250268</span></span>
+<span id="cb386-12"><a href="#cb386-12" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.12958906572766357</span></span>
+<span id="cb386-13"><a href="#cb386-13" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.11003222269388839</span></span>
+<span id="cb386-14"><a href="#cb386-14" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.11556262167276417</span></span>
+<span id="cb386-15"><a href="#cb386-15" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.19131937210249134</span></span>
+<span id="cb386-16"><a href="#cb386-16" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.286660111717099</span></span>
+<span id="cb386-17"><a href="#cb386-17" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.09646997624706125</span></span>
+<span id="cb386-18"><a href="#cb386-18" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.21270310542909057</span></span>
+<span id="cb386-19"><a href="#cb386-19" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.12054701027850794</span></span>
+<span id="cb386-20"><a href="#cb386-20" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.20633487542803555</span>]</span>
+<span id="cb386-21"><a href="#cb386-21" aria-hidden="true" tabindex="-1"></a> [-<span class="fl">0.3272376019660657</span></span>
+<span id="cb386-22"><a href="#cb386-22" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.3789063664230623</span></span>
+<span id="cb386-23"><a href="#cb386-23" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.28404239004959664</span></span>
+<span id="cb386-24"><a href="#cb386-24" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.29668107518869313</span></span>
+<span id="cb386-25"><a href="#cb386-25" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.5046788197184415</span></span>
+<span id="cb386-26"><a href="#cb386-26" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.12204137707871862</span></span>
+<span id="cb386-27"><a href="#cb386-27" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.024835354032850313</span></span>
+<span id="cb386-28"><a href="#cb386-28" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.05673569617429352</span></span>
+<span id="cb386-29"><a href="#cb386-29" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.07109175645967032</span></span>
+<span id="cb386-30"><a href="#cb386-30" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.05391479885880135</span></span>
+<span id="cb386-31"><a href="#cb386-31" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.06803636043703827</span></span>
+<span id="cb386-32"><a href="#cb386-32" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.03743243264395835</span></span>
+<span id="cb386-33"><a href="#cb386-33" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.25442901585950073</span></span>
+<span id="cb386-34"><a href="#cb386-34" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.16009017347453378</span></span>
+<span id="cb386-35"><a href="#cb386-35" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.14836461932939132</span></span>
+<span id="cb386-36"><a href="#cb386-36" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.23654301379132536</span></span>
+<span id="cb386-37"><a href="#cb386-37" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.14632664549835744</span></span>
+<span id="cb386-38"><a href="#cb386-38" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.15523755644110201</span></span>
+<span id="cb386-39"><a href="#cb386-39" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.07553759345075278</span></span>
+<span id="cb386-40"><a href="#cb386-40" aria-hidden="true" tabindex="-1"></a>  -<span class="fl">0.2714415195584333</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="uniform-and-gaussian" class="level3">
@@ -5666,8 +5778,8 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb383"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb383-1"><a href="#cb383-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:default</span> <span class="dv">4</span>)) <span class="co">;; =&gt; #vec4 [0.47512411831706514, 0.9192840007208322, 0.8915903760933624, 0.5999298799277241]</span></span>
-<span id="cb383-2"><a href="#cb383-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:gaussian</span> <span class="dv">3</span>)) <span class="co">;; =&gt; #vec3 [-0.5036463956341344, -0.32895615013785706, 0.4149779826362254]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb387-1"><a href="#cb387-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:default</span> <span class="dv">4</span>)) <span class="co">;; =&gt; #vec4 [0.47512411831706514, 0.9192840007208322, 0.8915903760933624, 0.5999298799277241]</span></span>
+<span id="cb387-2"><a href="#cb387-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">first</span> (r/sequence-generator <span class="at">:gaussian</span> <span class="dv">3</span>)) <span class="co">;; =&gt; #vec3 [-0.5036463956341344, -0.32895615013785706, 0.4149779826362254]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -5746,7 +5858,7 @@ Examples
 <section id="single" class="level4">
 <h4 class="anchored" data-anchor-id="single">Single</h4>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb388"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb388-1"><a href="#cb388-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> single-g-noise </span>(r/single-noise {<span class="at">:noise-type</span> <span class="at">:gradient</span> <span class="at">:seed</span> <span class="dv">1</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb392-1"><a href="#cb392-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> single-g-noise </span>(r/single-noise {<span class="at">:noise-type</span> <span class="at">:gradient</span> <span class="at">:seed</span> <span class="dv">1</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Examples">
 <div class="callout-header d-flex align-content-center">
@@ -5759,9 +5871,9 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb389"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb389-1"><a href="#cb389-1" aria-hidden="true" tabindex="-1"></a>(single-g-noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.23759999999999998</span></span>
-<span id="cb389-2"><a href="#cb389-2" aria-hidden="true" tabindex="-1"></a>(single-g-noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.48526400000000003</span></span>
-<span id="cb389-3"><a href="#cb389-3" aria-hidden="true" tabindex="-1"></a>(single-g-noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.660938496</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb393-1"><a href="#cb393-1" aria-hidden="true" tabindex="-1"></a>(single-g-noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.23759999999999998</span></span>
+<span id="cb393-2"><a href="#cb393-2" aria-hidden="true" tabindex="-1"></a>(single-g-noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.48526400000000003</span></span>
+<span id="cb393-3"><a href="#cb393-3" aria-hidden="true" tabindex="-1"></a>(single-g-noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.660938496</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -5803,7 +5915,7 @@ Examples
 <section id="fbm" class="level4">
 <h4 class="anchored" data-anchor-id="fbm">FBM</h4>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb390"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb390-1"><a href="#cb390-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> fbm-noise </span>(r/fbm-noise {<span class="at">:noise-type</span> <span class="at">:gradient</span> <span class="at">:octaves</span> <span class="dv">3</span> <span class="at">:seed</span> <span class="dv">1</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb394-1"><a href="#cb394-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> fbm-noise </span>(r/fbm-noise {<span class="at">:noise-type</span> <span class="at">:gradient</span> <span class="at">:octaves</span> <span class="dv">3</span> <span class="at">:seed</span> <span class="dv">1</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Examples">
 <div class="callout-header d-flex align-content-center">
@@ -5816,9 +5928,9 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb391"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb391-1"><a href="#cb391-1" aria-hidden="true" tabindex="-1"></a>(fbm-noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.7029714285714286</span></span>
-<span id="cb391-2"><a href="#cb391-2" aria-hidden="true" tabindex="-1"></a>(fbm-noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.44446811428571426</span></span>
-<span id="cb391-3"><a href="#cb391-3" aria-hidden="true" tabindex="-1"></a>(fbm-noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.54825344</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb395-1"><a href="#cb395-1" aria-hidden="true" tabindex="-1"></a>(fbm-noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.7029714285714286</span></span>
+<span id="cb395-2"><a href="#cb395-2" aria-hidden="true" tabindex="-1"></a>(fbm-noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.44446811428571426</span></span>
+<span id="cb395-3"><a href="#cb395-3" aria-hidden="true" tabindex="-1"></a>(fbm-noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.54825344</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -5918,7 +6030,7 @@ Examples
 <section id="billow" class="level4">
 <h4 class="anchored" data-anchor-id="billow">Billow</h4>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb392"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb392-1"><a href="#cb392-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> billow-noise </span>(r/billow-noise {<span class="at">:seed</span> <span class="dv">1</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb396-1"><a href="#cb396-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> billow-noise </span>(r/billow-noise {<span class="at">:seed</span> <span class="dv">1</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="clay-image">
 <img src="random_files/223.png">
@@ -5952,9 +6064,9 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb393"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb393-1"><a href="#cb393-1" aria-hidden="true" tabindex="-1"></a>(billow-noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.3879619047619048</span></span>
-<span id="cb393-2"><a href="#cb393-2" aria-hidden="true" tabindex="-1"></a>(billow-noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.1804361142857142</span></span>
-<span id="cb393-3"><a href="#cb393-3" aria-hidden="true" tabindex="-1"></a>(billow-noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.11801290199365083</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb397-1"><a href="#cb397-1" aria-hidden="true" tabindex="-1"></a>(billow-noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.3879619047619048</span></span>
+<span id="cb397-2"><a href="#cb397-2" aria-hidden="true" tabindex="-1"></a>(billow-noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.1804361142857142</span></span>
+<span id="cb397-3"><a href="#cb397-3" aria-hidden="true" tabindex="-1"></a>(billow-noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.11801290199365083</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -5962,7 +6074,7 @@ Examples
 <section id="ridged-multi" class="level4">
 <h4 class="anchored" data-anchor-id="ridged-multi">Ridged Multi</h4>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb394"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb394-1"><a href="#cb394-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> ridgedmulti-noise </span>(r/ridgedmulti-noise {<span class="at">:seed</span> <span class="dv">1</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb398-1"><a href="#cb398-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> ridgedmulti-noise </span>(r/ridgedmulti-noise {<span class="at">:seed</span> <span class="dv">1</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="clay-image">
 <img src="random_files/227.png">
@@ -5996,9 +6108,9 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb395"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb395-1"><a href="#cb395-1" aria-hidden="true" tabindex="-1"></a>(ridgedmulti-noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.33387061650044203</span></span>
-<span id="cb395-2"><a href="#cb395-2" aria-hidden="true" tabindex="-1"></a>(ridgedmulti-noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.6479155481384621</span></span>
-<span id="cb395-3"><a href="#cb395-3" aria-hidden="true" tabindex="-1"></a>(ridgedmulti-noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.786227445531883</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb399-1"><a href="#cb399-1" aria-hidden="true" tabindex="-1"></a>(ridgedmulti-noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.33387061650044203</span></span>
+<span id="cb399-2"><a href="#cb399-2" aria-hidden="true" tabindex="-1"></a>(ridgedmulti-noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.6479155481384621</span></span>
+<span id="cb399-3"><a href="#cb399-3" aria-hidden="true" tabindex="-1"></a>(ridgedmulti-noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.786227445531883</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -6072,15 +6184,15 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb399"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb399-1"><a href="#cb399-1" aria-hidden="true" tabindex="-1"></a>(r/vnoise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.37079207282418936</span></span>
-<span id="cb399-2"><a href="#cb399-2" aria-hidden="true" tabindex="-1"></a>(r/vnoise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.30529801402182594</span></span>
-<span id="cb399-3"><a href="#cb399-3" aria-hidden="true" tabindex="-1"></a>(r/vnoise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.33355796166701235</span></span>
-<span id="cb399-4"><a href="#cb399-4" aria-hidden="true" tabindex="-1"></a>(r/noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.4006618412698413</span></span>
-<span id="cb399-5"><a href="#cb399-5" aria-hidden="true" tabindex="-1"></a>(r/noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.4679421963377778</span></span>
-<span id="cb399-6"><a href="#cb399-6" aria-hidden="true" tabindex="-1"></a>(r/noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.5202557018444361</span></span>
-<span id="cb399-7"><a href="#cb399-7" aria-hidden="true" tabindex="-1"></a>(r/simplex <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.4522534280533333</span></span>
-<span id="cb399-8"><a href="#cb399-8" aria-hidden="true" tabindex="-1"></a>(r/simplex <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.4362032054627238</span></span>
-<span id="cb399-9"><a href="#cb399-9" aria-hidden="true" tabindex="-1"></a>(r/simplex <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.6797248936296297</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb403-1"><a href="#cb403-1" aria-hidden="true" tabindex="-1"></a>(r/vnoise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.4541156027546184</span></span>
+<span id="cb403-2"><a href="#cb403-2" aria-hidden="true" tabindex="-1"></a>(r/vnoise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.4463309539411112</span></span>
+<span id="cb403-3"><a href="#cb403-3" aria-hidden="true" tabindex="-1"></a>(r/vnoise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.4703624166069886</span></span>
+<span id="cb403-4"><a href="#cb403-4" aria-hidden="true" tabindex="-1"></a>(r/noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.47790476190476194</span></span>
+<span id="cb403-5"><a href="#cb403-5" aria-hidden="true" tabindex="-1"></a>(r/noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.52815025152</span></span>
+<span id="cb403-6"><a href="#cb403-6" aria-hidden="true" tabindex="-1"></a>(r/noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.5817763147608519</span></span>
+<span id="cb403-7"><a href="#cb403-7" aria-hidden="true" tabindex="-1"></a>(r/simplex <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.3599031804342857</span></span>
+<span id="cb403-8"><a href="#cb403-8" aria-hidden="true" tabindex="-1"></a>(r/simplex <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.4923554956595277</span></span>
+<span id="cb403-9"><a href="#cb403-9" aria-hidden="true" tabindex="-1"></a>(r/simplex <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.49820142984126986</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -6175,37 +6287,37 @@ Examples
 </div>
 <p>Optional parameter is a map with values user wants to fix.</p>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb403"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb403-1"><a href="#cb403-1" aria-hidden="true" tabindex="-1"></a>(r/random-noise-cfg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb407-1"><a href="#cb407-1" aria-hidden="true" tabindex="-1"></a>(r/random-noise-cfg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb404"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb404-1"><a href="#cb404-1" aria-hidden="true" tabindex="-1"></a>{<span class="at">:interpolation</span> <span class="at">:quintic</span>,</span>
-<span id="cb404-2"><a href="#cb404-2" aria-hidden="true" tabindex="-1"></a> <span class="at">:warp-scale</span> <span class="fl">0.0</span>,</span>
-<span id="cb404-3"><a href="#cb404-3" aria-hidden="true" tabindex="-1"></a> <span class="at">:seed</span> <span class="dv">665844940</span>,</span>
-<span id="cb404-4"><a href="#cb404-4" aria-hidden="true" tabindex="-1"></a> <span class="at">:normalize</span>? <span class="va">true</span>,</span>
-<span id="cb404-5"><a href="#cb404-5" aria-hidden="true" tabindex="-1"></a> <span class="at">:noise-type</span> <span class="at">:simplex</span>,</span>
-<span id="cb404-6"><a href="#cb404-6" aria-hidden="true" tabindex="-1"></a> <span class="at">:lacunarity</span> <span class="fl">1.90872786462909</span>,</span>
-<span id="cb404-7"><a href="#cb404-7" aria-hidden="true" tabindex="-1"></a> <span class="at">:gain</span> <span class="fl">0.24908653479282347</span>,</span>
-<span id="cb404-8"><a href="#cb404-8" aria-hidden="true" tabindex="-1"></a> <span class="at">:generator</span> <span class="at">:single</span>,</span>
-<span id="cb404-9"><a href="#cb404-9" aria-hidden="true" tabindex="-1"></a> <span class="at">:warp-depth</span> <span class="dv">1</span>,</span>
-<span id="cb404-10"><a href="#cb404-10" aria-hidden="true" tabindex="-1"></a> <span class="at">:octaves</span> <span class="dv">6</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb408-1"><a href="#cb408-1" aria-hidden="true" tabindex="-1"></a>{<span class="at">:interpolation</span> <span class="at">:hermite</span>,</span>
+<span id="cb408-2"><a href="#cb408-2" aria-hidden="true" tabindex="-1"></a> <span class="at">:warp-scale</span> <span class="fl">0.0</span>,</span>
+<span id="cb408-3"><a href="#cb408-3" aria-hidden="true" tabindex="-1"></a> <span class="at">:seed</span> <span class="dv">665844940</span>,</span>
+<span id="cb408-4"><a href="#cb408-4" aria-hidden="true" tabindex="-1"></a> <span class="at">:normalize</span>? <span class="va">true</span>,</span>
+<span id="cb408-5"><a href="#cb408-5" aria-hidden="true" tabindex="-1"></a> <span class="at">:noise-type</span> <span class="at">:gradient</span>,</span>
+<span id="cb408-6"><a href="#cb408-6" aria-hidden="true" tabindex="-1"></a> <span class="at">:lacunarity</span> <span class="fl">1.90872786462909</span>,</span>
+<span id="cb408-7"><a href="#cb408-7" aria-hidden="true" tabindex="-1"></a> <span class="at">:gain</span> <span class="fl">0.24908653479282347</span>,</span>
+<span id="cb408-8"><a href="#cb408-8" aria-hidden="true" tabindex="-1"></a> <span class="at">:generator</span> <span class="at">:billow</span>,</span>
+<span id="cb408-9"><a href="#cb408-9" aria-hidden="true" tabindex="-1"></a> <span class="at">:warp-depth</span> <span class="dv">1</span>,</span>
+<span id="cb408-10"><a href="#cb408-10" aria-hidden="true" tabindex="-1"></a> <span class="at">:octaves</span> <span class="dv">6</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb405"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb405-1"><a href="#cb405-1" aria-hidden="true" tabindex="-1"></a>(r/random-noise-cfg {<span class="at">:seed</span> <span class="dv">1</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb409-1"><a href="#cb409-1" aria-hidden="true" tabindex="-1"></a>(r/random-noise-cfg {<span class="at">:seed</span> <span class="dv">1</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="printedClojure">
-<div class="sourceCode" id="cb406"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb406-1"><a href="#cb406-1" aria-hidden="true" tabindex="-1"></a>{<span class="at">:interpolation</span> <span class="at">:none</span>,</span>
-<span id="cb406-2"><a href="#cb406-2" aria-hidden="true" tabindex="-1"></a> <span class="at">:warp-scale</span> <span class="fl">4.0</span>,</span>
-<span id="cb406-3"><a href="#cb406-3" aria-hidden="true" tabindex="-1"></a> <span class="at">:seed</span> <span class="dv">1</span>,</span>
-<span id="cb406-4"><a href="#cb406-4" aria-hidden="true" tabindex="-1"></a> <span class="at">:normalize</span>? <span class="va">true</span>,</span>
-<span id="cb406-5"><a href="#cb406-5" aria-hidden="true" tabindex="-1"></a> <span class="at">:noise-type</span> <span class="at">:simplex</span>,</span>
-<span id="cb406-6"><a href="#cb406-6" aria-hidden="true" tabindex="-1"></a> <span class="at">:lacunarity</span> <span class="fl">1.8874943472437105</span>,</span>
-<span id="cb406-7"><a href="#cb406-7" aria-hidden="true" tabindex="-1"></a> <span class="at">:gain</span> <span class="fl">0.508204375355278</span>,</span>
-<span id="cb406-8"><a href="#cb406-8" aria-hidden="true" tabindex="-1"></a> <span class="at">:generator</span> <span class="at">:fbm</span>,</span>
-<span id="cb406-9"><a href="#cb406-9" aria-hidden="true" tabindex="-1"></a> <span class="at">:warp-depth</span> <span class="dv">1</span>,</span>
-<span id="cb406-10"><a href="#cb406-10" aria-hidden="true" tabindex="-1"></a> <span class="at">:octaves</span> <span class="dv">3</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb410-1"><a href="#cb410-1" aria-hidden="true" tabindex="-1"></a>{<span class="at">:interpolation</span> <span class="at">:linear</span>,</span>
+<span id="cb410-2"><a href="#cb410-2" aria-hidden="true" tabindex="-1"></a> <span class="at">:warp-scale</span> <span class="fl">4.0</span>,</span>
+<span id="cb410-3"><a href="#cb410-3" aria-hidden="true" tabindex="-1"></a> <span class="at">:seed</span> <span class="dv">1</span>,</span>
+<span id="cb410-4"><a href="#cb410-4" aria-hidden="true" tabindex="-1"></a> <span class="at">:normalize</span>? <span class="va">true</span>,</span>
+<span id="cb410-5"><a href="#cb410-5" aria-hidden="true" tabindex="-1"></a> <span class="at">:noise-type</span> <span class="at">:gradient</span>,</span>
+<span id="cb410-6"><a href="#cb410-6" aria-hidden="true" tabindex="-1"></a> <span class="at">:lacunarity</span> <span class="fl">1.8874943472437105</span>,</span>
+<span id="cb410-7"><a href="#cb410-7" aria-hidden="true" tabindex="-1"></a> <span class="at">:gain</span> <span class="fl">0.508204375355278</span>,</span>
+<span id="cb410-8"><a href="#cb410-8" aria-hidden="true" tabindex="-1"></a> <span class="at">:generator</span> <span class="at">:single</span>,</span>
+<span id="cb410-9"><a href="#cb410-9" aria-hidden="true" tabindex="-1"></a> <span class="at">:warp-depth</span> <span class="dv">1</span>,</span>
+<span id="cb410-10"><a href="#cb410-10" aria-hidden="true" tabindex="-1"></a> <span class="at">:octaves</span> <span class="dv">3</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceClojure">
-<div class="sourceCode" id="cb407"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb407-1"><a href="#cb407-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> some-random-noise </span>(r/random-noise-fn {<span class="at">:seed</span> <span class="dv">1</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb411-1"><a href="#cb411-1" aria-hidden="true" tabindex="-1"></a>(<span class="bu">def</span><span class="fu"> some-random-noise </span>(r/random-noise-fn {<span class="at">:seed</span> <span class="dv">1</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="clay-image">
 <img src="random_files/240.png">
@@ -6221,9 +6333,9 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb408"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb408-1"><a href="#cb408-1" aria-hidden="true" tabindex="-1"></a>(some-random-noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.7855371587242627</span></span>
-<span id="cb408-2"><a href="#cb408-2" aria-hidden="true" tabindex="-1"></a>(some-random-noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 1.0857278170998461</span></span>
-<span id="cb408-3"><a href="#cb408-3" aria-hidden="true" tabindex="-1"></a>(some-random-noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 1.299466649940326</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb412-1"><a href="#cb412-1" aria-hidden="true" tabindex="-1"></a>(some-random-noise <span class="fl">0.2</span>) <span class="co">;; =&gt; 0.650333154475532</span></span>
+<span id="cb412-2"><a href="#cb412-2" aria-hidden="true" tabindex="-1"></a>(some-random-noise <span class="fl">0.2</span> <span class="fl">0.3</span>) <span class="co">;; =&gt; 0.8520838267329627</span></span>
+<span id="cb412-3"><a href="#cb412-3" aria-hidden="true" tabindex="-1"></a>(some-random-noise <span class="fl">0.2</span> <span class="fl">0.3</span> <span class="fl">0.4</span>) <span class="co">;; =&gt; 0.6474310491712779</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -6284,10 +6396,10 @@ Examples
 </div>
 <div class="callout-body-container callout-body">
 <div class="sourceClojure">
-<div class="sourceCode" id="cb410"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb410-1"><a href="#cb410-1" aria-hidden="true" tabindex="-1"></a>(r/discrete-noise <span class="dv">100</span>) <span class="co">;; =&gt; 0.07493987729537295</span></span>
-<span id="cb410-2"><a href="#cb410-2" aria-hidden="true" tabindex="-1"></a>(r/discrete-noise <span class="dv">101</span>) <span class="co">;; =&gt; 0.9625321542669703</span></span>
-<span id="cb410-3"><a href="#cb410-3" aria-hidden="true" tabindex="-1"></a>(r/discrete-noise <span class="dv">200</span> <span class="dv">100</span>) <span class="co">;; =&gt; 0.6713155553076955</span></span>
-<span id="cb410-4"><a href="#cb410-4" aria-hidden="true" tabindex="-1"></a>(r/discrete-noise <span class="dv">200</span> <span class="dv">101</span>) <span class="co">;; =&gt; 0.22706653793671472</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode clojure code-with-copy"><code class="sourceCode clojure"><span id="cb414-1"><a href="#cb414-1" aria-hidden="true" tabindex="-1"></a>(r/discrete-noise <span class="dv">100</span>) <span class="co">;; =&gt; 0.07493987729537295</span></span>
+<span id="cb414-2"><a href="#cb414-2" aria-hidden="true" tabindex="-1"></a>(r/discrete-noise <span class="dv">101</span>) <span class="co">;; =&gt; 0.9625321542669703</span></span>
+<span id="cb414-3"><a href="#cb414-3" aria-hidden="true" tabindex="-1"></a>(r/discrete-noise <span class="dv">200</span> <span class="dv">100</span>) <span class="co">;; =&gt; 0.6713155553076955</span></span>
+<span id="cb414-4"><a href="#cb414-4" aria-hidden="true" tabindex="-1"></a>(r/discrete-noise <span class="dv">200</span> <span class="dv">101</span>) <span class="co">;; =&gt; 0.22706653793671472</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -6389,7 +6501,7 @@ Examples
 </ul>
 <p>Returns lazy sequence of random samples (can be limited to optional <code>n</code> values).</p>
 <p>Additionally one of the sampling methods can be provided, ie: <code>:uniform</code>, <code>:antithetic</code>, <code>:systematic</code> and <code>:stratified</code>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L2376">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L2376">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-ball-random"></span>
 </section>
 <section id="ball-random" class="level4">
@@ -6399,24 +6511,24 @@ Examples
 <li><code>(ball-random rng dims)</code></li>
 </ul>
 <p>Return random vector from a ball</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L432">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L432">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-billow-noise"></span>
 </section>
 <section id="billow-noise" class="level4">
 <h4 class="anchored" data-anchor-id="billow-noise">billow-noise</h4>
 <ul>
 <li><code>(billow-noise)</code></li>
-<li><code>(billow-noise cfg__65035__auto__)</code></li>
+<li><code>(billow-noise cfg__15693__auto__)</code></li>
 </ul>
 <p>Create billow-noise function with optional configuration.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L628">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L628">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-brand"></span>
 </section>
 <section id="brand" class="level4">
 <h4 class="anchored" data-anchor-id="brand">brand</h4>
 <p>Random boolean with default RNG.</p>
 <p>Returns true or false with equal probability. You can set <code>p</code> probability for <code>true</code></p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L317">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L317">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-brandom"></span>
 </section>
 <section id="brandom" class="level4">
@@ -6426,7 +6538,7 @@ Examples
 <li><code>(brandom rng p)</code></li>
 </ul>
 <p>Random boolean with provided RNG</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L216">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L216">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-ccdf"></span>
 </section>
 <section id="ccdf" class="level4">
@@ -6435,7 +6547,7 @@ Examples
 <li><code>(ccdf d v)</code></li>
 </ul>
 <p>Complementary cumulative probability.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L761">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L761">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-cdf"></span>
 </section>
 <section id="cdf" class="level4">
@@ -6445,7 +6557,7 @@ Examples
 <li><code>(cdf d v1 v2)</code></li>
 </ul>
 <p>Cumulative probability.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L756">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L756">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-continuous?"></span>
 </section>
 <section id="continuous-1" class="level4">
@@ -6454,7 +6566,7 @@ Examples
 <li><code>(continuous? d)</code></li>
 </ul>
 <p>Does distribution support continuous domain?</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L793">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L793">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-covariance"></span>
 </section>
 <section id="covariance" class="level4">
@@ -6463,19 +6575,19 @@ Examples
 <li><code>(covariance d)</code></li>
 </ul>
 <p>Distribution covariance matrix (for multivariate distributions)</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L831">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L831">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-default-normal"></span>
 </section>
 <section id="default-normal-1" class="level4">
 <h4 class="anchored" data-anchor-id="default-normal-1">default-normal</h4>
 <p>Default normal distribution (u=0.0, sigma=1.0).</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L2074">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L2074">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-default-rng"></span>
 </section>
 <section id="default-rng" class="level4">
 <h4 class="anchored" data-anchor-id="default-rng">default-rng</h4>
 <p>Default RNG - JDK</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L315">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L315">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-dimensions"></span>
 </section>
 <section id="dimensions" class="level4">
@@ -6484,7 +6596,7 @@ Examples
 <li><code>(dimensions d)</code></li>
 </ul>
 <p>Distribution dimensionality</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L785">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L785">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-discrete-noise"></span>
 </section>
 <section id="discrete-noise-1" class="level4">
@@ -6499,7 +6611,7 @@ Examples
 <li>Y (long, optional)</li>
 </ul>
 <p>Returns double value from [0,1] range</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L725">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L725">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-distribution"></span>
 </section>
 <section id="distribution" class="level4">
@@ -6510,7 +6622,7 @@ Examples
 <li>Second parameter is a map with configuration.</li>
 </ul>
 <p>All distributions accept <code>rng</code> under <code>:rng</code> key (default: <a href="#LOS-default-rng">default-rng</a>) and some of them accept <code>inverse-cumm-accuracy</code> (default set to <code>1e-9</code>).</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L737">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L737">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-distribution-id"></span>
 </section>
 <section id="distribution-id" class="level4">
@@ -6519,7 +6631,7 @@ Examples
 <li><code>(distribution-id d)</code></li>
 </ul>
 <p>Distribution identifier as keyword.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L843">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L843">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-distribution-parameters"></span>
 </section>
 <section id="distribution-parameters" class="level4">
@@ -6530,7 +6642,7 @@ Examples
 </ul>
 <p>Distribution highest supported value.</p>
 <p>When <code>all?</code> is true, technical parameters are included, ie: <code>:rng</code> and <code>:inverser-cumm-accuracy</code>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L847">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L847">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-distribution?"></span>
 </section>
 <section id="distribution-1" class="level4">
@@ -6539,13 +6651,13 @@ Examples
 <li><code>(distribution? distr)</code></li>
 </ul>
 <p>Checks if <code>distr</code> is a distribution object.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L750">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L750">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-distributions-list"></span>
 </section>
 <section id="distributions-list" class="level4">
 <h4 class="anchored" data-anchor-id="distributions-list">distributions-list</h4>
 <p>List of distributions.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L2311">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L2311">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-drand"></span>
 </section>
 <section id="drand" class="level4">
@@ -6557,7 +6669,7 @@ Examples
 </ul>
 <p>Random double number with default RNG.</p>
 <p>As default returns random double from <code>[0,1)</code> range. When <code>mx</code> is passed, range is set to <code>[0, mx)</code>. When <code>mn</code> is passed, range is set to <code>[mn, mx)</code>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L331">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L331">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-drandom"></span>
 </section>
 <section id="drandom" class="level4">
@@ -6568,17 +6680,17 @@ Examples
 <li><code>(drandom rng mn mx)</code></li>
 </ul>
 <p>Random double number with provided RNG</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L192">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L192">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-fbm-noise"></span>
 </section>
 <section id="fbm-noise" class="level4">
 <h4 class="anchored" data-anchor-id="fbm-noise">fbm-noise</h4>
 <ul>
 <li><code>(fbm-noise)</code></li>
-<li><code>(fbm-noise cfg__65035__auto__)</code></li>
+<li><code>(fbm-noise cfg__15693__auto__)</code></li>
 </ul>
 <p>Create fbm-noise function with optional configuration.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L627">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L627">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-flip"></span>
 </section>
 <section id="flip" class="level4">
@@ -6588,7 +6700,7 @@ Examples
 <li><code>(flip)</code></li>
 </ul>
 <p>Returns 1 with given probability, 0 otherwise</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L378">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L378">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-flip-rng"></span>
 </section>
 <section id="flip-rng" class="level4">
@@ -6598,7 +6710,7 @@ Examples
 <li><code>(flip-rng rng)</code></li>
 </ul>
 <p>Returns 1 with given probability, 0 otherwise, for given rng</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L410">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L410">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-flipb"></span>
 </section>
 <section id="flipb" class="level4">
@@ -6608,7 +6720,7 @@ Examples
 <li><code>(flipb)</code></li>
 </ul>
 <p>Returns true with given probability, false otherwise</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L385">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L385">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-flipb-rng"></span>
 </section>
 <section id="flipb-rng" class="level4">
@@ -6618,7 +6730,7 @@ Examples
 <li><code>(flipb-rng rng)</code></li>
 </ul>
 <p>Returns true with given probability, false otherwise, for given rng</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L417">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L417">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-frand"></span>
 </section>
 <section id="frand" class="level4">
@@ -6630,7 +6742,7 @@ Examples
 </ul>
 <p>Random double number with default RNG.</p>
 <p>As default returns random float from <code>[0,1)</code> range. When <code>mx</code> is passed, range is set to <code>[0, mx)</code>. When <code>mn</code> is passed, range is set to <code>[mn, mx)</code>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L322">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L322">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-frandom"></span>
 </section>
 <section id="frandom" class="level4">
@@ -6641,7 +6753,7 @@ Examples
 <li><code>(frandom rng mn mx)</code></li>
 </ul>
 <p>Random double number with provided RNG</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L186">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L186">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-grand"></span>
 </section>
 <section id="grand" class="level4">
@@ -6653,7 +6765,7 @@ Examples
 </ul>
 <p>Random gaussian double number with default RNG.</p>
 <p>As default returns random double from <code>N(0,1)</code>. When <code>std</code> is passed, <code>N(0,std)</code> is used. When <code>mean</code> is passed, distribution is set to <code>N(mean, std)</code>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L340">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L340">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-grandom"></span>
 </section>
 <section id="grandom" class="level4">
@@ -6664,7 +6776,7 @@ Examples
 <li><code>(grandom rng mean stddev)</code></li>
 </ul>
 <p>Random gaussian double number with provided RNG</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L198">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L198">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-icdf"></span>
 </section>
 <section id="icdf" class="level4">
@@ -6673,7 +6785,7 @@ Examples
 <li><code>(icdf d v)</code></li>
 </ul>
 <p>Inverse cumulative probability</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L773">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L773">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-integrate-pdf"></span>
 </section>
 <section id="integrate-pdf" class="level4">
@@ -6686,7 +6798,7 @@ Examples
 <p>Parameters: * <code>pdf-func</code> - univariate function * <code>mn</code> - lower bound for integration, value of pdf-func should be 0.0 at this point * <code>mx</code> - upper bound for integration * <code>steps</code> - how much subintervals to integrate (default 1000) * <code>interpolator</code> - interpolation method between integrated points (default :linear)</p>
 <p>Also other integration related parameters are accepted (<code>:gauss-kronrod</code> integration is used).</p>
 <p>Possible interpolation methods: <code>:linear</code> (default), <code>:spline</code>, <code>:monotone</code> or any function from <code>fastmath.interpolation</code></p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L861">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L861">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-irand"></span>
 </section>
 <section id="irand" class="level4">
@@ -6698,7 +6810,7 @@ Examples
 </ul>
 <p>Random integer number with default RNG.</p>
 <p>As default returns random integer from full integer range. When <code>mx</code> is passed, range is set to <code>[0, mx)</code>. When <code>mn</code> is passed, range is set to <code>[mn, mx)</code>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L349">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L349">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-irandom"></span>
 </section>
 <section id="irandom" class="level4">
@@ -6709,7 +6821,7 @@ Examples
 <li><code>(irandom rng mn mx)</code></li>
 </ul>
 <p>Random integer number with provided RNG</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L204">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L204">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-jittered-sequence-generator"></span>
 </section>
 <section id="jittered-sequence-generator" class="level4">
@@ -6722,7 +6834,7 @@ Examples
 <p>Suitable for <code>:r2</code>, <code>:sobol</code> and <code>:halton</code> sequences.</p>
 <p><code>jitter</code> parameter range is from <code>0</code> (no jitter) to <code>1</code> (full jitter). Default: 0.25.</p>
 <p>See also <a href="#LOS-sequence-generator">sequence-generator</a>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L528">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L528">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-likelihood"></span>
 </section>
 <section id="likelihood" class="level4">
@@ -6731,7 +6843,7 @@ Examples
 <li><code>(likelihood d vs)</code></li>
 </ul>
 <p>Likelihood of samples</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L814">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L814">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-log-likelihood"></span>
 </section>
 <section id="log-likelihood" class="level4">
@@ -6740,7 +6852,7 @@ Examples
 <li><code>(log-likelihood d vs)</code></li>
 </ul>
 <p>Log likelihood of samples</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L802">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L802">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-lower-bound"></span>
 </section>
 <section id="lower-bound" class="level4">
@@ -6749,7 +6861,7 @@ Examples
 <li><code>(lower-bound d)</code></li>
 </ul>
 <p>Distribution lowest supported value</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L835">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L835">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-lpdf"></span>
 </section>
 <section id="lpdf" class="level4">
@@ -6758,7 +6870,7 @@ Examples
 <li><code>(lpdf d v)</code></li>
 </ul>
 <p>Log density</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L769">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L769">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-lrand"></span>
 </section>
 <section id="lrand" class="level4">
@@ -6770,7 +6882,7 @@ Examples
 </ul>
 <p>Random long number with default RNG.</p>
 <p>As default returns random long from full integer range. When <code>mx</code> is passed, range is set to <code>[0, mx)</code>. When <code>mn</code> is passed, range is set to <code>[mn, mx)</code>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L358">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L358">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-lrandom"></span>
 </section>
 <section id="lrandom" class="level4">
@@ -6781,7 +6893,7 @@ Examples
 <li><code>(lrandom rng mn mx)</code></li>
 </ul>
 <p>Random long number with provided RNG</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L210">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L210">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-mean"></span>
 </section>
 <section id="mean" class="level4">
@@ -6790,7 +6902,7 @@ Examples
 <li><code>(mean d)</code></li>
 </ul>
 <p>Distribution mean</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L819">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L819">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-means"></span>
 </section>
 <section id="means" class="level4">
@@ -6799,7 +6911,7 @@ Examples
 <li><code>(means d)</code></li>
 </ul>
 <p>Distribution means (for multivariate distributions)</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L823">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L823">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-noise"></span>
 </section>
 <section id="noise-1" class="level4">
@@ -6811,25 +6923,25 @@ Examples
 </ul>
 <p>Improved Perlin Noise.</p>
 <p>6 octaves, quintic interpolation.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L599">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L599">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-noise-generators"></span>
 </section>
 <section id="noise-generators" class="level4">
 <h4 class="anchored" data-anchor-id="noise-generators">noise-generators</h4>
 <p>List of possible noise generators as a map of names and functions.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L686">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L686">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-noise-interpolations"></span>
 </section>
 <section id="noise-interpolations" class="level4">
 <h4 class="anchored" data-anchor-id="noise-interpolations">noise-interpolations</h4>
 <p>List of possible noise interpolations as a map of names and values.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L556">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L556">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-noise-types"></span>
 </section>
 <section id="noise-types" class="level4">
 <h4 class="anchored" data-anchor-id="noise-types">noise-types</h4>
 <p>List of possible noise types as a map of names and values.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L562">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L562">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-observe"></span>
 </section>
 <section id="observe-macro" class="level4">
@@ -6838,7 +6950,7 @@ Examples
 <li><code>(observe d vs)</code></li>
 </ul>
 <p>Log likelihood of samples. Alias for <a href="#LOS-log-likelihood">log-likelihood</a>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L809">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L809">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-observe1"></span>
 </section>
 <section id="observe1" class="level4">
@@ -6847,7 +6959,7 @@ Examples
 <li><code>(observe1 d v)</code></li>
 </ul>
 <p>Log of probability/density of the value. Alias for <a href="#LOS-lpdf">lpdf</a>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L797">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L797">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-pdf"></span>
 </section>
 <section id="pdf" class="level4">
@@ -6856,7 +6968,7 @@ Examples
 <li><code>(pdf d v)</code></li>
 </ul>
 <p>Density</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L765">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L765">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-probability"></span>
 </section>
 <section id="probability" class="level4">
@@ -6865,7 +6977,7 @@ Examples
 <li><code>(probability d v)</code></li>
 </ul>
 <p>Probability (PMF)</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L777">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L777">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-random-noise-cfg"></span>
 </section>
 <section id="random-noise-cfg" class="level4">
@@ -6876,7 +6988,7 @@ Examples
 </ul>
 <p>Create random noise configuration.</p>
 <p>Optional map with fixed values.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L693">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L693">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-random-noise-fn"></span>
 </section>
 <section id="random-noise-fn" class="level4">
@@ -6887,7 +6999,7 @@ Examples
 </ul>
 <p>Create random noise function from all possible options.</p>
 <p>Optionally provide own configuration <code>cfg</code>. In this case one of 4 different blending methods will be selected.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L710">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L710">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-randval"></span>
 </section>
 <section id="randval-macro" class="level4">
@@ -6899,7 +7011,7 @@ Examples
 <li><code>(randval)</code></li>
 </ul>
 <p>Return value with given probability (default 0.5)</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L367">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L367">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-randval-rng"></span>
 </section>
 <section id="randval-rng-macro" class="level4">
@@ -6911,29 +7023,29 @@ Examples
 <li><code>(randval-rng rng)</code></li>
 </ul>
 <p>Return value with given probability (default 0.5), for given rng</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L399">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L399">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-ridgedmulti-noise"></span>
 </section>
 <section id="ridgedmulti-noise" class="level4">
 <h4 class="anchored" data-anchor-id="ridgedmulti-noise">ridgedmulti-noise</h4>
 <ul>
 <li><code>(ridgedmulti-noise)</code></li>
-<li><code>(ridgedmulti-noise cfg__65035__auto__)</code></li>
+<li><code>(ridgedmulti-noise cfg__15693__auto__)</code></li>
 </ul>
 <p>Create ridgedmulti-noise function with optional configuration.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L629">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L629">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-rng"></span>
 </section>
 <section id="rng" class="level4">
 <h4 class="anchored" data-anchor-id="rng">rng</h4>
 <p>Create RNG for given name (as keyword) and optional seed. Return object enhanced with <a href="#LOS-RNGProto">RNGProto</a>. See: <a href="#LOS-rngs-list">rngs-list</a> for names.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L141">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L141">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-rngs-list"></span>
 </section>
 <section id="rngs-list" class="level4">
 <h4 class="anchored" data-anchor-id="rngs-list">rngs-list</h4>
 <p>List of all possible RNGs.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L182">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L182">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-roll-a-dice"></span>
 </section>
 <section id="roll-a-dice" class="level4">
@@ -6943,7 +7055,7 @@ Examples
 <li><code>(roll-a-dice dices sides)</code></li>
 </ul>
 <p>Roll a dice with given sides</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L390">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L390">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-roll-a-dice-rng"></span>
 </section>
 <section id="roll-a-dice-rng" class="level4">
@@ -6953,7 +7065,7 @@ Examples
 <li><code>(roll-a-dice-rng rng dices sides)</code></li>
 </ul>
 <p>Roll a dice with given sides and given rng</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L422">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L422">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-sample"></span>
 </section>
 <section id="sample" class="level4">
@@ -6962,7 +7074,7 @@ Examples
 <li><code>(sample d)</code></li>
 </ul>
 <p>Random sample</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L781">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L781">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-sequence-generator"></span>
 </section>
 <section id="sequence-generator" class="level4">
@@ -6983,13 +7095,13 @@ Examples
 <li>the rest - 1+</li>
 </ul>
 <p>See also <a href="#LOS-jittered-sequence-generator">jittered-sequence-generator</a>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L500">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L500">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-sequence-generators-list"></span>
 </section>
 <section id="sequence-generators-list" class="level4">
 <h4 class="anchored" data-anchor-id="sequence-generators-list">sequence-generators-list</h4>
 <p>List of random sequence generator. See <a href="#LOS-sequence-generator">sequence-generator</a>.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L551">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L551">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-set-seed"></span>
 </section>
 <section id="set-seed" class="level4">
@@ -7000,7 +7112,7 @@ Examples
 <li><code>(set-seed rng v)</code></li>
 </ul>
 <p>Create and return new RNG</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L2316">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L2316">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-set-seed!"></span>
 </section>
 <section id="set-seed-1" class="level4">
@@ -7011,7 +7123,7 @@ Examples
 <li><code>(set-seed! rng v)</code></li>
 </ul>
 <p>Sets seed.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L2325">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L2325">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-simplex"></span>
 </section>
 <section id="simplex" class="level4">
@@ -7022,17 +7134,17 @@ Examples
 <li><code>(simplex x y z)</code></li>
 </ul>
 <p>Simplex noise. 6 octaves.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L607">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L607">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-single-noise"></span>
 </section>
 <section id="single-noise" class="level4">
 <h4 class="anchored" data-anchor-id="single-noise">single-noise</h4>
 <ul>
 <li><code>(single-noise)</code></li>
-<li><code>(single-noise cfg__65035__auto__)</code></li>
+<li><code>(single-noise cfg__15693__auto__)</code></li>
 </ul>
 <p>Create single-noise function with optional configuration.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L626">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L626">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-source-object"></span>
 </section>
 <section id="source-object" class="level4">
@@ -7041,7 +7153,7 @@ Examples
 <li><code>(source-object d)</code></li>
 </ul>
 <p>Returns Java or proxy object from backend library (if available)</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L789">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L789">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-synced-rng"></span>
 </section>
 <section id="synced-rng" class="level4">
@@ -7051,7 +7163,7 @@ Examples
 <li><code>(synced-rng m seed)</code></li>
 </ul>
 <p>Create synchronized RNG for given name and optional seed. Wraps <a href="#LOS-rng">rng</a> method.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L176">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L176">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-upper-bound"></span>
 </section>
 <section id="upper-bound" class="level4">
@@ -7060,7 +7172,7 @@ Examples
 <li><code>(upper-bound d)</code></li>
 </ul>
 <p>Distribution highest supported value</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L839">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L839">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-variance"></span>
 </section>
 <section id="variance" class="level4">
@@ -7069,7 +7181,7 @@ Examples
 <li><code>(variance d)</code></li>
 </ul>
 <p>Distribution variance</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L827">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L827">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-vnoise"></span>
 </section>
 <section id="vnoise" class="level4">
@@ -7081,7 +7193,7 @@ Examples
 </ul>
 <p>Value Noise.</p>
 <p>6 octaves, Hermite interpolation (cubic, h01).</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L591">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L591">source</a></small><hr style="margin: 0"></div>
 <span id="#LOS-warp-noise-fn"></span>
 </section>
 <section id="warp-noise-fn" class="level4">
@@ -7100,7 +7212,7 @@ Examples
 <li>depth (1 or 2), default 1</li>
 </ul>
 <p>Normalization of warp noise depends on normalization of noise function.</p>
-<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src//home/mavbozo/yolo/fastmath/src/fastmath/random.clj#L664">source</a></small><hr style="margin: 0"></div>
+<div style="text-align: right"><small><a href="https://github.com/generateme/fastmath/tree/3.x/src/fastmath/random.clj#L664">source</a></small><hr style="margin: 0"></div>
 <div style="background-color:grey;height:2px;width:100%;"></div>
 <div><pre><small><small>source: <a href="https://github.com/generateme/fastmath//blob/master/clay/random.clj">clay/random.clj</a></small></small></pre></div>
 </section>
