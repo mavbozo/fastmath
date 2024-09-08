@@ -969,8 +969,8 @@
 
 (kind/table
  [[{:alpha 1 :beta 0 :mu 0 :delta 1} {:alpha 2 :beta 1 :mu 0 :delta 0.5}]
-  [(gg/fgraph (partial r/pdf (r/distribution :normal-inverse-gaussian)) [-3 3] nil 150)
-   (gg/fgraph (partial r/pdf (r/distribution :normal-inverse-gaussian {:alpha 5 :beta 4 :mu 0 :delta 0.5})) [-2 3] nil 150)]])
+  [(gg/fgraph (partial r/pdf (r/distribution :normal-inverse-gaussian)) [-3 3])
+   (gg/fgraph (partial r/pdf (r/distribution :normal-inverse-gaussian {:alpha 5 :beta 4 :mu 0 :delta 0.5})) [-2 3])]])
 
 (let [[cdf icdf] (r/integrate-pdf
                   (partial r/pdf (r/distribution :normal-inverse-gaussian))
@@ -984,8 +984,8 @@
                    :interpolator :monotone})]
   (kind/table
    [["CDF" "iCDF"]
-    [(gg/fgraph cdf [-3 3] nil 150)
-     (gg/fgraph icdf [0.01 0.99] nil 150)]]))
+    [(gg/fgraph cdf [-3 3])
+     (gg/fgraph icdf [0.01 0.99])]]))
 
 ;; #### Pareto
 
@@ -1462,7 +1462,7 @@
   (let [d (r/distribution :dirichlet {:alpha alpha})]
     (gg/fgraph (fn [^double x]
                  (let [v [x (- 1.0 x)]]
-                   (r/pdf d v))) [0.0 1.0] nil 150)))
+                   (r/pdf d v))) [0.0 1.0])))
 
 ^:kindly/hide-code
 (defn dirichlet-2d [alpha]
@@ -1472,7 +1472,8 @@
                         v [x y lv]]
                     (if (neg? lv)
                       ##NaN
-                      (r/pdf d v)))) nil nil 150)))
+                      (r/pdf d v))))
+                nil nil {:varg? false})))
 
 ;; Projections of the 2d and 3d Dirichlet distributions.
 
@@ -1508,7 +1509,7 @@
 (defn multi-normal-2d [means covariances]
   (let [d (r/distribution :multi-normal {:means means :covariances covariances})]
     (gg/graph2d (fn [^double x ^double y]
-                  (r/pdf d [x y])) [-3 3] [-3 3] 150)))
+                  (r/pdf d [x y])) [-3 3] [-3 3] {:varg? false})))
 
 (kind/table
  [[{:means [0 0] :convariances [[1 0] [0 1]]}]
@@ -1992,21 +1993,21 @@ For given dimensionality, returns sequence of:
 
 ;; Single octave of simplex noise:
 
-(gg/graph2d (r/single-noise {:seed 1 :noise-type :simplex}) [-2 2] [-2 2] nil)
+(gg/graph2d (r/single-noise {:seed 1 :noise-type :simplex}) [-2 2] [-2 2] {:varg? false})
 
 ;; Value and gradient single noise for different interpolations
 (kind/table
  [["" :none :linear :hermite :quintic]
   [:value
-   (gg/graph2d (r/single-noise {:seed 1 :noise-type :value :interpolation :none}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/single-noise {:seed 1 :noise-type :value :interpolation :linear}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/single-noise {:seed 1 :noise-type :value :interpolation :hermite}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/single-noise {:seed 1 :noise-type :value :interpolation :quintic}) [-2 2] [-2 2] 150)]
+   (gg/graph2d (r/single-noise {:seed 1 :noise-type :value :interpolation :none}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/single-noise {:seed 1 :noise-type :value :interpolation :linear}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/single-noise {:seed 1 :noise-type :value :interpolation :hermite}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/single-noise {:seed 1 :noise-type :value :interpolation :quintic}) [-2 2] [-2 2] {:varg? false})]
   [:gradient
-   (gg/graph2d (r/single-noise {:seed 1 :noise-type :gradient :interpolation :none}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/single-noise {:seed 1 :noise-type :gradient :interpolation :linear}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/single-noise {:seed 1 :noise-type :gradient :interpolation :hermite}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/single-noise {:seed 1 :noise-type :gradient :interpolation :quintic}) [-2 2] [-2 2] 150)]])
+   (gg/graph2d (r/single-noise {:seed 1 :noise-type :gradient :interpolation :none}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/single-noise {:seed 1 :noise-type :gradient :interpolation :linear}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/single-noise {:seed 1 :noise-type :gradient :interpolation :hermite}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/single-noise {:seed 1 :noise-type :gradient :interpolation :quintic}) [-2 2] [-2 2] {:varg? false})]])
 
 ;; #### FBM
 
@@ -2019,63 +2020,63 @@ For given dimensionality, returns sequence of:
 
 ;; 6 octave of simplex noise:
 
-(gg/graph2d (r/fbm-noise {:seed 1 :noise-type :simplex}) [-2 2] [-2 2])
+(gg/graph2d (r/fbm-noise {:seed 1 :noise-type :simplex}) [-2 2] [-2 2] {:varg? false})
 
 ;; Value and gradient FBM noise for different interpolations
 
 (kind/table
  [["" :none :linear :hermite :quintic]
   [:value
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :value :interpolation :none}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :value :interpolation :linear}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :value :interpolation :hermite}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :value :interpolation :quintic}) [-2 2] [-2 2] 150)]
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :value :interpolation :none}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :value :interpolation :linear}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :value :interpolation :hermite}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :value :interpolation :quintic}) [-2 2] [-2 2] {:varg? false})]
   [:gradient
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :interpolation :none}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :interpolation :linear}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :interpolation :hermite}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :interpolation :quintic}) [-2 2] [-2 2] 150)]])
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :interpolation :none}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :interpolation :linear}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :interpolation :hermite}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :interpolation :quintic}) [-2 2] [-2 2] {:varg? false})]])
 
 ;; Different number of octaves for FBM gradient noise
 
 (kind/table
  [["octaves=2" "octaves=4" "octaves=6" "octaves=8"]
-  [(gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :octaves 2}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :octaves 4}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :octaves 6}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :octaves 8}) [-2 2] [-2 2] 150)]])
+  [(gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :octaves 2}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :octaves 4}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :octaves 6}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :octaves 8}) [-2 2] [-2 2] {:varg? false})]])
 
 ;; Different gains and lacunarities for FBM gradient noise
 
 (kind/table
  [["" "lacunarity=0.5" "lacunarity=2" "lacunarity=5" "lacunarity=8"]
   ["gain=0.25"
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.25 :lacunarity 0.5}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.25 :lacunarity 2}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.25 :lacunarity 5}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.25 :lacunarity 8}) [-2 2] [-2 2] 150)]
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.25 :lacunarity 0.5}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.25 :lacunarity 2}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.25 :lacunarity 5}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.25 :lacunarity 8}) [-2 2] [-2 2] {:varg? false})]
   ["gain=0.5"
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :lacunarity 0.5}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :lacunarity 2}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :lacunarity 5}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :lacunarity 8}) [-2 2] [-2 2] 150)]
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :lacunarity 0.5}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :lacunarity 2}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :lacunarity 5}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :lacunarity 8}) [-2 2] [-2 2] {:varg? false})]
   ["gain=0.75"
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.75 :lacunarity 0.5}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.75 :lacunarity 2}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.75 :lacunarity 5}) [-2 2] [-2 2] 150)
-   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.75 :lacunarity 8}) [-2 2] [-2 2] 150)]])
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.75 :lacunarity 0.5}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.75 :lacunarity 2}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.75 :lacunarity 5}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :gradient :gain 0.75 :lacunarity 8}) [-2 2] [-2 2] {:varg? false})]])
 
 ;; #### Billow
 
 (def billow-noise (r/billow-noise {:seed 1}))
 
-(gg/graph2d billow-noise [-2 2] [-2 2])
+(gg/graph2d billow-noise [-2 2] [-2 2] {:varg? false})
 
 (kind/table
  [["simplex noise" "value noise" "gradient noise, 1 octave"]
-  [(gg/graph2d (r/billow-noise {:seed 1 :noise-type :simplex}) [-2 2] [-2 2])
-   (gg/graph2d (r/billow-noise {:seed 1 :noise-type :value}) [-2 2] [-2 2])
-   (gg/graph2d (r/billow-noise {:seed 1 :noise-type :gradient :octaves 1}) [-2 2] [-2 2])]])
+  [(gg/graph2d (r/billow-noise {:seed 1 :noise-type :simplex}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/billow-noise {:seed 1 :noise-type :value}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/billow-noise {:seed 1 :noise-type :gradient :octaves 1}) [-2 2] [-2 2] {:varg? false})]])
 
 (utls/examples-note
  (billow-noise 0.2)
@@ -2086,13 +2087,13 @@ For given dimensionality, returns sequence of:
 
 (def ridgedmulti-noise (r/ridgedmulti-noise {:seed 1}))
 
-(gg/graph2d ridgedmulti-noise [-2 2] [-2 2])
+(gg/graph2d ridgedmulti-noise [-2 2] [-2 2] {:varg? false})
 
 (kind/table
  [["simplex noise" "value noise" "gradient noise, 1 octave"]
-  [(gg/graph2d (r/ridgedmulti-noise {:seed 1 :noise-type :simplex}) [-2 2] [-2 2])
-   (gg/graph2d (r/ridgedmulti-noise {:seed 1 :noise-type :value}) [-2 2] [-2 2])
-   (gg/graph2d (r/ridgedmulti-noise {:seed 1 :noise-type :gradient :octaves 1}) [-2 2] [-2 2])]])
+  [(gg/graph2d (r/ridgedmulti-noise {:seed 1 :noise-type :simplex}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/ridgedmulti-noise {:seed 1 :noise-type :value}) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/ridgedmulti-noise {:seed 1 :noise-type :gradient :octaves 1}) [-2 2] [-2 2] {:varg? false})]])
 
 (utls/examples-note
  (ridgedmulti-noise 0.2)
@@ -2110,9 +2111,9 @@ For given dimensionality, returns sequence of:
 
 (kind/table
  [["vnoise" "noise" "simplex"]
-  [(gg/graph2d r/vnoise [-2 2] [-2 2])
-   (gg/graph2d r/noise [-2 2] [-2 2])
-   (gg/graph2d r/simplex [-2 2] [-2 2])]])
+  [(gg/graph2d r/vnoise [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d r/noise [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d r/simplex [-2 2] [-2 2] {:varg? false})]])
 
 (utls/examples-note
  (r/vnoise 0.2)
@@ -2140,13 +2141,13 @@ For given dimensionality, returns sequence of:
 (kind/table
  [["" "vnoise" "noise" "simplex"]
   ["scale=2"
-   (gg/graph2d (r/warp-noise-fn r/vnoise 2.0 1) [-2 2] [-2 2])
-   (gg/graph2d (r/warp-noise-fn r/noise 2.0 1) [-2 2] [-2 2])
-   (gg/graph2d (r/warp-noise-fn r/simplex 2.0 1) [-2 2] [-2 2])]
+   (gg/graph2d (r/warp-noise-fn r/vnoise 2.0 1) [-2 2] [-2 2]  {:varg? false})
+   (gg/graph2d (r/warp-noise-fn r/noise 2.0 1) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/warp-noise-fn r/simplex 2.0 1) [-2 2] [-2 2] {:varg? false})]
   ["scale=4"
-   (gg/graph2d (r/warp-noise-fn r/vnoise 4.0 1) [-2 2] [-2 2])
-   (gg/graph2d (r/warp-noise-fn r/noise 4.0 1) [-2 2] [-2 2])
-   (gg/graph2d (r/warp-noise-fn r/simplex 4.0 1) [-2 2] [-2 2])]])
+   (gg/graph2d (r/warp-noise-fn r/vnoise 4.0 1) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/warp-noise-fn r/noise 4.0 1) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/warp-noise-fn r/simplex 4.0 1) [-2 2] [-2 2] {:varg? false})]])
 
 ;; ### Random configuration
 
@@ -2163,7 +2164,7 @@ For given dimensionality, returns sequence of:
 
 (def some-random-noise (r/random-noise-fn {:seed 1}))
 
-(gg/graph2d some-random-noise [-2 2] [-2 2])
+(gg/graph2d some-random-noise [-2 2] [-2 2] {:varg? false})
 
 (utls/examples-note
  (some-random-noise 0.2)
@@ -2171,12 +2172,12 @@ For given dimensionality, returns sequence of:
  (some-random-noise 0.2 0.3 0.4))
 
 (kind/table
- [[(gg/graph2d (r/random-noise-fn) [-2 2] [-2 2])
-   (gg/graph2d (r/random-noise-fn) [-2 2] [-2 2])
-   (gg/graph2d (r/random-noise-fn) [-2 2] [-2 2])]
-  [(gg/graph2d (r/random-noise-fn) [-2 2] [-2 2])
-   (gg/graph2d (r/random-noise-fn) [-2 2] [-2 2])
-   (gg/graph2d (r/random-noise-fn) [-2 2] [-2 2])]])
+ [[(gg/graph2d (r/random-noise-fn) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/random-noise-fn) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/random-noise-fn) [-2 2] [-2 2] {:varg? false})]
+  [(gg/graph2d (r/random-noise-fn) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/random-noise-fn) [-2 2] [-2 2] {:varg? false})
+   (gg/graph2d (r/random-noise-fn) [-2 2] [-2 2] {:varg? false})]])
 
 ;; ### Discrete noise
 

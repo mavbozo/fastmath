@@ -263,18 +263,12 @@
       (->file))
 
 
-(def ^:const size 200)
-
-
 (defn fgraph-int
-  ([f domain rnge size]
-   (fgraph-int f domain rnge size {:title ""}))
-  ([f domain rnge size {:keys [title]}]
+  ([f domain]
+   (fgraph-int f domain {:title ""}))
+  ([f domain {:keys [title]}]
    (function f {:x domain
-                :title title
-                :steps size
-                :xlab nil
-                :ylab nil})))
+                :title title})))
 
 
 (defn sample-int
@@ -284,10 +278,8 @@
 
 (defn bgraph-int
   ([f] (bgraph-int f nil))
-  ([f domain] (bgraph-int f domain :domain))
-  ([f domain rnge] (bgraph-int f domain rnge size))
-  ([f domain rnge size] (bgraph-int f domain rnge size {:title ""}))
-  ([f domain rnge size opts]
+  ([f domain] (bgraph-int f domain {:title ""}))
+  ([f domain opts]
    (let [[dx dy] domain
          xsys (if (map? f)
                 (seq f)
@@ -306,18 +298,16 @@
   ([pdf-graph distr] (dgraph-cont pdf-graph distr nil))
   ([pdf-graph distr {:keys [pdf icdf data]
                      :or {pdf [0 1] icdf [0 0.999]}}]
-   (let [pdf-plot (pdf-graph (if data data (partial fr/pdf distr)) pdf [0 nil] 100 {:title "PDF"})
-         cdf-plot (fgraph-int (partial fr/cdf distr) pdf [0 1] 100 {:title "CDF"})
-         icdf-plot (fgraph-int (partial fr/icdf distr) icdf :zero 100 {:title "ICDF"})]
+   (let [pdf-plot (pdf-graph (if data data (partial fr/pdf distr)) pdf {:title "PDF"})
+         cdf-plot (fgraph-int (partial fr/cdf distr) pdf {:title "CDF"})
+         icdf-plot (fgraph-int (partial fr/icdf distr) icdf {:title "ICDF"})]
      (->image (pw/wrap_plots pdf-plot cdf-plot icdf-plot :ncol 3)))))
 
 
 (defmacro fgraph
   ([f] `(->image (fgraph-int (fn [x#] (~f x#)))))
   ([f domain] `(->image (fgraph-int (fn [x#] (~f x#)) ~domain)))
-  ([f domain rnge] `(->image (fgraph-int (fn [x#] (~f x#)) ~domain ~rnge)))
-  ([f domain rnge size] `(->image (fgraph-int (fn [x#] (~f x#)) ~domain ~rnge ~size nil)))
-  ([f domain rnge size opts] `(->image (fgraph-int (fn [x#] (~f x#)) ~domain ~rnge ~size ~opts))))
+  ([f domain opts] `(->image (fgraph-int (fn [x#] (~f x#)) ~domain ~opts))))
 
 
 (defn dgraph
@@ -345,15 +335,12 @@
 
 
 (defn graph2d
-  ([f] (graph2d f nil nil))
-  ([f dx dy] (graph2d f dx dy size))
-  ([f dx dy size] (graph2d f dx dy size nil))
-  ([f dx dy size {:keys [varg?]}]
+  ([f] (graph2d f nil nil nil))
+  ([f dx dy] (graph2d f dx dy {}))
+  ([f dx dy opts]
    (let [[dx1 dx2] (or dx [0.0 1.0])
          [dy1 dy2] (or dy [0.0 1.0])]
-     (->image (function2d f {:x [dx1 dx2] :y [dy1 dy2]
-                             :steps size
-                             :varg? varg?})))))
+     (->image (function2d f (merge opts {:x [dx1 dx2] :y [dy1 dy2]}))))))
 
 
 (defn graph-scatter
