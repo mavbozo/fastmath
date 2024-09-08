@@ -203,12 +203,30 @@
                           :shape "circle filled" :size 3 :alpha 0.8)))))
 
 (defn scatter
+  "plot scatter graph.
+  `xs` and `ys` are the data points.
+  
+  options `opts`:
+  `aspect-ratio`: default `nil`.
+                  `nil` means letting the scale of the coordinate-system follows
+                  drawing-window's aspect ratio.
+                  set to any positive whole number to set fixed ratio y/x
+                  for the coordinate-system.
+                  setting aspect-ratio to true or 1 is useful if we want
+                  to draw plots depicting any perfect circle.
+  "
   ([xs ys]
+   (scatter xs ys nil))
+  ([xs ys {:keys [aspect-ratio]
+           :or {aspect-ratio nil}}]
    (-> (tc/dataset {:x xs :y ys})
        (gg/ggplot (gg/aes :x :x :y :y))
        (r/r+ (gg/theme_light)
              (gg/geom_point :color "blue" :fill "light blue"
-                            :shape "circle filled" :size 3 :alpha 0.8)))))
+                            :shape "circle filled" :size 1 :alpha 0.8))
+       (cond-> 
+           aspect-ratio (r/r+ (gg/coord_fixed :ratio aspect-ratio))))))
+
 
 (defn scatters
   [data aes]
@@ -245,7 +263,7 @@
       (->file))
 
 
-(def size 200)
+(def ^:const size 200)
 
 
 (defn fgraph-int
@@ -280,6 +298,11 @@
 
 
 (defn dgraph-cont
+  "params:
+  `opts`:
+     keys:`:pdf` a vector of pdf range, default 0 to 1
+          `:icdf` a vector of icdf range, default 0 0.999
+          `:data` supplied data"
   ([pdf-graph distr] (dgraph-cont pdf-graph distr nil))
   ([pdf-graph distr {:keys [pdf icdf data]
                      :or {pdf [0 1] icdf [0 0.999]}}]
@@ -299,23 +322,25 @@
 
 (defn dgraph
   "given a distribution `distr` create an image containing PDF, CDF, and ICDF plots of that distribution.
-use `fgraph-int` to plot pdf"
+  use `fgraph-int` to plot pdf.
+
+  params:
+  `opts`: see docs for `dgraph-cont`."
   ([distr]
    (dgraph distr nil))
-  ([distr {:keys [pdf icdf data]
-           :or {pdf [0 1] icdf [0 0.999]}
-           :as opts}]
+  ([distr opts]
    (dgraph-cont fgraph-int distr opts)))
 
 
 (defn dgraphi
   "given a distribution `distr` create an image containing PDF, CDF, and ICDF plots of that distribution.
-use `bgraph-int` to plot pdf."
+  use `bgraph-int` to plot pdf.
+
+  params:
+  `opts`: see docs for `dgraph-cont`"
   ([distr]
    (dgraph distr nil))
-  ([distr {:keys [pdf icdf data]
-           :or {pdf [0 1] icdf [0 0.999]}
-           :as opts}]
+  ([distr opts]
    (dgraph-cont bgraph-int distr opts)))
 
 
@@ -332,12 +357,8 @@ use `bgraph-int` to plot pdf."
 
 
 (defn graph-scatter
-  ([xy] (graph-scatter xy nil nil))
-  ([xy dx dy]
-   (let [[dx1 dx2] (or dx [0.0 1.0])
-         [dy1 dy2] (or dy [0.0 1.0])
-         mx (m/make-norm dx1 dx2)
-         my (m/make-norm dy1 dy2)
-         xs (map #(mx (first %) dx1 dx2) xy)
-         ys (map #(my (second %) dy1 dy2) xy)]
-     (->image (scatter xs ys)))))
+  "draw scatter plot.
+  see `scatter` doc for the `opts` description."
+  ([xy] (graph-scatter xy nil))
+  ([xy opts]
+   (->image (scatter (map first xy) (map second xy) opts))))

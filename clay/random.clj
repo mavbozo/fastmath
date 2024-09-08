@@ -1,5 +1,6 @@
 ^:kindly/hide-code
 (ns random
+  {:clj-kondo/config '{:config-in-call {utls/symbol-info-table {:ignore [:unresolved-symbol]}}}}
   (:require [fastmath.core :as m]
             [fastmath.random :as r]
             [fastmath.kernel :as k]
@@ -16,6 +17,8 @@
 ;; * probability distributions
 ;; * sequences generators
 ;; * noise (value, gradient, simplex)
+
+(kind/code "(require '[fastmath.random :as r])")
 
 ;; Set initial seed
 (r/set-seed! 31337)
@@ -475,7 +478,8 @@
 
 (kind/table
  {:column-names ["name" "parameters"]
-  :row-vectors (build-distribution-list false true)})
+  :row-vectors (mapv (fn [[k v]]
+                       [(kind/code (str k)) v]) (build-distribution-list false true))})
 
 ;; #### Anderson-Darling
 
@@ -1145,7 +1149,9 @@
 
 (kind/table
  {:column-names ["name" "parameters"]
-  :row-vectors (build-distribution-list false false)})
+  :row-vectors (map (fn [[k v]]
+                      [(kind/code (str k)) v])
+                    (build-distribution-list false false))})
 
 ;; #### Beta Binomial (bb)
 
@@ -1437,8 +1443,10 @@
 
 (kind/table
  {:column-names ["name" "parameters" "continuous?"]
-  :row-vectors (concat (map #(conj % true) (build-distribution-list true true))
-                       (map #(conj % false) (build-distribution-list true false)))})
+  :row-vectors (concat (map #(conj % true) (mapv (fn [[k v]] [(kind/code (str k)) v])
+                                                 (build-distribution-list true true)))
+                       (map #(conj % false) (mapv (fn [[k v]] [(kind/code (str k)) v])
+                                                  (build-distribution-list true false))))})
 
 ;; #### Dirichlet
 
@@ -1619,6 +1627,25 @@
  (r/lower-bound truncated-normal)
  (r/upper-bound truncated-normal))
 
+
+;; ### From data
+
+;; All below distributions can be constructed from datasets or list of values with probabilities.
+
+(kind/table
+ {:column-names ["name" "parameters" "continuous?"]
+  :row-vectors (mapv (fn [[k v]]
+                       [(kind/code (str k)) v])
+                     [[:continuous-distribution (r/distribution-parameters (r/distribution :continuous-distribution) true) true]
+                      [:kde (r/distribution-parameters (r/distribution :kde) true) true]
+                      [:empirical (r/distribution-parameters (r/distribution :empirical) true) true]
+                      [:real-discrete-distribution (r/distribution-parameters (r/distribution :real-discrete-distribution) true) false]
+                      [:integer-discrete-distribution (r/distribution-parameters (r/distribution :integer-discrete-distribution) true) false]
+                      [:categorical-distribution (r/distribution-parameters (r/distribution :categorical-distribution) true) false]
+                      [:enumerated-real (r/distribution-parameters (r/distribution :enumerated-real) true) false]
+                      [:enumerated-int (r/distribution-parameters (r/distribution :enumerated-int) true) false]])})
+
+
 ;; #### Continuous
 
 ;; Continous distribution build from data is based on KDE (Kernel Density Estimation) and PDF integration for CDF and iCDF. Mean and variance are calculated from samples.
@@ -1679,7 +1706,7 @@
 
 ;; KDE kernels
 
-^:kind/hidden
+^:kindly/hide-code
 (def kde-kernels (:kde k/kernel-list))
 
 (kind/table
@@ -1824,19 +1851,26 @@
  [[sequence-generator "Lazy sequence of generated vectors (for dim>1) or primitives (for dim=1)"]
   [jittered-sequence-generator "Adds jittering, works only for low discrepancy sequences"]])
 
-;; Parameters:
-;;    * `seq-generator` - generator name
-;;    * `dimensions` - vector dimensionality, 1 for primitive
-;;    * `jitter` - only for jittered sequences, from 0.0 to 1.0, default 0.25
 
-;; For given dimensionality, returns sequence of:
-;;   * 1 - doubles
-;;   * 2 - `Vec2` type
-;;   * 3 - `Vec3` type
-;;   * 4 - `Vec4` type
-;;   * n>4 - Clojure vector
+^:kindy/hide-code
+(kind/md "
+Parameters:
 
-;; `Vec2`, `Vec3` and `Vec4` are fixed size vectors optimized for speed. They act exactly like 2,3 and 4 elements Clojure vectors.
+   * `seq-generator` - generator name
+   * `dimensions` - vector dimensionality, 1 for primitive
+   * `jitter` - only for jittered sequences, from 0.0 to 1.0, default 0.25
+
+For given dimensionality, returns sequence of:
+
+   * 1 - doubles
+   * 2 - `Vec2` type
+   * 3 - `Vec3` type
+   * 4 - `Vec4` type
+   * n>4 - Clojure vector
+
+`Vec2`, `Vec3` and `Vec4` are fixed size vectors optimized for speed. They act exactly like 2,3 and 4 elements Clojure vectors
+")
+
 
 ;; ### Low discrepancy
 
@@ -1883,9 +1917,10 @@
 ;; 500 samples
 
 (kind/table
- [[":sphere" ":ball"]
-  [(gg/graph-scatter (take 500 (r/sequence-generator :sphere 2)) [-1.1 1.1] [-1.1 1.1])
-   (gg/graph-scatter (take 500 (r/sequence-generator :ball 2)) [-1.1 1.1] [-1.1 1.1])]])
+ [[(kind/code ":sphere") (kind/code ":ball")]
+  [(gg/graph-scatter (take 1000 (r/sequence-generator :sphere 2)) {:aspect-ratio 1})
+   (gg/graph-scatter (take 500 (r/sequence-generator :ball 2)) {:aspect-ratio 1})]])
+
 
 (utls/examples-note
  (first (r/sequence-generator :sphere 4))
@@ -1907,7 +1942,7 @@
 (kind/table
  [[":default" ":gaussian"]
   [(gg/graph-scatter (take 1000 (r/sequence-generator :default 2)))
-   (gg/graph-scatter (take 1000 (r/sequence-generator :gaussian 2)) [-3.5 3.5] [-3.5 3.5])]])
+   (gg/graph-scatter (take 1000 (r/sequence-generator :gaussian 2)))]])
 
 (utls/examples-note
  (first (r/sequence-generator :default 4))
