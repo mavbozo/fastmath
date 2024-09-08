@@ -18,6 +18,7 @@
 ;; * sequences generators
 ;; * noise (value, gradient, simplex)
 
+^:kindly/hide-code
 (kind/code "(require '[fastmath.random :as r])")
 
 ;; Set initial seed
@@ -1540,8 +1541,9 @@
 
 ;; ### Mixture
 
-{:head ["name" "parameters"]
- :rows [[:mixture (r/distribution-parameters (r/distribution :mixture) true)]]}
+(kind/table
+ {:column-names ["name" "parameters"]
+  :row-vectors [[(kind/code ":mixture") (r/distribution-parameters (r/distribution :mixture) true)]]})
 
 ;; Mixture distribution  
 
@@ -1853,7 +1855,7 @@
   [jittered-sequence-generator "Adds jittering, works only for low discrepancy sequences"]])
 
 
-^:kindy/hide-code
+^:kindly/hide-code
 (kind/md "
 Parameters:
 
@@ -1997,7 +1999,7 @@ For given dimensionality, returns sequence of:
 
 ;; Value and gradient single noise for different interpolations
 (kind/table
- [["" :none :linear :hermite :quintic]
+ [["" (kind/code ":none") (kind/code ":linear") (kind/code ":hermite") (kind/code ":quintic")]
   [:value
    (gg/graph2d (r/single-noise {:seed 1 :noise-type :value :interpolation :none}) [-2 2] [-2 2] {:varg? false})
    (gg/graph2d (r/single-noise {:seed 1 :noise-type :value :interpolation :linear}) [-2 2] [-2 2] {:varg? false})
@@ -2025,7 +2027,7 @@ For given dimensionality, returns sequence of:
 ;; Value and gradient FBM noise for different interpolations
 
 (kind/table
- [["" :none :linear :hermite :quintic]
+ [(mapv (comp kind/code str) ["" :none :linear :hermite :quintic])
   [:value
    (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :value :interpolation :none}) [-2 2] [-2 2] {:varg? false})
    (gg/graph2d (r/fbm-noise {:seed 1 :noise-type :value :interpolation :linear}) [-2 2] [-2 2] {:varg? false})
