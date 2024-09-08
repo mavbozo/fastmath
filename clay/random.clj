@@ -1,6 +1,6 @@
 ^:kindly/hide-code
 (ns random
-  {:clj-kondo/config '{:config-in-call {utls/symbol-info-table {:ignore [:unresolved-symbol]}}}}
+  {:clj-kondo/config '{:config-in-call {fastmath.dev.clay/symbol-info-table {:ignore [:unresolved-symbol]}}}}
   (:require [fastmath.core :as m]
             [fastmath.random :as r]
             [fastmath.kernel :as k]

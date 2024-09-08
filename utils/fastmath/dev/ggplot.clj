@@ -20,9 +20,11 @@
       (name pal))
     pal))
 
+#_{:clj-kondo/ignore [:unresolved-namespace]}
 (defn paletter-d [pal]
   (r/r->clj (pal/paletteer_d (->palette pal))))
 
+#_{:clj-kondo/ignore [:unresolved-namespace]}
 (defn paletter-c [pal n]
   (r/r->clj (pal/paletteer_c (->palette pal) n)))
 
@@ -63,6 +65,7 @@
 
 ;; primitives
 
+#_{:clj-kondo/ignore [:unresolved-namespace]}
 (defn aes [& opts] (apply gg/aes opts))
 (defn geom-hline [obj & opts] (r/r+ obj (apply gg/geom_hline obj opts)))
 
@@ -100,8 +103,7 @@
 (defn function2d->data
   ([f] (function2d->data f nil))
   ([f {:keys [x y steps varg?]
-       :or {steps 200 varg? true}
-       :as opts}]
+       :or {steps 200 varg? true}}]
    (let [xs (slice x steps)
          ys (slice y steps)
          f (if varg? f (fn [[x y]] (f x y)))]
@@ -140,7 +142,7 @@
   ([xs ys]
    (lollipop xs ys nil))
   ([xs ys {:keys [title]
-           :or {title ""} :as opts}]
+           :or {title ""}}]
    (-> (r/r+ (gg/ggplot :data (tc/dataset {:x xs :y ys}) :mapping (gg/aes :x :x :y :y))
              (gg/theme_light)
              (gg/geom_segment :mapping (gg/aes :x :x :xend :x :y 0 :yend :y) :color "blue"))
@@ -301,7 +303,9 @@
    (let [pdf-plot (pdf-graph (if data data (partial fr/pdf distr)) pdf {:title "PDF"})
          cdf-plot (fgraph-int (partial fr/cdf distr) pdf {:title "CDF"})
          icdf-plot (fgraph-int (partial fr/icdf distr) icdf {:title "ICDF"})]
-     (->image (pw/wrap_plots pdf-plot cdf-plot icdf-plot :ncol 3)))))
+     (->image
+      #_{:clj-kondo/ignore [:unresolved-namespace]}
+      (pw/wrap_plots pdf-plot cdf-plot icdf-plot :ncol 3)))))
 
 
 (defmacro fgraph
