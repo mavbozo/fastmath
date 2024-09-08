@@ -32,6 +32,14 @@ Collection of functions which deal with randomness. There are four groups:
 * sequences generators
 * noise (value, gradient, simplex)
 
+
+::: {.sourceClojure}
+```clojure
+(require '[fastmath.random :as r])
+```
+:::
+
+
 Set initial seed
 
 
@@ -45,7 +53,7 @@ Set initial seed
 
 ::: {.printedClojure}
 ```clojure
-#object[org.apache.commons.math3.random.JDKRandomGenerator 0x486889c "org.apache.commons.math3.random.JDKRandomGenerator@486889c"]
+#object[org.apache.commons.math3.random.JDKRandomGenerator 0x5879dbbd "org.apache.commons.math3.random.JDKRandomGenerator@5879dbbd"]
 
 ```
 :::
@@ -142,9 +150,9 @@ To create PRNG, call `rng` with algorithm name (as a keyword) and optional seed 
 
 ::: {.sourceClojure}
 ```clojure
-(r/rng :isaac) ;; => #object[org.apache.commons.math3.random.ISAACRandom 0x20cc047c "org.apache.commons.math3.random.ISAACRandom@20cc047c"]
-(r/rng :isaac 5336) ;; => #object[org.apache.commons.math3.random.ISAACRandom 0x47b4d9bb "org.apache.commons.math3.random.ISAACRandom@47b4d9bb"]
-(r/synced-rng (r/rng :isaac)) ;; => #object[org.apache.commons.math3.random.SynchronizedRandomGenerator 0x6cc7a8cf "org.apache.commons.math3.random.SynchronizedRandomGenerator@6cc7a8cf"]
+(r/rng :isaac) ;; => #object[org.apache.commons.math3.random.ISAACRandom 0x58023662 "org.apache.commons.math3.random.ISAACRandom@58023662"]
+(r/rng :isaac 5336) ;; => #object[org.apache.commons.math3.random.ISAACRandom 0x532513a7 "org.apache.commons.math3.random.ISAACRandom@532513a7"]
+(r/synced-rng (r/rng :isaac)) ;; => #object[org.apache.commons.math3.random.SynchronizedRandomGenerator 0x6087f0a2 "org.apache.commons.math3.random.SynchronizedRandomGenerator@6087f0a2"]
 ```
 :::
 
@@ -188,22 +196,22 @@ All examples will use Mersenne Twister PRNG with random seed
 
 ::: {.sourceClojure}
 ```clojure
-(r/irandom my-prng) ;; => 749880657
-(r/irandom my-prng 5) ;; => 1
-(r/irandom my-prng 10 20) ;; => 16
-(r/lrandom my-prng) ;; => 4168460114696887521
+(r/irandom my-prng) ;; => 455793813
+(r/irandom my-prng 5) ;; => 4
+(r/irandom my-prng 10 20) ;; => 18
+(r/lrandom my-prng) ;; => -4801330880897268377
 (r/lrandom my-prng 5) ;; => 3
-(r/lrandom my-prng 10 20) ;; => 19
-(r/frandom my-prng) ;; => 0.20633173
-(r/frandom my-prng 2.5) ;; => 0.17484665
-(r/frandom my-prng 10.1 10.11) ;; => 10.109573
-(r/drandom my-prng) ;; => 0.8378862118810935
-(r/drandom my-prng 2.5) ;; => 0.6278466158852086
-(r/drandom my-prng 10.1 10.11) ;; => 10.109620107590043
-(r/grandom my-prng) ;; => 0.14990515791384174
-(r/grandom my-prng 20.0) ;; => -19.204553107277977
-(r/grandom my-prng 10.0 20.0) ;; => 32.61845192927268
-(r/brandom my-prng) ;; => false
+(r/lrandom my-prng 10 20) ;; => 16
+(r/frandom my-prng) ;; => 0.37822068
+(r/frandom my-prng 2.5) ;; => 1.708315
+(r/frandom my-prng 10.1 10.11) ;; => 10.102341
+(r/drandom my-prng) ;; => 0.9771376741497075
+(r/drandom my-prng 2.5) ;; => 1.6717130713680872
+(r/drandom my-prng 10.1 10.11) ;; => 10.109029241506125
+(r/grandom my-prng) ;; => -0.4694225375340982
+(r/grandom my-prng 20.0) ;; => 3.6420378645480804
+(r/grandom my-prng 10.0 20.0) ;; => 23.466448297940158
+(r/brandom my-prng) ;; => true
 (r/brandom my-prng 0.01) ;; => false
 (r/brandom my-prng 0.99) ;; => true
 ```
@@ -220,12 +228,12 @@ All examples will use Mersenne Twister PRNG with random seed
 
 ::: {.sourceClojure}
 ```clojure
-(take 2 (r/->seq my-prng)) ;; => (0.6814642533279247 0.8061668830292861)
-(r/->seq my-prng 2) ;; => (0.5539910494761073 0.8770152554927628)
-(r/->seq my-prng 5 :antithetic) ;; => (0.5210227775296778 0.47897722247032215 0.47780310797147996 0.52219689202852 0.4732919711485142)
-(r/->seq my-prng 5 :uniform) ;; => (0.10683996310025397 0.2118536163456408 0.5796011735542954 0.7574133417937569 0.9795305217248493)
-(r/->seq my-prng 5 :systematic) ;; => (0.13198299486453166 0.33198299486453164 0.5319829948645317 0.7319829948645317 0.9319829948645317)
-(r/->seq my-prng 5 :stratified) ;; => (0.04316733403928361 0.3816942049899091 0.4050494051118008 0.7173919040209813 0.8284595050238466)
+(take 2 (r/->seq my-prng)) ;; => (0.600355620796756 0.057320206606013)
+(r/->seq my-prng 2) ;; => (0.3622763635748505 0.5635874432448933)
+(r/->seq my-prng 5 :antithetic) ;; => (0.5553977649185704 0.4446022350814296 0.616418874596327 0.38358112540367295 0.5387231489201532)
+(r/->seq my-prng 5 :uniform) ;; => (0.005158601084937208 0.43623586848122625 0.5717294248045643 0.7675736328439515 0.839853138600368)
+(r/->seq my-prng 5 :systematic) ;; => (0.1763175783283769 0.3763175783283769 0.5763175783283769 0.7763175783283769 0.976317578328377)
+(r/->seq my-prng 5 :stratified) ;; => (0.007068415113182125 0.21098152958340682 0.4871030105883156 0.6644856801096304 0.9263017592905952)
 ```
 :::
 
@@ -282,7 +290,7 @@ Let's now reseed both PRNGs
 
 ::: {.printedClojure}
 ```clojure
-#object[org.apache.commons.math3.random.ISAACRandom 0x38948f2 "org.apache.commons.math3.random.ISAACRandom@38948f2"]
+#object[org.apache.commons.math3.random.ISAACRandom 0x42c4bc43 "org.apache.commons.math3.random.ISAACRandom@42c4bc43"]
 
 ```
 :::
@@ -299,7 +307,7 @@ Let's now reseed both PRNGs
 
 ::: {.printedClojure}
 ```clojure
-#object[org.apache.commons.math3.random.ISAACRandom 0x5689affd "org.apache.commons.math3.random.ISAACRandom@5689affd"]
+#object[org.apache.commons.math3.random.ISAACRandom 0x4e6c9eaa "org.apache.commons.math3.random.ISAACRandom@4e6c9eaa"]
 
 ```
 :::
@@ -356,11 +364,11 @@ There is defined one global variable `default-rng` which is synchonized `:jvm` P
 (r/brand 0.01) ;; => false
 (r/brand 0.99) ;; => true
 (take 3 (r/->seq)) ;; => (0.8820950564851541 0.8432355490117891 0.7757833765798361)
-r/default-rng ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x486889c "org.apache.commons.math3.random.JDKRandomGenerator@486889c"]
-(r/set-seed) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x5e8d1324 "org.apache.commons.math3.random.JDKRandomGenerator@5e8d1324"]
-(r/set-seed 9988) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0xa3f7fe1 "org.apache.commons.math3.random.JDKRandomGenerator@a3f7fe1"]
-(r/set-seed!) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x486889c "org.apache.commons.math3.random.JDKRandomGenerator@486889c"]
-(r/set-seed! 9988) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x486889c "org.apache.commons.math3.random.JDKRandomGenerator@486889c"]
+r/default-rng ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x5879dbbd "org.apache.commons.math3.random.JDKRandomGenerator@5879dbbd"]
+(r/set-seed) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x6567844f "org.apache.commons.math3.random.JDKRandomGenerator@6567844f"]
+(r/set-seed 9988) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x28f26f51 "org.apache.commons.math3.random.JDKRandomGenerator@28f26f51"]
+(r/set-seed!) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x5879dbbd "org.apache.commons.math3.random.JDKRandomGenerator@5879dbbd"]
+(r/set-seed! 9988) ;; => #object[org.apache.commons.math3.random.JDKRandomGenerator 0x5879dbbd "org.apache.commons.math3.random.JDKRandomGenerator@5879dbbd"]
 ```
 :::
 
@@ -468,8 +476,8 @@ Collection of probability distributions.
 
 ::: {.sourceClojure}
 ```clojure
-(r/distribution :cauchy) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x523c5dfe "org.apache.commons.math3.distribution.CauchyDistribution@523c5dfe"]
-(r/distribution :cauchy {:median 2.0, :scale 2.0}) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x4cfbfe48 "org.apache.commons.math3.distribution.CauchyDistribution@4cfbfe48"]
+(r/distribution :cauchy) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x147df25 "org.apache.commons.math3.distribution.CauchyDistribution@147df25"]
+(r/distribution :cauchy {:median 2.0, :scale 2.0}) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x7d4a48f "org.apache.commons.math3.distribution.CauchyDistribution@7d4a48f"]
 ```
 :::
 
@@ -514,11 +522,11 @@ Let's define Beta, Dirichlet and Bernoulli distributions as examples of univaria
 
 ::: {.sourceClojure}
 ```clojure
-(r/drandom log-logistic) ;; => 3.7018389866325827
-(r/frandom log-logistic) ;; => 2.8306856
+(r/drandom log-logistic) ;; => 7.445126020973612
+(r/frandom log-logistic) ;; => 9.841925
 (r/lrandom log-logistic) ;; => 6
-(r/irandom log-logistic) ;; => 60
-(r/sample log-logistic) ;; => 8.512875378855352
+(r/irandom log-logistic) ;; => 5
+(r/sample log-logistic) ;; => 4.287549930154742
 (r/distribution? log-logistic) ;; => true
 (r/distribution? 2.3) ;; => false
 (r/pdf log-logistic 1) ;; => 0.008695578691184421
@@ -561,7 +569,7 @@ Let's define Beta, Dirichlet and Bernoulli distributions as examples of univaria
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample dirichlet) ;; => [0.0032038377707191245 0.605717680138081 0.39107848209119994]
+(r/sample dirichlet) ;; => [0.16731840320109712 0.32766895338648605 0.5050126434124167]
 (reduce + (r/sample dirichlet)) ;; => 1.0
 (r/distribution? dirichlet) ;; => true
 (r/pdf dirichlet [0.5 0.1 0.4]) ;; => 0.9600000000000001
@@ -569,9 +577,9 @@ Let's define Beta, Dirichlet and Bernoulli distributions as examples of univaria
 (r/observe1 dirichlet [0.5 0.1 0.4]) ;; => -0.040821994520255034
 (r/dimensions dirichlet) ;; => 3
 (r/continuous? dirichlet) ;; => true
-(r/log-likelihood dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 13.89223949678056
-(r/observe dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 15.02847118690109
-(r/likelihood dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 1348508.2797572948
+(r/log-likelihood dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 11.405564692073737
+(r/observe dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 15.96260929300497
+(r/likelihood dirichlet (repeatedly 10 (fn* [] (r/sample dirichlet)))) ;; => 5520991.605152575
 (r/means dirichlet) ;; => (0.16666666666666666 0.3333333333333333 0.5)
 (r/covariance dirichlet) ;; => [[0.019841269841269844 -0.007936507936507936 -0.011904761904761904] [-0.007936507936507936 0.03174603174603175 -0.023809523809523808] [-0.011904761904761904 -0.023809523809523808 0.03571428571428571]]
 (r/distribution-id dirichlet) ;; => :dirichlet
@@ -602,10 +610,10 @@ Let's define Beta, Dirichlet and Bernoulli distributions as examples of univaria
 ::: {.sourceClojure}
 ```clojure
 (r/drandom poisson) ;; => 10.0
-(r/frandom poisson) ;; => 9.0
-(r/lrandom poisson) ;; => 8
-(r/irandom poisson) ;; => 9
-(r/sample poisson) ;; => 6
+(r/frandom poisson) ;; => 11.0
+(r/lrandom poisson) ;; => 12
+(r/irandom poisson) ;; => 11
+(r/sample poisson) ;; => 10
 (r/distribution? poisson) ;; => true
 (r/pdf poisson 5) ;; => 0.03783327480207072
 (r/lpdf poisson 5) ;; => -3.274566277811817
@@ -714,8 +722,8 @@ Let's compare cdf and icdf to integrated pdf of beta distribution
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample weibull) ;; => 1.0114861938487278
-(r/->seq weibull 3) ;; => (1.0022815331849562 0.9370854653996438 1.1684465270682418)
+(r/sample weibull) ;; => 0.869239642321827
+(r/->seq weibull 3) ;; => (0.8102308387351901 0.7931128156445316 1.321720641084098)
 (r/->seq weibull 5 :antithetic) ;; => (0.8789298248121516 0.7871567720020644 0.3359031152662685 1.4959111180822753 0.5761405777290171)
 (r/->seq weibull 5 :uniform) ;; => (0.27819628819981307 0.5105865483391676 0.6372189139644687 1.1425580683435526 1.7502730290537003)
 (r/->seq weibull 5 :systematic) ;; => (0.42415794076771685 0.6734882729621214 0.911929539913042 1.2027888245275842 1.8282741464907257)
@@ -746,7 +754,7 @@ All distributions accept `:rng` optional parameter which is used internally for 
 ```clojure
 (vec (r/->seq cauchy-mersenne-2288 3)) ;; => [-0.1079136480774541 -5.558982159984645 -3.127061922456471]
 (vec (r/->seq cauchy-mersenne-2288 3)) ;; => [8.13804818209913 1.6141542337020716 -0.6694661861436221]
-(r/set-seed! cauchy-mersenne-2288 2288) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x3a036be2 "org.apache.commons.math3.distribution.CauchyDistribution@3a036be2"]
+(r/set-seed! cauchy-mersenne-2288 2288) ;; => #object[org.apache.commons.math3.distribution.CauchyDistribution 0x4c2f9b79 "org.apache.commons.math3.distribution.CauchyDistribution@4c2f9b79"]
 (vec (r/->seq cauchy-mersenne-2288 3)) ;; => [-0.1079136480774541 -5.558982159984645 -3.127061922456471]
 ```
 :::
@@ -771,7 +779,7 @@ All distributions accept `:rng` optional parameter which is used internally for 
 
 ::: {.sourceClojure}
 ```clojure
-(r/->seq r/default-normal 3) ;; => (2.0877914800655217 0.05703362896783526 -0.7336163378858906)
+(r/->seq r/default-normal 3) ;; => (-1.4945560466761465 0.6512376524678201 0.17361600121538642)
 (r/pdf r/default-normal 0.0) ;; => 0.3989422804014327
 (r/cdf r/default-normal 0.0) ;; => 0.5
 (r/icdf r/default-normal 0.5) ;; => 0.0
@@ -789,58 +797,58 @@ All distributions accept `:rng` optional parameter which is used internally for 
 ::: {.clay-table}
 
 ```{=html}
-<table class="table table-hover table-responsive"><thead><tr><th>name</th><th>parameters</th></tr></thead><tbody><tr><td>anderson-darling</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 1.0}]
-</code></pre></div></td></tr><tr><td>beta</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :alpha :beta :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>cauchy</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :median :scale :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>chi</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:nu 1.0}]
-</code></pre></div></td></tr><tr><td>chi-squared</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :degrees-of-freedom :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>chi-squared-noncentral</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:nu 1.0, :lambda 1.0}]
-</code></pre></div></td></tr><tr><td>cramer-von-mises</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 1.0}]
-</code></pre></div></td></tr><tr><td>erlang</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:k 1, :lambda 1}]
-</code></pre></div></td></tr><tr><td>exgaus</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :nu :rng]
-</code></pre></div></td></tr><tr><td>exponential</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mean :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>f</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng
+<table class="table table-hover table-responsive"><thead><tr><th>name</th><th>parameters</th></tr></thead><tbody><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:anderson-darling</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:beta</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :alpha :beta :inverse-cumm-accuracy]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:cauchy</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :median :scale :inverse-cumm-accuracy]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:chi</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:nu 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:chi-squared</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :degrees-of-freedom :inverse-cumm-accuracy]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:chi-squared-noncentral</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:nu 1.0, :lambda 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:cramer-von-mises</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:erlang</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:k 1, :lambda 1}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:exgaus</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :nu :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:exponential</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mean :inverse-cumm-accuracy]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:f</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng
  :numerator-degrees-of-freedom
  :denominator-degrees-of-freedom
  :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>fatigue-life</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:mu 0.0, :beta 1.0, :gamma 1.0}]
-</code></pre></div></td></tr><tr><td>folded-normal</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:mu 0.0, :sigma 1.0}]
-</code></pre></div></td></tr><tr><td>frechet</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:alpha 1.0, :beta 1.0, :delta 0.0}]
-</code></pre></div></td></tr><tr><td>gamma</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :shape :scale :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>gumbel</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :beta]
-</code></pre></div></td></tr><tr><td>half-cauchy</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:scale :rng]
-</code></pre></div></td></tr><tr><td>half-normal</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:sigma :rng]
-</code></pre></div></td></tr><tr><td>hyperbolic-secant</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:mu 0.0, :sigma 1.0}]
-</code></pre></div></td></tr><tr><td>hypoexponential</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :lambdas]
-</code></pre></div></td></tr><tr><td>hypoexponential-equal</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 1.0, :k 1.0, :h 1.0}]
-</code></pre></div></td></tr><tr><td>inverse-gamma</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:alpha 2.0, :beta 1.0}]
-</code></pre></div></td></tr><tr><td>inverse-gaussian</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:mu 1.0, :lambda 1.0}]
-</code></pre></div></td></tr><tr><td>johnson-sb</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:gamma 0.0, :delta 1.0, :xi 0.0, :lambda 1.0}]
-</code></pre></div></td></tr><tr><td>johnson-sl</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:gamma 0.0, :delta 1.0, :xi 0.0, :lambda 1.0}]
-</code></pre></div></td></tr><tr><td>johnson-su</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:gamma 0.0, :delta 1.0, :xi 0.0, :lambda 1.0}]
-</code></pre></div></td></tr><tr><td>kolmogorov</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng]
-</code></pre></div></td></tr><tr><td>kolmogorov-smirnov</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 1.0}]
-</code></pre></div></td></tr><tr><td>kolmogorov-smirnov+</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 1.0}]
-</code></pre></div></td></tr><tr><td>laplace</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :beta]
-</code></pre></div></td></tr><tr><td>levy</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :c]
-</code></pre></div></td></tr><tr><td>log-logistic</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:alpha 3.0, :beta 1.0}]
-</code></pre></div></td></tr><tr><td>log-normal</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :scale :shape :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>logistic</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :s]
-</code></pre></div></td></tr><tr><td>nakagami</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :omega :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>normal</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :sd :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>normal-inverse-gaussian</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:alpha 1.0, :beta 0.0, :mu 0.0, :delta 1.0}]
-</code></pre></div></td></tr><tr><td>pareto</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :scale :shape :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>pearson-6</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:alpha1 1.0, :alpha2 1.0, :beta 1.0}]
-</code></pre></div></td></tr><tr><td>power</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:a 0.0, :b 1.0, :c 2.0}]
-</code></pre></div></td></tr><tr><td>rayleigh</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:a 0.0, :beta 1.0}]
-</code></pre></div></td></tr><tr><td>reciprocal-sqrt</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:a :rng]
-</code></pre></div></td></tr><tr><td>t</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :degrees-of-freedom :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>triangular</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :a :c :b]
-</code></pre></div></td></tr><tr><td>uniform-real</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :lower :upper]
-</code></pre></div></td></tr><tr><td>watson-g</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 2.0}]
-</code></pre></div></td></tr><tr><td>watson-u</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 2.0}]
-</code></pre></div></td></tr><tr><td>weibull</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :alpha :beta :inverse-cumm-accuracy]
-</code></pre></div></td></tr><tr><td>zaga</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :nu :lower-tail? :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:fatigue-life</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:mu 0.0, :beta 1.0, :gamma 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:folded-normal</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:mu 0.0, :sigma 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:frechet</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:alpha 1.0, :beta 1.0, :delta 0.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:gamma</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :shape :scale :inverse-cumm-accuracy]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:gumbel</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :beta]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:half-cauchy</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:scale :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:half-normal</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:sigma :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:hyperbolic-secant</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:mu 0.0, :sigma 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:hypoexponential</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :lambdas]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:hypoexponential-equal</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 1.0, :k 1.0, :h 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:inverse-gamma</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:alpha 2.0, :beta 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:inverse-gaussian</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:mu 1.0, :lambda 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:johnson-sb</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:gamma 0.0, :delta 1.0, :xi 0.0, :lambda 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:johnson-sl</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:gamma 0.0, :delta 1.0, :xi 0.0, :lambda 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:johnson-su</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:gamma 0.0, :delta 1.0, :xi 0.0, :lambda 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:kolmogorov</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:kolmogorov-smirnov</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:kolmogorov-smirnov+</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:laplace</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :beta]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:levy</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :c]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:log-logistic</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:alpha 3.0, :beta 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:log-normal</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :scale :shape :inverse-cumm-accuracy]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:logistic</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :s]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:nakagami</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :omega :inverse-cumm-accuracy]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:normal</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :mu :sd :inverse-cumm-accuracy]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:normal-inverse-gaussian</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:alpha 1.0, :beta 0.0, :mu 0.0, :delta 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:pareto</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :scale :shape :inverse-cumm-accuracy]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:pearson-6</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:alpha1 1.0, :alpha2 1.0, :beta 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:power</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:a 0.0, :b 1.0, :c 2.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:rayleigh</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:a 0.0, :beta 1.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:reciprocal-sqrt</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:a :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:t</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :degrees-of-freedom :inverse-cumm-accuracy]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:triangular</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :a :c :b]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:uniform-real</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :lower :upper]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:watson-g</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 2.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:watson-u</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng {:n 2.0}]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:weibull</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :alpha :beta :inverse-cumm-accuracy]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:zaga</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :nu :lower-tail? :rng]
 </code></pre></div></td></tr></tbody></table>
 ```
 
@@ -1874,27 +1882,27 @@ $\operatorname{PDF}(x)=\frac{1}{\sqrt{x}}, x\in(a,(\frac{1}{2}(1+2\sqrt{a}))^2)$
 ::: {.clay-table}
 
 ```{=html}
-<table class="table table-hover table-responsive"><thead><tr><th>name</th><th>parameters</th></tr></thead><tbody><tr><td>bb</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :bd :rng]
-</code></pre></div></td></tr><tr><td>bernoulli</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :trials :p]
-</code></pre></div></td></tr><tr><td>binomial</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :trials :p]
-</code></pre></div></td></tr><tr><td>fishers-noncentral-hypergeometric</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :ns :nf :n :omega]
-</code></pre></div></td></tr><tr><td>geometric</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :p]
-</code></pre></div></td></tr><tr><td>hypergeometric</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :population-size :number-of-successes :sample-size]
-</code></pre></div></td></tr><tr><td>logarithmic</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :theta]
-</code></pre></div></td></tr><tr><td>nbi</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :rng]
-</code></pre></div></td></tr><tr><td>negative-binomial</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:r :p :rng]
-</code></pre></div></td></tr><tr><td>pascal</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :r :p]
-</code></pre></div></td></tr><tr><td>poisson</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :p :epsilon :max-iterations]
-</code></pre></div></td></tr><tr><td>uniform-int</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :lower :upper]
-</code></pre></div></td></tr><tr><td>zabb</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :bd :nu :rng]
-</code></pre></div></td></tr><tr><td>zabi</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :bd :rng]
-</code></pre></div></td></tr><tr><td>zanbi</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :nu :rng]
-</code></pre></div></td></tr><tr><td>zibb</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :bd :nu :rng]
-</code></pre></div></td></tr><tr><td>zibi</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :bd :rng]
-</code></pre></div></td></tr><tr><td>zinbi</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :nu :rng]
-</code></pre></div></td></tr><tr><td>zip</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :rng]
-</code></pre></div></td></tr><tr><td>zip2</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :rng]
-</code></pre></div></td></tr><tr><td>zipf</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :number-of-elements :exponent]
+<table class="table table-hover table-responsive"><thead><tr><th>name</th><th>parameters</th></tr></thead><tbody><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:bb</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :bd :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:bernoulli</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :trials :p]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:binomial</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :trials :p]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:fishers-noncentral-hypergeometric</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :ns :nf :n :omega]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:geometric</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :p]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:hypergeometric</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :population-size :number-of-successes :sample-size]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:logarithmic</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :theta]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:nbi</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:negative-binomial</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:r :p :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:pascal</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :r :p]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:poisson</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :p :epsilon :max-iterations]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:uniform-int</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :lower :upper]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:zabb</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :bd :nu :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:zabi</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :bd :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:zanbi</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :nu :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:zibb</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :bd :nu :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:zibi</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :bd :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:zinbi</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :nu :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:zip</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:zip2</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:mu :sigma :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:zipf</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :number-of-elements :exponent]
 </code></pre></div></td></tr></tbody></table>
 ```
 
@@ -2325,9 +2333,9 @@ The same as `:negative-binomial` but `r` is strictly integer
 ::: {.clay-table}
 
 ```{=html}
-<table class="table table-hover table-responsive"><thead><tr><th>name</th><th>parameters</th><th>continuous?</th></tr></thead><tbody><tr><td>dirichlet</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:alpha :rng]
-</code></pre></div></td><td>true</td></tr><tr><td>multi-normal</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:means :covariances :rng]
-</code></pre></div></td><td>true</td></tr><tr><td>multinomial</td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:n :ps :rng]
+<table class="table table-hover table-responsive"><thead><tr><th>name</th><th>parameters</th><th>continuous?</th></tr></thead><tbody><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:dirichlet</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:alpha :rng]
+</code></pre></div></td><td>true</td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:multi-normal</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:means :covariances :rng]
+</code></pre></div></td><td>true</td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:multinomial</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:n :ps :rng]
 </code></pre></div></td><td>false</td></tr></tbody></table>
 ```
 
@@ -2377,8 +2385,8 @@ Projections of the 2d and 3d Dirichlet distributions.
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample dirichlet3) ;; => [0.25176347768699486 0.22766107134889405 0.5205754509641112]
-(r/sample dirichlet3) ;; => [0.5330136569993918 0.13935191486586274 0.3276344281347454]
+(r/sample dirichlet3) ;; => [0.3309527202374819 0.3543707664730373 0.31467651328948093]
+(r/sample dirichlet3) ;; => [0.118514583877227 0.30728354059644125 0.5742018755263317]
 (r/pdf dirichlet3 [0.2 0.3 0.5]) ;; => 1.8000000000000003
 (r/pdf dirichlet3 [0.3 0.5 0.2]) ;; => 0.648
 (r/pdf dirichlet3 [0.5 0.2 0.3]) ;; => 4.05
@@ -2433,8 +2441,8 @@ Projections of the 2d and 3d Dirichlet distributions.
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample multinomial) ;; => [11 23 28 44 44]
-(r/sample multinomial) ;; => [12 17 29 37 55]
+(r/sample multinomial) ;; => [7 25 39 35 44]
+(r/sample multinomial) ;; => [10 20 35 47 38]
 (r/pdf multinomial [10 10 10 10 110]) ;; => 3.9088379874482466E-28
 (r/pdf multinomial [10 20 30 40 50]) ;; => 8.791729390927823E-5
 (r/pdf multinomial [110 10 10 10 10]) ;; => 4.955040820983416E-98
@@ -2449,22 +2457,13 @@ Projections of the 2d and 3d Dirichlet distributions.
 
 ### Mixture
 
+::: {.clay-table}
 
-::: {.sourceClojure}
-```clojure
-{:head ["name" "parameters"]
- :rows [[:mixture (r/distribution-parameters (r/distribution :mixture) true)]]}
+```{=html}
+<table class="table table-hover table-responsive"><thead><tr><th>name</th><th>parameters</th></tr></thead><tbody><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:mixture</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:distrs :weights :rng]
+</code></pre></div></td></tr></tbody></table>
 ```
-:::
 
-
-
-::: {.printedClojure}
-```clojure
-{:head ["name" "parameters"],
- :rows [[:mixture [:distrs :weights :rng]]]}
-
-```
 :::
 
 
@@ -2518,8 +2517,8 @@ Please note: `set-seed!` doesn't affect distributions which are part of the mixt
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample mixture-of-three) ;; => 1.102393590198155
-(r/sample mixture-of-three) ;; => 0.8890040151295291
+(r/sample mixture-of-three) ;; => 6.446451479453763
+(r/sample mixture-of-three) ;; => 0.8783305664229506
 (r/pdf mixture-of-three 0) ;; => 0.08333333333333333
 (r/pdf mixture-of-three 1) ;; => 0.45620084174033965
 (r/pdf mixture-of-three 2) ;; => 0.14666525453903217
@@ -2595,8 +2594,8 @@ Please note: derived `mean` or `variance` is not calculated. Also, `set-seed!` d
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample truncated-normal) ;; => -0.8640624998901583
-(r/sample truncated-normal) ;; => -0.2814694963857404
+(r/sample truncated-normal) ;; => -1.668045529807081
+(r/sample truncated-normal) ;; => 0.6033615843952738
 (r/pdf truncated-normal 2.0000001) ;; => 0.0
 (r/pdf truncated-normal 2.0) ;; => 0.0565646741125192
 (r/cdf truncated-normal 2.0) ;; => 1.0
@@ -2609,6 +2608,28 @@ Please note: derived `mean` or `variance` is not calculated. Also, `set-seed!` d
 
 
 :::
+
+
+### From data
+
+All below distributions can be constructed from datasets or list of values with probabilities.
+
+::: {.clay-table}
+
+```{=html}
+<table class="table table-hover table-responsive"><thead><tr><th>name</th><th>parameters</th><th>continuous?</th></tr></thead><tbody><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:continuous-distribution</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:data :steps :kde :bandwidth :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:kde</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:data :steps :kde :bandwidth :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:empirical</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :bin-count :data]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:real-discrete-distribution</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:data :probabilities :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:integer-discrete-distribution</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:data :probabilities :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:categorical-distribution</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:data :probabilities :rng]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:enumerated-real</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:rng :data :probabilities]
+</code></pre></div></td></tr><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:enumerated-int</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure printed-clojure">[:data :probabilities :rng]
+</code></pre></div></td></tr></tbody></table>
+```
+
+:::
+
 
 
 #### Continuous
@@ -2658,8 +2679,8 @@ Continous distribution build from data is based on KDE (Kernel Density Estimatio
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample kde-distr) ;; => 2.3217100350143935
-(r/sample kde-distr) ;; => 3.2761562666387416
+(r/sample kde-distr) ;; => 1.0501473725887536
+(r/sample kde-distr) ;; => 1.8261923863805227
 (r/pdf kde-distr 0.0) ;; => 0.2895732291670891
 (r/cdf kde-distr 0.0) ;; => 0.31552593767229803
 (map (partial r/icdf kde-distr) [1.0E-4 0.5 0.9999]) ;; => (-4.036565369328684 0.49883262884502827 5.012273231015241)
@@ -2786,15 +2807,6 @@ Distributions for various kernels:
 
 KDE kernels
 
-
-::: {.sourceClojure}
-```clojure
-^:kind/hidden
-(def kde-kernels (:kde k/kernel-list))
-```
-:::
-
-
 ::: {.clay-table}
 
 ```{=html}
@@ -2837,8 +2849,8 @@ Empirical distribution calculates PDF, CDF and iCDF from a histogram.
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample empirical-distr) ;; => 0.6697722991704338
-(r/sample empirical-distr) ;; => -1.2902499479591785
+(r/sample empirical-distr) ;; => 0.9786942429641341
+(r/sample empirical-distr) ;; => 0.08577449473784188
 (r/pdf empirical-distr 0.0) ;; => 0.3367652060230363
 (r/cdf empirical-distr 0.0) ;; => 0.3060844150814384
 (map (partial r/icdf empirical-distr) [1.0E-4 0.5 0.9999]) ;; => (-3.8445695885397138 0.49402601627672765 4.820277450226245)
@@ -2907,8 +2919,8 @@ Please note:
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample real-distr) ;; => 0.4
-(r/sample real-distr) ;; => 0.3
+(r/sample real-distr) ;; => 0.1
+(r/sample real-distr) ;; => 0.2
 (r/pdf real-distr 0.1) ;; => 0.375
 (r/pdf real-distr 0.15) ;; => 0.0
 (r/cdf real-distr 0.2) ;; => 0.75
@@ -2998,12 +3010,12 @@ Order for CDF/iCDF is created by calling `(distinct data)`. If sorted data is ne
 
 ::: {.sourceClojure}
 ```clojure
-(r/sample cat-distr) ;; => nil
+(r/sample cat-distr) ;; => :b
 (r/sample cat-distr) ;; => "s"
-(r/pdf cat-distr nil) ;; => 0.25000000000000006
+(r/pdf cat-distr nil) ;; => 0.26000000000000006
 (r/pdf cat-distr "ss") ;; => 0.0
-(r/cdf cat-distr :b) ;; => 1.0000000000000002
-(map (partial r/icdf cat-distr) [1.0E-4 0.5 0.9999]) ;; => (nil "s" :b)
+(r/cdf cat-distr :b) ;; => 0.21000000000000005
+(map (partial r/icdf cat-distr) [1.0E-4 0.5 0.9999]) ;; => (:b :a nil)
 ```
 :::
 
@@ -3026,19 +3038,23 @@ There are two multimethods:
 :::
 
 
+
 Parameters:
+
    * `seq-generator` - generator name
    * `dimensions` - vector dimensionality, 1 for primitive
    * `jitter` - only for jittered sequences, from 0.0 to 1.0, default 0.25
 
 For given dimensionality, returns sequence of:
-  * 1 - doubles
-  * 2 - `Vec2` type
-  * 3 - `Vec3` type
-  * 4 - `Vec4` type
-  * n>4 - Clojure vector
 
-`Vec2`, `Vec3` and `Vec4` are fixed size vectors optimized for speed. They act exactly like 2,3 and 4 elements Clojure vectors.
+   * 1 - doubles
+   * 2 - `Vec2` type
+   * 3 - `Vec3` type
+   * 4 - `Vec4` type
+   * n>4 - Clojure vector
+
+`Vec2`, `Vec3` and `Vec4` are fixed size vectors optimized for speed. They act exactly like 2,3 and 4 elements Clojure vectors
+
 
 
 ### Low discrepancy
@@ -3176,7 +3192,7 @@ Unit sphere or unit ball sequences can generate any dimension.
 ::: {.clay-table}
 
 ```{=html}
-<table class="table table-hover table-responsive"><tbody><tr><td>:sphere</td><td>:ball</td></tr><tr><td><img class="clay-image" src="random_files/185.png" /></td><td><img class="clay-image" src="random_files/186.png" /></td></tr></tbody></table>
+<table class="table table-hover table-responsive"><tbody><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:sphere</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:ball</code></pre></div></td></tr><tr><td><img class="clay-image" src="random_files/185.png" /></td><td><img class="clay-image" src="random_files/186.png" /></td></tr></tbody></table>
 ```
 
 :::
@@ -3187,7 +3203,7 @@ Unit sphere or unit ball sequences can generate any dimension.
 
 ::: {.sourceClojure}
 ```clojure
-(first (r/sequence-generator :sphere 4)) ;; => #vec4 [0.5721472289809604, 0.6458346016564552, 0.32029455950035257, -0.3910966770852592]
+(first (r/sequence-generator :sphere 4)) ;; => #vec4 [-0.33621217692117705, 0.08481821452239983, -0.9365170163526085, 0.0519915440928936]
 (first (r/sequence-generator :ball 3)) ;; => #vec3 [0.6106439662537149, -0.19719273807051046, -0.5338472481721354]
 ```
 :::
@@ -3208,46 +3224,46 @@ Unit sphere or unit ball sequences can generate any dimension.
 
 ::: {.printedClojure}
 ```clojure
-([0.46122262575705
-  0.33504487514221437
-  -0.04115834634692293
-  -0.10746016121585367
-  -0.1613628120286278
-  -0.16327261482609373
-  -0.048124312555000937
-  -0.4168117850217311
-  0.3320134361922655
-  0.05829076361317733
-  -0.21613719216250268
-  -0.12958906572766357
-  0.11003222269388839
-  -0.11556262167276417
-  -0.19131937210249134
-  0.286660111717099
-  0.09646997624706125
-  0.21270310542909057
-  -0.12054701027850794
-  -0.20633487542803555]
- [-0.3272376019660657
-  -0.3789063664230623
-  -0.28404239004959664
-  0.29668107518869313
-  0.5046788197184415
-  -0.12204137707871862
-  0.024835354032850313
-  0.05673569617429352
-  -0.07109175645967032
-  -0.05391479885880135
-  0.06803636043703827
-  0.03743243264395835
-  -0.25442901585950073
-  -0.16009017347453378
-  0.14836461932939132
-  -0.23654301379132536
-  0.14632664549835744
-  0.15523755644110201
-  0.07553759345075278
-  -0.2714415195584333])
+([-0.03117660124400758
+  -0.3596217519877393
+  0.2657583283367665
+  -0.26201228120182546
+  -0.6098214924732408
+  -0.09803723693397298
+  -0.12860876100398846
+  0.10973009285513022
+  0.1130818512395018
+  0.012345997091335863
+  0.11389671978659667
+  0.09416108689583262
+  -0.037954536845520845
+  0.17748031663776742
+  -0.36556378720065175
+  0.09544613680434967
+  0.14208525256173649
+  -0.21254312312961676
+  0.03745278495244505
+  -0.20764624480237795]
+ [0.061630008116536204
+  0.08932444757153155
+  -0.06317285570100616
+  0.09429001279803356
+  -0.18573366463574079
+  0.09432798438441144
+  0.09721918503744241
+  0.09933561350857059
+  -0.23471895287789318
+  -0.33549192629598507
+  -0.15604626541645011
+  0.045132756050698546
+  0.06219470190525861
+  0.1833345794350281
+  -0.32615920612205385
+  -0.6006462298121384
+  -0.057459103654643594
+  0.14266809921837822
+  0.37175518799851043
+  0.22825254653469515])
 
 ```
 :::
@@ -3364,7 +3380,7 @@ Value and gradient single noise for different interpolations
 ::: {.clay-table}
 
 ```{=html}
-<table class="table table-hover table-responsive"><tbody><tr><td></td><td>none</td><td>linear</td><td>hermite</td><td>quintic</td></tr><tr><td>value</td><td><img class="clay-image" src="random_files/190.png" /></td><td><img class="clay-image" src="random_files/191.png" /></td><td><img class="clay-image" src="random_files/192.png" /></td><td><img class="clay-image" src="random_files/193.png" /></td></tr><tr><td>gradient</td><td><img class="clay-image" src="random_files/194.png" /></td><td><img class="clay-image" src="random_files/195.png" /></td><td><img class="clay-image" src="random_files/196.png" /></td><td><img class="clay-image" src="random_files/197.png" /></td></tr></tbody></table>
+<table class="table table-hover table-responsive"><tbody><tr><td></td><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:none</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:linear</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:hermite</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:quintic</code></pre></div></td></tr><tr><td>value</td><td><img class="clay-image" src="random_files/190.png" /></td><td><img class="clay-image" src="random_files/191.png" /></td><td><img class="clay-image" src="random_files/192.png" /></td><td><img class="clay-image" src="random_files/193.png" /></td></tr><tr><td>gradient</td><td><img class="clay-image" src="random_files/194.png" /></td><td><img class="clay-image" src="random_files/195.png" /></td><td><img class="clay-image" src="random_files/196.png" /></td><td><img class="clay-image" src="random_files/197.png" /></td></tr></tbody></table>
 ```
 
 :::
@@ -3411,7 +3427,7 @@ Value and gradient FBM noise for different interpolations
 ::: {.clay-table}
 
 ```{=html}
-<table class="table table-hover table-responsive"><tbody><tr><td></td><td>none</td><td>linear</td><td>hermite</td><td>quintic</td></tr><tr><td>value</td><td><img class="clay-image" src="random_files/199.png" /></td><td><img class="clay-image" src="random_files/200.png" /></td><td><img class="clay-image" src="random_files/201.png" /></td><td><img class="clay-image" src="random_files/202.png" /></td></tr><tr><td>gradient</td><td><img class="clay-image" src="random_files/203.png" /></td><td><img class="clay-image" src="random_files/204.png" /></td><td><img class="clay-image" src="random_files/205.png" /></td><td><img class="clay-image" src="random_files/206.png" /></td></tr></tbody></table>
+<table class="table table-hover table-responsive"><tbody><tr><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light"></code></pre></div></td><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:none</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:linear</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:hermite</code></pre></div></td><td><div><pre><code class="sourceCode language-clojure source-clojure bg-light">:quintic</code></pre></div></td></tr><tr><td>value</td><td><img class="clay-image" src="random_files/199.png" /></td><td><img class="clay-image" src="random_files/200.png" /></td><td><img class="clay-image" src="random_files/201.png" /></td><td><img class="clay-image" src="random_files/202.png" /></td></tr><tr><td>gradient</td><td><img class="clay-image" src="random_files/203.png" /></td><td><img class="clay-image" src="random_files/204.png" /></td><td><img class="clay-image" src="random_files/205.png" /></td><td><img class="clay-image" src="random_files/206.png" /></td></tr></tbody></table>
 ```
 
 :::
@@ -3553,15 +3569,15 @@ There are three ready to use preconfigured noises:
 
 ::: {.sourceClojure}
 ```clojure
-(r/vnoise 0.2) ;; => 0.4541156027546184
-(r/vnoise 0.2 0.3) ;; => 0.4463309539411112
-(r/vnoise 0.2 0.3 0.4) ;; => 0.4703624166069886
-(r/noise 0.2) ;; => 0.47790476190476194
-(r/noise 0.2 0.3) ;; => 0.52815025152
-(r/noise 0.2 0.3 0.4) ;; => 0.5817763147608519
-(r/simplex 0.2) ;; => 0.3599031804342857
-(r/simplex 0.2 0.3) ;; => 0.4923554956595277
-(r/simplex 0.2 0.3 0.4) ;; => 0.49820142984126986
+(r/vnoise 0.2) ;; => 0.39397089420326237
+(r/vnoise 0.2 0.3) ;; => 0.4979055200933764
+(r/vnoise 0.2 0.3 0.4) ;; => 0.42918210134343593
+(r/noise 0.2) ;; => 0.6040314920634922
+(r/noise 0.2 0.3) ;; => 0.32783264930539685
+(r/noise 0.2 0.3 0.4) ;; => 0.5544648869629758
+(r/simplex 0.2) ;; => 0.5566763154285714
+(r/simplex 0.2 0.3) ;; => 0.42668336098664733
+(r/simplex 0.2 0.3 0.4) ;; => 0.49857798230687833
 ```
 :::
 
@@ -3623,14 +3639,14 @@ Optional parameter is a map with values user wants to fix.
 
 ::: {.printedClojure}
 ```clojure
-{:interpolation :hermite,
+{:interpolation :none,
  :warp-scale 0.0,
  :seed 665844940,
  :normalize? true,
- :noise-type :gradient,
+ :noise-type :value,
  :lacunarity 1.90872786462909,
  :gain 0.24908653479282347,
- :generator :billow,
+ :generator :ridgemulti,
  :warp-depth 1,
  :octaves 6}
 
@@ -3649,14 +3665,14 @@ Optional parameter is a map with values user wants to fix.
 
 ::: {.printedClojure}
 ```clojure
-{:interpolation :linear,
+{:interpolation :hermite,
  :warp-scale 4.0,
  :seed 1,
  :normalize? true,
- :noise-type :gradient,
+ :noise-type :simplex,
  :lacunarity 1.8874943472437105,
  :gain 0.508204375355278,
- :generator :single,
+ :generator :fbm,
  :warp-depth 1,
  :octaves 3}
 
@@ -3686,9 +3702,9 @@ Optional parameter is a map with values user wants to fix.
 
 ::: {.sourceClojure}
 ```clojure
-(some-random-noise 0.2) ;; => 0.650333154475532
-(some-random-noise 0.2 0.3) ;; => 0.8520838267329627
-(some-random-noise 0.2 0.3 0.4) ;; => 0.6474310491712779
+(some-random-noise 0.2) ;; => 0.5029870750239113
+(some-random-noise 0.2 0.3) ;; => 1.0735878092430289
+(some-random-noise 0.2 0.3 0.4) ;; => 1.2897653575121655
 ```
 :::
 
@@ -3892,7 +3908,7 @@ Return random vector from a ball
 #### billow-noise
 
 + `(billow-noise)`
-+ `(billow-noise cfg__15693__auto__)`
++ `(billow-noise cfg__15508__auto__)`
 
 Create billow-noise function with optional configuration.
 
@@ -4232,7 +4248,7 @@ Random double number with provided RNG
 #### fbm-noise
 
 + `(fbm-noise)`
-+ `(fbm-noise cfg__15693__auto__)`
++ `(fbm-noise cfg__15508__auto__)`
 
 Create fbm-noise function with optional configuration.
 
@@ -4906,7 +4922,7 @@ Return value with given probability (default 0.5), for given rng
 #### ridgedmulti-noise
 
 + `(ridgedmulti-noise)`
-+ `(ridgedmulti-noise cfg__15693__auto__)`
++ `(ridgedmulti-noise cfg__15508__auto__)`
 
 Create ridgedmulti-noise function with optional configuration.
 
@@ -5121,7 +5137,7 @@ Simplex noise. 6 octaves.
 #### single-noise
 
 + `(single-noise)`
-+ `(single-noise cfg__15693__auto__)`
++ `(single-noise cfg__15508__auto__)`
 
 Create single-noise function with optional configuration.
 
